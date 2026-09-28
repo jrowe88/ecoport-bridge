@@ -11,6 +11,14 @@ don't let a guess quietly become "the spec".
 - EPRI documents 19,200 baud, 8 data bits, 1 stop bit, no parity
 - Rinnai REHP65 is CTA-2045-B / EcoPort capable (per ENERGY STAR listing)
 - CTA-2045 defines Basic DR and Intermediate message sets
+- Message type bytes (per the ANSI standard preview):
+  - **Basic DR** = `0x08 0x01`
+  - **Intermediate DR** = `0x08 0x02`
+- EPRI's C++ sample application demonstrates the following commands against
+  an SGD: present temperature, setpoint, temperature offset, commodity,
+  power level, operating state, shed, end shed, load-up. These are a good
+  starting checklist for our own protocol test suite (see
+  `docs/reverse-engineering.md`).
 
 ## Observed
 
@@ -60,3 +68,41 @@ Load Up
 Set Point
 End Shed
 ```
+
+## Capability matrix
+
+CTA-2045 defines a fairly broad interface, but an appliance doesn't
+necessarily implement every feature. Track what Rinnai actually supports
+here as it's confirmed via captures/experiments, and distinguish:
+
+- **not implemented** — Rinnai doesn't respond to / support the function
+- **implemented but undocumented** — works, but isn't mentioned in the
+  homeowner-facing manual
+- **Rinnai uses the mechanism differently** — responds, but semantics differ
+  from the generic CTA-2045 expectation
+
+| Function | CTA-2045 | Rinnai REHP65 |
+|---|---|---|
+| Link negotiation | ✓ | ? |
+| Device information | ✓ | ? |
+| Operating state | ✓ | ? |
+| Present temperature | ✓ | ? |
+| Setpoint | ✓ | ? |
+| Temperature offset | ✓ | ? |
+| Commodity reading | ✓ | ? |
+| Energy consumption | ✓ | ? |
+| Shed | ✓ | ? |
+| End shed | ✓ | ? |
+| Load-up | ✓ | ? |
+| Price | ✓ | ? |
+| Scheduled events | ✓ | ? |
+| Advanced Load Up | ✓ | ? |
+
+Update the `Rinnai REHP65` column as each function is confirmed, with a
+pointer to the capture/experiment that confirmed it. Also worth checking
+against the **EcoPort certified product database** and **OpenADR Alliance**
+certification criteria (see `docs/references.md`) — certification
+requirements may hint at expected behavior beyond the homeowner manual.
+
+See `docs/references.md` for source material (EPRI simulator/library,
+`python-cta2045`, ANSI preview, EcoPort database, OpenADR).
