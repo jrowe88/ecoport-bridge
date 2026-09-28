@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# PlatformIO
+firmware/.pio/
+firmware/.vscode/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Large/binary capture artifacts (keep notes.md, ignore raw binaries by default)
+captures/**/*.bin
+
+# Build output
+*.stl
+!hardware/enclosure/stl/.gitkeep
