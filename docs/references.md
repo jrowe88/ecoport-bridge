@@ -26,6 +26,14 @@ captures and EPRI's reference implementation where possible.
   though the full standard (and detailed pin figures) is paywalled. Also
   confirms Basic DR message type = `0x08 0x01` and Intermediate DR message
   type = `0x08 0x02`.
+- **[ASHB — Ken Wacks' Perspectives: Appliances Designed for Energy
+  Management](https://www.ashb.com/ken-wacks-perspectives-appliances-designed-for-energy-management/)**
+  — publishes a full 12-pin CTA-2045 UCM connector pinout diagram
+  (reproduced at `docs/images/cta2045-connector-pinout-ashb.png`). This
+  independently corroborates the RS-485/ground pins identified from the
+  EPRI simulator cable, and additionally identifies pins 5 and 12 as AC
+  line voltage, pin 3 as reserved, and pin 10 as earth ground (distinct from
+  pin 8 signal ground). See `docs/hardware.md` for the full table.
 - **EPRI CTA-2045 Desktop Simulator** — acts as either a UCM or SGD; supports
   the data-link layer plus Basic and Intermediate DR messages. Primary
   "protocol oracle" for developing and testing our implementation without

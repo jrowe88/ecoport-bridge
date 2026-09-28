@@ -23,17 +23,29 @@ the part an appliance manufacturer would use), not our UCM plug:
 So the full shopping list stays small: `420B2V12FL0` + an isolated
 USB/RS-485 adapter + a 3-wire cable. No crimp tooling at all.
 
-## Pinout (confirmed)
+## Pinout (confirmed — full 12-pin map)
 
-Only 3 of the connector's pins are used:
+Independently confirmed via a published CTA-2045 UCM connector pinout
+diagram (see `docs/images/cta2045-connector-pinout-ashb.png`, source:
+[ASHB — Ken Wacks' Perspectives: Appliances Designed for Energy
+Management](https://www.ashb.com/ken-wacks-perspectives-appliances-designed-for-energy-management/)).
+This corroborates the pins we identified from the EPRI UCM simulator cable
+(1, 7, 8) and additionally identifies the two AC line pins:
 
-| Pin | Signal |
-|-----|--------|
-| 1   | RS-485 D- |
-| 7   | RS-485 D+ |
-| 8   | Signal ground |
+| Pin | Signal | Pin | Signal |
+|-----|--------|-----|--------|
+| 1   | Data- (RS-485) | 7  | Data+ (RS-485) |
+| 2   | No connection  | 8  | Signal Ground |
+| 3   | Reserved       | 9  | No connection |
+| 4   | No connection  | 10 | Earth Ground |
+| 5   | **AC Line 2**  | 11 | No connection |
+| 6   | No connection  | 12 | **AC Line 1** |
 
-All other pins are left unconnected.
+Only pins **1, 7, and 8** are used for our bridge (RS-485 D-, D+, and Signal
+Ground). All other pins are left unconnected — **critically, pins 5 and 12
+carry actual AC line voltage** and must never be connected to our isolated
+RS-485 adapter. Pin 10 (Earth Ground) is distinct from pin 8 (Signal
+Ground); do not bond them together without understanding the implications.
 
 ```text
 420B2V12FL0
@@ -53,10 +65,12 @@ All other pins are left unconnected.
 ## ⚠️ Safety: identify pins before connecting anything
 
 The CTA-2045 **AC-form-factor** connector is explicitly designed to allow a
-UCM to draw power from the appliance over the same connector — the standard
-distinguishes AC and low-voltage form factors, and the AC interface can
-carry line voltage on some contacts. Do not assume the pins are D+/D-/GND
-just because that's the expected wiring.
+UCM to draw power from the appliance over the same connector, and we now
+have a confirmed pinout showing **pins 5 and 12 carry actual AC line
+voltage** (see Pinout above). Even with a published pinout in hand, treat it
+as a starting hypothesis to verify against your specific unit, not a
+substitute for careful handling — wiring can vary by revision, and mistakes
+here are line-voltage mistakes.
 
 Recommended procedure, in order:
 
