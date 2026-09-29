@@ -11,6 +11,9 @@ don't let a guess quietly become "the spec".
   (D-) and 7 (D+) are RS-485, pin 8 is signal ground, pin 10 is earth
   ground, pins 5 and 12 carry AC line voltage, pin 3 is reserved, and the
   rest are unused. Only pins 1, 7, 8 are used by our bridge.
+- No regulated low-voltage (5V/12V) supply is present on the connector —
+  pins 5/12 are raw AC mains, not clean DC. The bridge board must be powered
+  independently (see Power section in `docs/hardware.md`).
 - EPRI documents 19,200 baud, 8 data bits, 1 stop bit, no parity
 - Rinnai REHP65 is CTA-2045-B / EcoPort capable (per ENERGY STAR listing)
 - CTA-2045 defines Basic DR and Intermediate message sets

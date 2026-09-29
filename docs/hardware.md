@@ -119,6 +119,36 @@ ESP32 / RP2040 / STM32
     CTA-2045
 ```
 
+## Power
+
+**The CTA-2045 connector does not provide a regulated low-voltage supply
+(no 5V/12V logic rail).** Pins 5 and 12 are raw **AC Line 1/2** — i.e. mains
+voltage, not clean DC. This matches how the CTA-2045 AC-form-factor UCM spec
+is designed: a compliant AC UCM is expected to be a self-contained module
+that taps mains off pins 5/12 and performs its own AC→DC conversion
+internally. The appliance does not hand the UCM regulated logic-level power.
+
+Since this project deliberately only connects pins 1/7/8 (RS-485 D-, D+,
+signal ground) and avoids the AC pins for isolation/safety reasons (see
+Safety section above), the bridge board needs to be powered independently
+of the CTA-2045 connector:
+
+- **Prototype / bring-up (current plan):** power the Pi/laptop/ESP32 from
+  USB, same as the isolated RS-485 adapter. No mains wiring inside the
+  bridge enclosure at all — simplest and safest option, and what
+  `hardware/rev-a/` should target.
+- **Production bridge, external supply:** a small wall-wart / USB power
+  adapter feeding the ESP32 board, mounted near (but electrically separate
+  from) the CTA-2045 connector.
+- **Production bridge, parasitic AC power (future/optional):** a fully
+  self-contained module that draws power from pins 5/12 via an isolated
+  AC-DC converter (with appropriate fusing, creepage/clearance, and
+  enclosure requirements), so the bridge needs no external wall-wart at
+  all — closer to how a certified CTA-2045 UCM is designed. This is a
+  materially bigger safety/compliance undertaking (mains-to-low-voltage
+  conversion inside our own enclosure) and should be treated as a distinct,
+  later hardware revision — not part of Rev A.
+
 ## Bridge hardware revisions
 
 - `hardware/rev-a/` — first PCB revision (schematic, PCB, gerbers, BOM,
@@ -131,4 +161,6 @@ ESP32 / RP2040 / STM32
 - `420B2V12FL0` mating connector
 - Isolated USB-RS485 adapter
 - 3-wire cable (D+, D-, GND)
+- USB power supply / cable for the Pi or ESP32 board (the CTA-2045
+  connector does not supply regulated power — see Power section above)
 - No crimp tooling required for the initial bring-up
