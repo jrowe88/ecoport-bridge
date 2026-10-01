@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "ecoport"
 version = "0.1.0"
 description = "CTA-2045 (EcoPort) protocol implementation and tooling for the EcoPort Bridge project"
-readme = "../README.md"
+readme = { text = "CTA-2045 (EcoPort) protocol implementation and tooling for EcoPort Bridge.", content-type = "text/markdown" }
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Jim Rowe" }]

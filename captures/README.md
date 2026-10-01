@@ -13,7 +13,7 @@ captures/
 └── rinnai/
     ├── 2026-09-30-idle/
     │   ├── capture.bin
-    │   ├── capture.json
+    │   ├── capture.jsonl
     │   └── notes.md
     │
     ├── 2026-09-30-heating/
@@ -28,3 +28,9 @@ captures/
 Each capture directory should include a `notes.md` describing what was
 physically happening on the appliance during the capture (see
 `docs/reverse-engineering.md`).
+
+`capture.bin` is the exact byte stream as received. `capture.jsonl` is a
+newline-delimited sidecar that records the timestamp, byte offset, length,
+hexadecimal representation, and Base64 representation of each receive event.
+Do not alter `capture.bin`; the JSON Lines file and `notes.md` are the
+human-readable context for decoding it later.

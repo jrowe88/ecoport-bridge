@@ -29,11 +29,26 @@ pio run
 
 Command-line helpers live in `tools/`:
 
-- `sniff.py` — passively capture and log raw CTA-2045 traffic
+- `sniff.py` — passively capture and log raw CTA-2045 traffic. It never
+  writes to the serial port:
+
+  ```powershell
+  python tools\sniff.py --port COM3 --scenario idle-baseline --duration 300
+  ```
+
+  Each run creates a timestamped capture directory under `captures\rinnai\`
+  containing `capture.bin` (the original byte stream), `capture.jsonl`
+  (timestamped hex/base64 receive events), and a `notes.md` operator log.
 - `decode.py` — decode a saved capture into human-readable messages
 - `query.py` — send a one-off query to a connected appliance
 - `interactive.py` — interactive REPL for exploring the protocol
 - `packet_capture.py` — capture helper shared by the above
+
+Before using the sniffer on the heater, follow the
+[Rinnai control-panel passive-capture plan](rinnai-control-panel-capture-plan.md).
+It provides a repeatable manual test matrix for idle, mode transitions
+(including Heat Pump Only if available), setpoint changes, and heating
+transitions — all without sending any CTA-2045 command.
 
 ## Safety note
 
