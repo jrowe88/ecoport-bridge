@@ -17,6 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "python" / "src"))
 
 from ecoport.cta2045.framing import split_frames
+from ecoport.cta2045.ucm import describe_intermediate
 
 MESSAGE_TYPES = {
     b"\x08\x01": "Basic DR",
@@ -67,6 +68,8 @@ def describe(msg_type: bytes, payload: bytes) -> str:
     if msg_type == b"\x08\x01" and len(payload) == 2:
         op = BASIC_OPCODES.get(payload[0], f"opcode 0x{payload[0]:02X}")
         return f"{name}: {op} (opcode2 0x{payload[1]:02X})"
+    if msg_type == b"\x08\x02":
+        return f"{name}: {describe_intermediate(payload)}"
     return f"{name}: payload {payload.hex(' ')}"
 
 

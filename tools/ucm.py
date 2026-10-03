@@ -35,7 +35,7 @@ from packet_capture import CaptureWriter
 DEFAULT_OUTPUT_ROOT = Path(__file__).resolve().parents[1] / "captures" / "rinnai"
 
 LINK_REPLY_DELAY = 0.06  # tMA: 40-200 ms after the end of a message
-APP_REPLY_DELAY = 0.15  # tAR: >= 100 ms after our link ACK
+APP_REPLY_DELAY = 1.0  # tAR >= 100 ms (tAAR <= 3 s); Rinnai drops replies sent ~150 ms after our ACK
 ACK_TIMEOUT = 0.30  # tMA max (200 ms) plus USB latency margin
 BUS_IDLE = 0.04  # don't start talking within 40 ms of the last received byte
 STALE_PARTIAL = 0.50  # tML: a message must complete within 500 ms
@@ -65,6 +65,7 @@ class UcmSession:
         log=print,
         clock=time.monotonic,
         rts_tx: bool = False,
+        app_reply_delay: float = APP_REPLY_DELAY,
     ) -> None:
         self.port = port
         self.capture = capture
@@ -73,6 +74,7 @@ class UcmSession:
         self.log = log
         self.clock = clock
         self.rts_tx = rts_tx
+        self.app_reply_delay = app_reply_delay
         self.parser = StreamParser()
         self.link_replies: list[Outgoing] = []
         self.messages: deque[Outgoing] = deque()
@@ -146,7 +148,9 @@ class UcmSession:
             # Replies jump the probe queue but still wait for their own link ACK.
             self.messages.insert(i, Outgoing(0.0, label, data, needs_ack=True))
         if reaction.app_replies:
-            self.next_message_at = max(self.next_message_at, now + LINK_REPLY_DELAY + APP_REPLY_DELAY)
+            self.next_message_at = max(
+                self.next_message_at, now + LINK_REPLY_DELAY + self.app_reply_delay
+            )
 
     def _check_ack_timeout(self, now: float) -> None:
         if self.awaiting is None or now - self.awaiting_since < ACK_TIMEOUT:
@@ -221,6 +225,10 @@ def open_serial(port: str) -> Any:
     return connection
 
 
+def _indicator(value: str) -> int | None:
+    return None if value.lower() == "nak" else int(value, 0)
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Minimal CTA-2045 UCM. TRANSMITS on the bus.")
     parser.add_argument("--port", required=True)
@@ -231,8 +239,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="Start the handshake ourselves and send read-only queries.")
     parser.add_argument("--keepalive", type=float, default=60, metavar="SECONDS",
                         help="With --probe, resend status + opstate query this often (0 = off).")
-    parser.add_argument("--max-payload-indicator", type=lambda v: int(v, 0), default=0x06,
-                        help="Value for our Max Payload Length response (default 0x06 = 128 bytes).")
+    parser.add_argument("--max-payload-indicator", type=_indicator, default=0x06,
+                        help="Our Max Payload Length response value (default 0x06 = 128 bytes; "
+                             "'nak' = link NAK, i.e. default 2 bytes only).")
+    parser.add_argument("--app-reply-delay", type=float, default=APP_REPLY_DELAY, metavar="SECONDS",
+                        help=f"Wait after our link ACK before an application reply (default {APP_REPLY_DELAY}).")
     parser.add_argument("--rts-tx", action="store_true",
                         help="Raise RTS while transmitting (only for adapters without auto-direction).")
     parser.add_argument("--duration", type=float, default=0, metavar="SECONDS")
@@ -270,6 +281,7 @@ def main(argv: list[str] | None = None) -> int:
         session = UcmSession(
             connection, capture, UcmResponder(args.max_payload_indicator),
             args.probe, args.keepalive, log=log, rts_tx=args.rts_tx,
+            app_reply_delay=args.app_reply_delay,
         )
         log(f"UCM on {args.port}; writing to {capture.directory}. Ctrl+C to stop.")
         try:

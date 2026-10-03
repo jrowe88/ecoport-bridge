@@ -36,6 +36,21 @@ def test_max_payload_query_gets_ack_then_response():
     assert reaction.app_replies == [("Max payload response", frame(b"\x08\x03", b"\x19\x06"))]
 
 
+def test_max_payload_query_can_be_naked_for_default_length():
+    reaction = UcmResponder(max_payload_indicator=None).react(Frame(0, bytes.fromhex("08 03 00 02 18 00 ba 75")))
+    assert reaction.link_reply == b"\x15\x07"
+    assert reaction.app_replies == []
+
+
+def test_decodes_rinnai_get_information_reply():
+    raw = bytes.fromhex("08 02 00 10 01 81 00 41 00 0c 22 00 03 00 04 00 00 00 00 00 14 2e")
+    note = react(raw.hex()).note
+    assert "cta2045_version=A" in note
+    assert "vendor_id=0x0C22" in note
+    assert "device_type=0x0003" in note
+    assert "device_revision=4" in note
+
+
 def test_naks_unsupported_type_and_other_data_link_requests():
     assert react(frame(b"\x08\x04").hex()).link_reply == b"\x15\x06"
     assert react("08 03 00 02 17 01" + frame(b"\x08\x03", b"\x17\x01")[-2:].hex()).link_reply == b"\x15\x07"
@@ -127,11 +142,17 @@ def test_session_acks_rinnai_discovery_with_correct_timing():
     clock = Clock()
     port = FakeSgd(clock)
     lines = []
+    sent_at = []
     session = UcmSession(port, None, UcmResponder(), probe=False, keepalive=0, log=lines.append, clock=clock)
+    original_write = port.write
+    port.write = lambda data: (sent_at.append((clock.t, data)), original_write(data))
     port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[0]))
     port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[3]), delay=1.0)
-    run(session, clock, 3)
+    run(session, clock, 4)
     assert port.received == [LINK_ACK, LINK_ACK, frame(b"\x08\x03", b"\x19\x06")]
+    ack_time, response_time = sent_at[1][0], sent_at[2][0]
+    assert 0.04 <= ack_time - 1.0 <= 0.2
+    assert response_time - ack_time >= 0.95
     assert session.stats["acked"] == 1
     assert not any("drop partial" in line for line in lines)
 

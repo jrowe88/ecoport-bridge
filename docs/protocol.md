@@ -75,6 +75,19 @@ _(fill in as captures are recorded — reference the specific capture under
 - After discovery stopped, the heater stayed silent for well over 30
   minutes while the DR icon stayed lit. It did not resume on its own and
   did not turn DR off.
+- **First active session**
+  ([`2026-10-03T161440-first-ucm-probe`](../captures/rinnai/2026-10-03T161440-first-ucm-probe/analysis.md)):
+  the heater link-ACKs our queries in ~10–20 ms, App-ACKs "Outside Comm
+  Status: Good", answers the operational-state query with `13 01` (Running
+  Normal), and answers GetInformation. Its application replies arrive about
+  400 ms after its link ACK.
+- GetInformation reply: CTA-2045 version **"A"** (not "B"), vendor ID
+  `0x0C22`, device type `0x0003` (Water Heater – Heat Pump), device
+  revision 4, capability bitmap `0x00000000`. No model/serial/firmware fields.
+- Once a UCM answers, the heater repeats its discovery about every 9–10 s
+  (instead of ~32 s). Our `19 06` max-payload response went unanswered when
+  sent ~150 ms after our ACK, and the retry got NAK `15 07`. The one ACKed
+  attempt was sent ~0.9 s after our ACK.
 
 ## Hypotheses
 
@@ -85,10 +98,17 @@ or repeated captures)_
   consistent with CTA-2045-B §9.1.3 ("no valid communication for more than
   15 minutes → return to defaults"). Needs a ≥ 25-minute capture to confirm,
   and to see whether discovery resumes later.
-- Replying `06 00` (link ACK) to the Basic DR query should be enough for the
-  Rinnai to treat us as a UCM and continue the handshake. Since the heater
-  has stopped discovery, `tools/ucm.py --probe` starts it from the UCM side
-  instead (CTA-2045 lets either side start). Not yet tested on hardware.
+- ~~Replying `06 00` (link ACK) to the Basic DR query should be enough for
+  the Rinnai to treat us as a UCM~~ — confirmed in part: it communicates,
+  but max-payload negotiation doesn't complete yet.
+- Max payload failure is timing: the heater doesn't hear an application
+  reply sent ~150 ms after our ACK, and then NAKs the retry. Test: reply
+  after 1.0 s (now the `ucm.py` default). Fallbacks: advertise `0x00`
+  (2 bytes) or link-NAK the query.
+- The ~10 s repeating discovery is the heater retrying because negotiation
+  didn't complete. It should stop once max payload is ACKed.
+- ENERGY STAR lists the REHP65 as CTA-2045-B, but this firmware reports
+  version "A". It may still accept B-only messages; test case by case.
 - ~~The periodic idle packet appears to contain tank temperature~~ —
   disproved for DR-on idle: the periodic frames are discovery queries with
   no data payload. Temperature must be requested by a UCM (Intermediate DR

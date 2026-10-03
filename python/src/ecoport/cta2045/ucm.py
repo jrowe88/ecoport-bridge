@@ -85,6 +85,34 @@ KEEPALIVE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
 )
 
 
+def describe_intermediate(payload: bytes) -> str:
+    """Human-readable summary of an Intermediate DR payload we know how to read."""
+    if payload[:2] == b"\x01\x81" and len(payload) >= 15:
+        info = parse_device_info(payload)
+        return "GetInformation reply: " + ", ".join(f"{k}={v}" for k, v in info.items())
+    return f"intermediate DR payload {payload.hex(' ')}"
+
+
+def parse_device_info(payload: bytes) -> dict[str, object]:
+    """Decode a GetInformation() reply payload (CTA-2045-B §11.1.1.2)."""
+    info: dict[str, object] = {
+        "response_code": payload[2],
+        "cta2045_version": payload[3:5].split(b"\x00")[0].decode("ascii", "replace"),
+        "vendor_id": f"0x{int.from_bytes(payload[5:7], 'big'):04X}",
+        "device_type": f"0x{int.from_bytes(payload[7:9], 'big'):04X}",
+        "device_revision": int.from_bytes(payload[9:11], "big"),
+        "capability_bitmap": f"0x{int.from_bytes(payload[11:15], 'big'):08X}",
+    }
+    if len(payload) >= 32:
+        info["model"] = payload[16:32].split(b"\x00")[0].decode("ascii", "replace").strip()
+    if len(payload) >= 48:
+        info["serial"] = payload[32:48].split(b"\x00")[0].decode("ascii", "replace").strip()
+    if len(payload) >= 53:
+        y, m, d, major, minor = payload[48:53]
+        info["firmware"] = f"20{y:02d}-{m:02d}-{d:02d} v{major}.{minor}"
+    return info
+
+
 @dataclass
 class Reaction:
     """What the UCM should do in response to one received packet."""
@@ -98,7 +126,7 @@ class Reaction:
 
 @dataclass
 class UcmResponder:
-    max_payload_indicator: int = 0x06  # 128 bytes (§9 Table 9-2)
+    max_payload_indicator: int | None = 0x06  # 128 bytes (§9); None = link NAK (2-byte default)
 
     def react(self, packet: Frame) -> Reaction:
         if packet.is_link_ack:
@@ -117,11 +145,16 @@ class UcmResponder:
             return self._data_link(payload)
         if msg_type == BASIC_DR:
             return self._basic(payload)
-        return Reaction(LINK_ACK, note=f"intermediate DR payload {payload.hex(' ')}")
+        return Reaction(LINK_ACK, note=describe_intermediate(payload))
 
     def _data_link(self, payload: bytes) -> Reaction:
         opcode = payload[0]
         if opcode == DL_MAX_PAYLOAD_QUERY:
+            if self.max_payload_indicator is None:
+                return Reaction(
+                    link_nak(NAK_REQUEST_NOT_SUPPORTED),
+                    note="max payload query (NAK: default 2 bytes only)",
+                )
             response = frame(DATA_LINK, bytes((DL_MAX_PAYLOAD_RESPONSE, self.max_payload_indicator)))
             return Reaction(
                 LINK_ACK,
