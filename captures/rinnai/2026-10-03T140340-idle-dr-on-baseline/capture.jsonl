@@ -1,0 +1,256 @@
+{"timestamp":"2026-10-03T14:03:49.080-06:00","offset":0,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:49.081-06:00","offset":1,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:03:50.087-06:00","offset":6,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:50.088-06:00","offset":7,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:03:51.094-06:00","offset":12,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:51.095-06:00","offset":13,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:03:52.293-06:00","offset":18,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:52.294-06:00","offset":19,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:03:53.300-06:00","offset":24,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:53.301-06:00","offset":25,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:03:54.291-06:00","offset":30,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:54.292-06:00","offset":31,"length":4,"hex":"02 00 00 7a","base64":"AgAAeg=="}
+{"timestamp":"2026-10-03T14:03:54.307-06:00","offset":35,"length":1,"hex":"d0","base64":"0A=="}
+{"timestamp":"2026-10-03T14:03:55.506-06:00","offset":36,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:55.507-06:00","offset":37,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:03:56.497-06:00","offset":42,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:56.498-06:00","offset":43,"length":1,"hex":"03","base64":"Aw=="}
+{"timestamp":"2026-10-03T14:03:56.513-06:00","offset":44,"length":1,"hex":"00","base64":"AA=="}
+{"timestamp":"2026-10-03T14:03:56.514-06:00","offset":45,"length":3,"hex":"00 76 d3","base64":"AHbT"}
+{"timestamp":"2026-10-03T14:03:57.504-06:00","offset":48,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:57.505-06:00","offset":49,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:03:58.719-06:00","offset":54,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:58.720-06:00","offset":55,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:03:59.711-06:00","offset":62,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:03:59.712-06:00","offset":63,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:04:00.718-06:00","offset":70,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:00.718-06:00","offset":71,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:04:21.165-06:00","offset":78,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:21.166-06:00","offset":79,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:04:22.156-06:00","offset":84,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:22.157-06:00","offset":85,"length":3,"hex":"01 00 00","base64":"AQAA"}
+{"timestamp":"2026-10-03T14:04:22.172-06:00","offset":88,"length":1,"hex":"7e","base64":"fg=="}
+{"timestamp":"2026-10-03T14:04:22.173-06:00","offset":89,"length":1,"hex":"cd","base64":"zQ=="}
+{"timestamp":"2026-10-03T14:04:23.164-06:00","offset":90,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:23.164-06:00","offset":91,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:04:24.363-06:00","offset":96,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:24.364-06:00","offset":97,"length":1,"hex":"02","base64":"Ag=="}
+{"timestamp":"2026-10-03T14:04:24.378-06:00","offset":98,"length":1,"hex":"00","base64":"AA=="}
+{"timestamp":"2026-10-03T14:04:24.379-06:00","offset":99,"length":3,"hex":"00 7a d0","base64":"AHrQ"}
+{"timestamp":"2026-10-03T14:04:25.370-06:00","offset":102,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:25.370-06:00","offset":103,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:04:26.377-06:00","offset":108,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:26.377-06:00","offset":109,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:04:27.576-06:00","offset":114,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:27.576-06:00","offset":115,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:04:28.583-06:00","offset":120,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:28.583-06:00","offset":121,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:04:29.590-06:00","offset":126,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:29.591-06:00","offset":127,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:04:30.789-06:00","offset":132,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:30.790-06:00","offset":133,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:04:31.796-06:00","offset":140,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:31.797-06:00","offset":141,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:04:32.787-06:00","offset":148,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:32.788-06:00","offset":149,"length":3,"hex":"03 00 02","base64":"AwAC"}
+{"timestamp":"2026-10-03T14:04:32.803-06:00","offset":152,"length":1,"hex":"18","base64":"GA=="}
+{"timestamp":"2026-10-03T14:04:32.804-06:00","offset":153,"length":3,"hex":"00 ba 75","base64":"ALp1"}
+{"timestamp":"2026-10-03T14:04:53.234-06:00","offset":156,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:53.235-06:00","offset":157,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:04:54.241-06:00","offset":162,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:54.242-06:00","offset":163,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:04:55.248-06:00","offset":168,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:55.249-06:00","offset":169,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:04:56.447-06:00","offset":174,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:56.448-06:00","offset":175,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:04:57.454-06:00","offset":180,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:57.455-06:00","offset":181,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:04:58.446-06:00","offset":186,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:58.446-06:00","offset":187,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:04:59.661-06:00","offset":192,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:04:59.661-06:00","offset":193,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:05:00.652-06:00","offset":198,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:00.652-06:00","offset":199,"length":3,"hex":"03 00 00","base64":"AwAA"}
+{"timestamp":"2026-10-03T14:05:00.668-06:00","offset":202,"length":1,"hex":"76","base64":"dg=="}
+{"timestamp":"2026-10-03T14:05:00.668-06:00","offset":203,"length":1,"hex":"d3","base64":"0w=="}
+{"timestamp":"2026-10-03T14:05:01.659-06:00","offset":204,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:01.659-06:00","offset":205,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:05:02.858-06:00","offset":210,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:02.859-06:00","offset":211,"length":1,"hex":"03","base64":"Aw=="}
+{"timestamp":"2026-10-03T14:05:02.874-06:00","offset":212,"length":1,"hex":"00","base64":"AA=="}
+{"timestamp":"2026-10-03T14:05:02.875-06:00","offset":213,"length":5,"hex":"02 18 00 ba 75","base64":"AhgAunU="}
+{"timestamp":"2026-10-03T14:05:03.865-06:00","offset":218,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:03.865-06:00","offset":219,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:05:04.873-06:00","offset":226,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:04.873-06:00","offset":227,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:05:25.319-06:00","offset":234,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:25.320-06:00","offset":235,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:05:26.311-06:00","offset":240,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:26.311-06:00","offset":241,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:05:27.318-06:00","offset":246,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:27.318-06:00","offset":247,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:05:28.517-06:00","offset":252,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:28.517-06:00","offset":253,"length":4,"hex":"02 00 00 7a","base64":"AgAAeg=="}
+{"timestamp":"2026-10-03T14:05:28.533-06:00","offset":257,"length":1,"hex":"d0","base64":"0A=="}
+{"timestamp":"2026-10-03T14:05:29.524-06:00","offset":258,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:29.524-06:00","offset":259,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:05:30.531-06:00","offset":264,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:30.531-06:00","offset":265,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:05:31.730-06:00","offset":270,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:31.731-06:00","offset":271,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:05:32.737-06:00","offset":276,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:32.737-06:00","offset":277,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:05:33.728-06:00","offset":282,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:33.744-06:00","offset":283,"length":1,"hex":"03","base64":"Aw=="}
+{"timestamp":"2026-10-03T14:05:33.745-06:00","offset":284,"length":4,"hex":"00 00 76 d3","base64":"AAB20w=="}
+{"timestamp":"2026-10-03T14:05:34.943-06:00","offset":288,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:34.944-06:00","offset":289,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:05:35.950-06:00","offset":296,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:35.951-06:00","offset":297,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:05:36.941-06:00","offset":304,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:36.942-06:00","offset":305,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:05:57.388-06:00","offset":312,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:57.389-06:00","offset":313,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:05:58.396-06:00","offset":318,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:58.396-06:00","offset":319,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:05:59.386-06:00","offset":324,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:05:59.387-06:00","offset":325,"length":3,"hex":"01 00 00","base64":"AQAA"}
+{"timestamp":"2026-10-03T14:05:59.403-06:00","offset":328,"length":1,"hex":"7e","base64":"fg=="}
+{"timestamp":"2026-10-03T14:05:59.403-06:00","offset":329,"length":1,"hex":"cd","base64":"zQ=="}
+{"timestamp":"2026-10-03T14:06:00.602-06:00","offset":330,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:00.602-06:00","offset":331,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:06:01.593-06:00","offset":336,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:01.609-06:00","offset":337,"length":1,"hex":"02","base64":"Ag=="}
+{"timestamp":"2026-10-03T14:06:01.609-06:00","offset":338,"length":4,"hex":"00 00 7a d0","base64":"AAB60A=="}
+{"timestamp":"2026-10-03T14:06:02.600-06:00","offset":342,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:02.601-06:00","offset":343,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:06:03.815-06:00","offset":348,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:03.815-06:00","offset":349,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:06:04.806-06:00","offset":354,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:04.806-06:00","offset":355,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:06:05.813-06:00","offset":360,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:05.814-06:00","offset":361,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:06:07.012-06:00","offset":366,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:07.016-06:00","offset":367,"length":6,"hex":"03 00 02 18 00 ba","base64":"AwACGAC6"}
+{"timestamp":"2026-10-03T14:06:07.029-06:00","offset":373,"length":1,"hex":"75","base64":"dQ=="}
+{"timestamp":"2026-10-03T14:06:08.019-06:00","offset":374,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:08.020-06:00","offset":375,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:06:09.026-06:00","offset":382,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:09.027-06:00","offset":383,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:06:29.458-06:00","offset":390,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:29.458-06:00","offset":391,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:06:30.465-06:00","offset":396,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:30.465-06:00","offset":397,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:06:31.472-06:00","offset":402,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:31.472-06:00","offset":403,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:06:32.671-06:00","offset":408,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:32.672-06:00","offset":409,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:06:33.678-06:00","offset":414,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:33.679-06:00","offset":415,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:06:34.669-06:00","offset":420,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:34.670-06:00","offset":421,"length":1,"hex":"02","base64":"Ag=="}
+{"timestamp":"2026-10-03T14:06:34.685-06:00","offset":422,"length":1,"hex":"00","base64":"AA=="}
+{"timestamp":"2026-10-03T14:06:34.686-06:00","offset":423,"length":3,"hex":"00 7a d0","base64":"AHrQ"}
+{"timestamp":"2026-10-03T14:06:35.884-06:00","offset":426,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:35.885-06:00","offset":427,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:06:36.876-06:00","offset":432,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:36.891-06:00","offset":433,"length":1,"hex":"03","base64":"Aw=="}
+{"timestamp":"2026-10-03T14:06:36.892-06:00","offset":434,"length":4,"hex":"00 00 76 d3","base64":"AAB20w=="}
+{"timestamp":"2026-10-03T14:06:37.883-06:00","offset":438,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:37.883-06:00","offset":439,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:06:39.098-06:00","offset":444,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:39.098-06:00","offset":445,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:06:40.089-06:00","offset":452,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:40.090-06:00","offset":453,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:06:41.096-06:00","offset":460,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:06:41.097-06:00","offset":461,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:07:01.527-06:00","offset":468,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:01.543-06:00","offset":469,"length":1,"hex":"01","base64":"AQ=="}
+{"timestamp":"2026-10-03T14:07:01.544-06:00","offset":470,"length":4,"hex":"00 00 7e cd","base64":"AAB+zQ=="}
+{"timestamp":"2026-10-03T14:07:02.535-06:00","offset":474,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:02.535-06:00","offset":475,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:07:03.542-06:00","offset":480,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:03.542-06:00","offset":481,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:07:04.741-06:00","offset":486,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:04.741-06:00","offset":487,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:07:05.748-06:00","offset":492,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:05.749-06:00","offset":493,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:07:06.755-06:00","offset":498,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:06.756-06:00","offset":499,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:07:07.954-06:00","offset":504,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:07.955-06:00","offset":505,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:07:08.961-06:00","offset":510,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:08.962-06:00","offset":511,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:07:09.952-06:00","offset":516,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:09.953-06:00","offset":517,"length":2,"hex":"03 00","base64":"AwA="}
+{"timestamp":"2026-10-03T14:07:09.968-06:00","offset":519,"length":1,"hex":"00","base64":"AA=="}
+{"timestamp":"2026-10-03T14:07:09.969-06:00","offset":520,"length":2,"hex":"76 d3","base64":"dtM="}
+{"timestamp":"2026-10-03T14:07:11.167-06:00","offset":522,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:11.168-06:00","offset":523,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:07:12.175-06:00","offset":530,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:12.175-06:00","offset":531,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:07:13.166-06:00","offset":538,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:13.166-06:00","offset":539,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:07:33.613-06:00","offset":546,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:33.613-06:00","offset":547,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:07:34.620-06:00","offset":552,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:34.621-06:00","offset":553,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:07:35.611-06:00","offset":558,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:35.611-06:00","offset":559,"length":3,"hex":"01 00 00","base64":"AQAA"}
+{"timestamp":"2026-10-03T14:07:35.627-06:00","offset":562,"length":1,"hex":"7e","base64":"fg=="}
+{"timestamp":"2026-10-03T14:07:35.627-06:00","offset":563,"length":1,"hex":"cd","base64":"zQ=="}
+{"timestamp":"2026-10-03T14:07:36.826-06:00","offset":564,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:36.827-06:00","offset":565,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:07:37.817-06:00","offset":570,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:37.819-06:00","offset":571,"length":1,"hex":"02","base64":"Ag=="}
+{"timestamp":"2026-10-03T14:07:37.833-06:00","offset":572,"length":1,"hex":"00","base64":"AA=="}
+{"timestamp":"2026-10-03T14:07:37.834-06:00","offset":573,"length":3,"hex":"00 7a d0","base64":"AHrQ"}
+{"timestamp":"2026-10-03T14:07:38.824-06:00","offset":576,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:38.825-06:00","offset":577,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:07:40.040-06:00","offset":582,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:40.040-06:00","offset":583,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:07:41.031-06:00","offset":588,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:41.031-06:00","offset":589,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:07:42.038-06:00","offset":594,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:42.038-06:00","offset":595,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:07:43.237-06:00","offset":600,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:43.237-06:00","offset":601,"length":5,"hex":"03 00 02 18 00","base64":"AwACGAA="}
+{"timestamp":"2026-10-03T14:07:43.253-06:00","offset":606,"length":1,"hex":"ba","base64":"ug=="}
+{"timestamp":"2026-10-03T14:07:43.253-06:00","offset":607,"length":1,"hex":"75","base64":"dQ=="}
+{"timestamp":"2026-10-03T14:07:44.244-06:00","offset":608,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:44.245-06:00","offset":609,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:07:45.251-06:00","offset":616,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:07:45.252-06:00","offset":617,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:08:05.682-06:00","offset":624,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:05.698-06:00","offset":625,"length":1,"hex":"01","base64":"AQ=="}
+{"timestamp":"2026-10-03T14:08:05.699-06:00","offset":626,"length":4,"hex":"00 00 7e cd","base64":"AAB+zQ=="}
+{"timestamp":"2026-10-03T14:08:06.689-06:00","offset":630,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:06.690-06:00","offset":631,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:08:07.697-06:00","offset":636,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:07.697-06:00","offset":637,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:08:08.896-06:00","offset":642,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:08.896-06:00","offset":643,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:08:09.903-06:00","offset":648,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:09.903-06:00","offset":649,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:08:10.910-06:00","offset":654,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:10.910-06:00","offset":655,"length":5,"hex":"02 00 00 7a d0","base64":"AgAAetA="}
+{"timestamp":"2026-10-03T14:08:12.109-06:00","offset":660,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:12.110-06:00","offset":661,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:08:13.116-06:00","offset":666,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:13.117-06:00","offset":667,"length":5,"hex":"03 00 00 76 d3","base64":"AwAAdtM="}
+{"timestamp":"2026-10-03T14:08:14.107-06:00","offset":672,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:14.124-06:00","offset":673,"length":1,"hex":"03","base64":"Aw=="}
+{"timestamp":"2026-10-03T14:08:14.124-06:00","offset":674,"length":4,"hex":"00 00 76 d3","base64":"AAB20w=="}
+{"timestamp":"2026-10-03T14:08:15.322-06:00","offset":678,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:15.323-06:00","offset":679,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:08:16.330-06:00","offset":686,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:16.330-06:00","offset":687,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:08:17.321-06:00","offset":694,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:17.321-06:00","offset":695,"length":7,"hex":"03 00 02 18 00 ba 75","base64":"AwACGAC6dQ=="}
+{"timestamp":"2026-10-03T14:08:37.768-06:00","offset":702,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:37.768-06:00","offset":703,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:08:38.775-06:00","offset":708,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:38.775-06:00","offset":709,"length":5,"hex":"01 00 00 7e cd","base64":"AQAAfs0="}
+{"timestamp":"2026-10-03T14:08:39.766-06:00","offset":714,"length":1,"hex":"08","base64":"CA=="}
+{"timestamp":"2026-10-03T14:08:39.782-06:00","offset":715,"length":1,"hex":"01","base64":"AQ=="}
+{"timestamp":"2026-10-03T14:08:39.783-06:00","offset":716,"length":4,"hex":"00 00 7e cd","base64":"AAB+zQ=="}

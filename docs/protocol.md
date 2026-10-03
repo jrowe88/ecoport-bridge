@@ -31,16 +31,25 @@ don't let a guess quietly become "the spec".
 _(fill in as captures are recorded — reference the specific capture under
 `captures/rinnai/<date>-<scenario>/`)_
 
-- Rinnai sends a periodic status packet approximately every ~30 seconds while
-  idle
-- A distinct packet appears immediately after the compressor starts
-
+- With the appliance idle and DR enabled, capture
+  [`2026-10-03T140340-idle-dr-on-baseline`](../captures/rinnai/2026-10-03T140340-idle-dr-on-baseline/)
+  received 720 bytes (111 reconstructed frames) over approximately five
+  minutes. The sequence repeats approximately every 32.4 seconds: three
+  copies each of `08 01 00 00 7E CD`, `08 02 00 00 7A D0`,
+  `08 03 00 00 76 D3`, and `08 03 00 02 18 00 BA 75`, then about 20.4 seconds
+  of silence. See that capture's `analysis.md`.
+- The immediately preceding DR-off idle capture
+  [`2026-10-03T134950-idle-baseline`](../captures/rinnai/2026-10-03T134950-idle-baseline/)
+  received zero bytes. This is an observed correlation in one appliance
+  state, not yet a universal claim that DR-off operation is always silent.
 ## Hypotheses
 
 _(explicitly mark these as unconfirmed until verified against documentation
 or repeated captures)_
 
 - The periodic idle packet appears to contain tank temperature
+- A compressor transition may cause a distinct packet or cadence change;
+  capture a normal heating transition before treating this as observed.
 
 ## Candidate data points of interest
 
