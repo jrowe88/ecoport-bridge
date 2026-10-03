@@ -108,4 +108,4 @@ Early planning / hardware on order. See `docs/reverse-engineering.md` and
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+GNU Affero General Public License (AGPL) — see [LICENSE](LICENSE).
