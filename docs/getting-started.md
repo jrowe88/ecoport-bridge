@@ -39,9 +39,17 @@ Command-line helpers live in `tools/`:
   Each run creates a timestamped capture directory under `captures\rinnai\`
   containing `capture.bin` (the original byte stream), `capture.jsonl`
   (timestamped hex/base64 receive events), and a `notes.md` operator log.
-- `decode.py` — decode a saved capture into human-readable messages
-- `query.py` — send a one-off query to a connected appliance
-- `interactive.py` — interactive REPL for exploring the protocol
+- `decode.py` — decode a saved capture (RX frames, ACK/NAKs, and any
+  `transmit.jsonl` TX log) into a labelled timeline:
+
+  ```powershell
+  python tools\decode.py captures\rinnai\<capture-dir>
+  ```
+- `ucm.py` — **transmits.** Acts as a minimal CTA-2045 UCM: answers the
+  appliance with link ACK/NAKs and, with `--probe`, starts the handshake and
+  sends read-only queries (see "First active session" below).
+- `query.py` — send a one-off query to a connected appliance (not yet implemented)
+- `interactive.py` — interactive REPL for exploring the protocol (not yet implemented)
 - `packet_capture.py` — capture helper shared by the above
 
 Before using the sniffer on the heater, follow the
@@ -49,6 +57,33 @@ Before using the sniffer on the heater, follow the
 It provides a repeatable manual test matrix for idle, mode transitions
 (including Heat Pump Only if available), setpoint changes, and heating
 transitions — all without sending any CTA-2045 command.
+
+## First active session (`ucm.py`)
+
+`ucm.py` refuses to run without `--transmit`. It only ever sends:
+
+| When | Bytes | Meaning |
+|---|---|---|
+| Any packet received | `06 00` / `15 xx` | Link ACK / NAK, ~60 ms later |
+| Appliance asks max payload | `08 03 00 02 19 06 ..` | "We accept up to 128 bytes" |
+| `--probe` start | `08 01/02/03 00 00 ..` | Message Type Supported Queries |
+| `--probe` start + every 60 s | `08 01 00 02 0E 01 ..` | Outside comm status: good |
+| `--probe` start + every 60 s | `08 01 00 02 12 00 ..` | Query operational state |
+| `--probe` start | `08 02 00 02 01 01 ..` | Intermediate DR GetInformation |
+
+No shed, load-up, setpoint, price, or other control commands.
+
+```powershell
+python tools\ucm.py --port COM4 --scenario first-ucm-probe --transmit --probe --duration 300
+```
+
+Look for `RX 06 00 ... link ACK` after each TX — that is the heater
+answering. Output goes to a capture directory with `capture.bin` (RX only),
+`transmit.jsonl` (our TX plus any adapter echo), and `session.log`.
+
+If every TX gets "no ACK": check D+/D- polarity first, then whether the
+adapter needs `--rts-tx` (adapters without automatic direction control).
+`--port loop://` runs a hardware-free smoke test.
 
 ## Safety note
 

@@ -39,6 +39,7 @@ class CaptureWriter:
         self._binary_file = self.binary_path.open("wb")
         self._events_file = self.events_path.open("x", encoding="utf-8")
         self._offset = 0
+        self._tx_file = None
 
         self._write_notes(metadata)
 
@@ -61,12 +62,38 @@ class CaptureWriter:
         self._events_file.flush()
         self._offset += len(data)
 
+    def record_tx(
+        self,
+        data: bytes,
+        sent_at: datetime | None = None,
+        label: str = "",
+        direction: str = "tx",
+    ) -> None:
+        """Log bytes we transmitted (or saw echoed) to ``transmit.jsonl``.
+
+        Kept separate from ``capture.bin`` so the receive capture stays a pure
+        record of what the appliance sent.
+        """
+        if self._tx_file is None:
+            self._tx_file = (self.directory / "transmit.jsonl").open("x", encoding="utf-8")
+        timestamp = sent_at or datetime.now().astimezone()
+        event = {
+            "timestamp": timestamp.isoformat(timespec="milliseconds"),
+            "direction": direction,
+            "label": label,
+            "hex": data.hex(" "),
+        }
+        self._tx_file.write(json.dumps(event, separators=(",", ":")) + "\n")
+        self._tx_file.flush()
+
     def close(self) -> None:
         """Close the capture files. Safe to call more than once."""
         if not self._binary_file.closed:
             self._binary_file.close()
         if not self._events_file.closed:
             self._events_file.close()
+        if self._tx_file is not None and not self._tx_file.closed:
+            self._tx_file.close()
 
     def _write_notes(self, metadata: dict[str, Any]) -> None:
         rendered_metadata = "\n".join(

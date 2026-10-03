@@ -72,6 +72,9 @@ _(fill in as captures are recorded — reference the specific capture under
   with no ACK/NAK on the bus, followed by ~20 s silence.
 - The operator saw the adapter RX LED stop about 15 minutes after the
   transition capture started. This was not recorded (capture had ended).
+- After discovery stopped, the heater stayed silent for well over 30
+  minutes while the DR icon stayed lit. It did not resume on its own and
+  did not turn DR off.
 
 ## Hypotheses
 
@@ -83,8 +86,9 @@ or repeated captures)_
   15 minutes → return to defaults"). Needs a ≥ 25-minute capture to confirm,
   and to see whether discovery resumes later.
 - Replying `06 00` (link ACK) to the Basic DR query should be enough for the
-  Rinnai to treat us as a UCM and continue the handshake. Not tested — we
-  are still receive-only.
+  Rinnai to treat us as a UCM and continue the handshake. Since the heater
+  has stopped discovery, `tools/ucm.py --probe` starts it from the UCM side
+  instead (CTA-2045 lets either side start). Not yet tested on hardware.
 - ~~The periodic idle packet appears to contain tank temperature~~ —
   disproved for DR-on idle: the periodic frames are discovery queries with
   no data payload. Temperature must be requested by a UCM (Intermediate DR

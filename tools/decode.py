@@ -35,6 +35,28 @@ DATA_LINK_OPCODES = {
 }
 
 
+BASIC_OPCODES = {
+    0x01: "Shed",
+    0x02: "End Shed",
+    0x03: "App ACK",
+    0x04: "App NAK",
+    0x0E: "Outside Comm Status",
+    0x11: "Customer Override",
+    0x12: "Query Operational State",
+    0x13: "Operational State",
+    0x14: "Sleep",
+    0x15: "Wake/Refresh",
+}
+
+
+def describe_raw(raw: bytes) -> str:
+    if raw == b"\x06\x00":
+        return "Link ACK"
+    if len(raw) == 2 and raw[0] == 0x15:
+        return f"Link NAK code 0x{raw[1]:02X}"
+    return describe(raw[:2], raw[4:-2])
+
+
 def describe(msg_type: bytes, payload: bytes) -> str:
     name = MESSAGE_TYPES.get(msg_type, f"type {msg_type.hex(' ')}")
     if not payload:
@@ -42,7 +64,22 @@ def describe(msg_type: bytes, payload: bytes) -> str:
     if msg_type == b"\x08\x03" and len(payload) == 2:
         op = DATA_LINK_OPCODES.get(payload[0], f"opcode 0x{payload[0]:02X}")
         return f"{name}: {op} (opcode2 0x{payload[1]:02X})"
+    if msg_type == b"\x08\x01" and len(payload) == 2:
+        op = BASIC_OPCODES.get(payload[0], f"opcode 0x{payload[0]:02X}")
+        return f"{name}: {op} (opcode2 0x{payload[1]:02X})"
     return f"{name}: payload {payload.hex(' ')}"
+
+
+def tx_events(capture_dir: Path) -> list[tuple[datetime, str, bytes]]:
+    path = capture_dir / "transmit.jsonl"
+    if not path.exists():
+        return []
+    events = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        event = json.loads(line)
+        if event.get("direction", "tx") == "tx":
+            events.append((datetime.fromisoformat(event["timestamp"]), "TX", bytes.fromhex(event["hex"])))
+    return events
 
 
 def byte_times(capture_dir: Path, size: int) -> list[datetime | None]:
@@ -72,15 +109,17 @@ def main(argv: list[str] | None = None) -> int:
     if not frames:
         return 0
 
-    t0 = times[frames[0].offset]
+    events = [(times[f.offset], "RX", f.raw) for f in frames if times[f.offset]]
+    events += tx_events(args.capture_dir)
+    events.sort(key=lambda e: e[0])
+    t0 = events[0][0]
     prev = None
-    for f in frames:
-        t = times[f.offset]
-        rel = (t - t0).total_seconds() if t and t0 else float("nan")
+    for t, direction, raw in events:
+        rel = (t - t0).total_seconds()
         if prev is None or rel - prev > args.burst_gap:
             print(f"--- burst at +{rel:.1f}s")
         prev = rel
-        print(f"  +{rel:7.1f}s  {f.raw.hex(' '):<28} {describe(f.msg_type, f.payload)}")
+        print(f"  +{rel:7.1f}s {direction} {raw.hex(' '):<28} {describe_raw(raw)}")
 
     print("\nFrame counts:")
     for raw, n in Counter(f.raw for f in frames).most_common():
