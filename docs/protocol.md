@@ -20,6 +20,25 @@ don't let a guess quietly become "the spec".
 - Message type bytes (per the ANSI standard preview):
   - **Basic DR** = `0x08 0x01`
   - **Intermediate DR** = `0x08 0x02`
+- Rinnai REHP65 traffic matches the ANSI/CTA-2045-B frame format exactly
+  (all 204 frames in
+  [`2026-10-03T144506-idle-to-dr-on-transition`](../captures/rinnai/2026-10-03T144506-idle-to-dr-on-transition/)
+  verify):
+
+  | Bytes | Field |
+  |---|---|
+  | 2 | Message type (`08 01` Basic DR, `08 02` Intermediate DR, `08 03` Data-Link, `08 04` Commissioning/Network) |
+  | 2 | Payload length, big-endian (top 3 bits reserved) |
+  | N | Payload |
+  | 2 | Fletcher checksum over type + length + payload, seed `0xAA` (CTA-2045-B Appendix C) |
+
+  Implemented in `python/src/ecoport/cta2045/{crc,framing}.py`.
+- Link-layer ACK is `06 00`; NAK is `15 <code>` (`03` checksum error, `06`
+  unsupported message type, `07` request not supported). Every non-ACK/NAK
+  frame must be answered within 40–200 ms (CTA-2045-B §6.1.5.1, §8.1).
+- A message with **zero-length payload** is a "Message Type Supported
+  Query" for that message type (§8.2). Data-Link opcode `0x18 0x00` is
+  "Query: Maximum Payload Length" (§9).
 - EPRI's C++ sample application demonstrates the following commands against
   an SGD: present temperature, setpoint, temperature offset, commodity,
   power level, operating state, shed, end shed, load-up. These are a good
@@ -42,12 +61,34 @@ _(fill in as captures are recorded — reference the specific capture under
   [`2026-10-03T134950-idle-baseline`](../captures/rinnai/2026-10-03T134950-idle-baseline/)
   received zero bytes. This is an observed correlation in one appliance
   state, not yet a universal claim that DR-off operation is always silent.
+- Capture
+  [`2026-10-03T144506-idle-to-dr-on-transition`](../captures/rinnai/2026-10-03T144506-idle-to-dr-on-transition/)
+  recorded the transition: silent while DR was off, then the same 4-frame
+  cycle began within seconds of pressing DR (first frame at +72.2 s) and
+  ran for the rest of the 10-minute capture (17 identical cycles).
+- **Decoded**, that cycle is the SGD discovering a UCM: Message Type
+  Supported Query for Basic DR, Intermediate DR, and Data-Link, then a
+  Maximum Payload Length query — each sent three times about 1 s apart
+  with no ACK/NAK on the bus, followed by ~20 s silence.
+- The operator saw the adapter RX LED stop about 15 minutes after the
+  transition capture started. This was not recorded (capture had ended).
+
 ## Hypotheses
 
 _(explicitly mark these as unconfirmed until verified against documentation
 or repeated captures)_
 
-- The periodic idle packet appears to contain tank temperature
+- The Rinnai stops UCM discovery after ~15 minutes with no reply,
+  consistent with CTA-2045-B §9.1.3 ("no valid communication for more than
+  15 minutes → return to defaults"). Needs a ≥ 25-minute capture to confirm,
+  and to see whether discovery resumes later.
+- Replying `06 00` (link ACK) to the Basic DR query should be enough for the
+  Rinnai to treat us as a UCM and continue the handshake. Not tested — we
+  are still receive-only.
+- ~~The periodic idle packet appears to contain tank temperature~~ —
+  disproved for DR-on idle: the periodic frames are discovery queries with
+  no data payload. Temperature must be requested by a UCM (Intermediate DR
+  GetPresentTemperature, CTA-2045-B §11.1.7).
 - A compressor transition may cause a distinct packet or cadence change;
   capture a normal heating transition before treating this as observed.
 

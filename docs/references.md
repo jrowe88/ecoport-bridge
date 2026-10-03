@@ -21,6 +21,13 @@ captures and EPRI's reference implementation where possible.
 
 ## CTA-2045 standard & reference implementations
 
+- **ANSI/CTA-2045-B (2022)** — the full standard; Jim has a private copy.
+  It is copyrighted and **must not be committed** to this public repo. Cite
+  section numbers and summarize in our own words. Most-used sections so far:
+  §6.1 frame format, §6.1.5 timing and retries, §8 link-layer ACK/NAK and
+  Message Type Supported Query, §9 Data-Link messages (max payload, bit
+  rate), §9.1.3 15-minute reset, §10 Basic DR, §11 Intermediate DR,
+  Appendix C Fletcher checksum.
 - **ANSI Webstore** — CTA-2045 standard preview. Confirms the AC-form-factor
   connector has explicit RS-485 connections and a mechanical/pinout section,
   though the full standard (and detailed pin figures) is paywalled. Also

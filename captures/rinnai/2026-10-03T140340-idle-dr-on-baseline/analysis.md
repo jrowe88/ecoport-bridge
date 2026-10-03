@@ -1,5 +1,12 @@
 # Passive Capture Analysis: DR Enabled While Idle
 
+> **Update (decoded):** with the CTA-2045-B spec, frames A–D are now
+> identified as UCM-discovery queries with valid checksums. A/B/C are
+> Message Type Supported Queries for Basic DR, Intermediate DR, and
+> Data-Link; D is a Data-Link "Query: Maximum Payload Length". See
+> [`../2026-10-03T144506-idle-to-dr-on-transition/analysis.md`](../2026-10-03T144506-idle-to-dr-on-transition/analysis.md).
+> The original analysis is below, unchanged.
+
 **Capture:** `2026-10-03T140340-idle-dr-on-baseline`
 
 **Serial:** COM4, 19,200 baud, 8 data bits, no parity, 1 stop bit
