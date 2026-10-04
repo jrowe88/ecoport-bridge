@@ -232,7 +232,8 @@ def _indicator(value: str) -> int | None:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Minimal CTA-2045 UCM. TRANSMITS on the bus.")
     parser.add_argument("--port", required=True)
-    parser.add_argument("--scenario", required=True)
+    parser.add_argument("--scenario", default="ucm-session",
+                        help="Name used for the capture directory (default: ucm-session).")
     parser.add_argument("--transmit", action="store_true",
                         help="Required acknowledgement that this tool writes to the bus.")
     parser.add_argument("--probe", action="store_true",
