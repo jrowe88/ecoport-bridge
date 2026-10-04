@@ -68,29 +68,93 @@ def supported_query(msg_type: bytes) -> bytes:
 
 OUTSIDE_COMM_GOOD = basic(BASIC_OUTSIDE_COMM_STATUS, 0x01)
 OPSTATE_QUERY = basic(BASIC_OPSTATE_QUERY)
+MAX_PAYLOAD_QUERY = frame(DATA_LINK, bytes((DL_MAX_PAYLOAD_QUERY, 0x00)))
 GET_INFORMATION = frame(INTERMEDIATE_DR, b"\x01\x01")
+# Get variants are exactly 2 bytes; the Set variants share opcodes but are longer (§11.1.6).
+GET_SETPOINT = frame(INTERMEDIATE_DR, b"\x03\x03")
+GET_PRESENT_TEMPERATURE = frame(INTERMEDIATE_DR, b"\x03\x04")
 
 # Read-only startup probe, sent by the UCM in this order.
 PROBE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
     ("Supported? Basic DR", supported_query(BASIC_DR)),
     ("Supported? Intermediate DR", supported_query(INTERMEDIATE_DR)),
     ("Supported? Data-Link", supported_query(DATA_LINK)),
+    ("Query SGD max payload", MAX_PAYLOAD_QUERY),
     ("Outside comm status: good", OUTSIDE_COMM_GOOD),
     ("Query operational state", OPSTATE_QUERY),
     ("GetInformation", GET_INFORMATION),
+    ("GetSetPoint", GET_SETPOINT),
+    ("GetPresentTemperature", GET_PRESENT_TEMPERATURE),
 )
 KEEPALIVE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
     ("Outside comm status: good", OUTSIDE_COMM_GOOD),
     ("Query operational state", OPSTATE_QUERY),
+    ("GetPresentTemperature", GET_PRESENT_TEMPERATURE),
 )
+
+RESPONSE_CODES = {
+    0x00: "success",
+    0x01: "command not implemented",
+    0x02: "bad value",
+    0x03: "command length error",
+    0x04: "response length error",
+    0x05: "busy",
+    0x06: "other error",
+    0x07: "customer override in effect",
+    0x08: "command not enabled",
+}
+UNITS = {0: "F", 1: "C"}
+NOT_SUPPORTED_TEMP = -0x8000
 
 
 def describe_intermediate(payload: bytes) -> str:
     """Human-readable summary of an Intermediate DR payload we know how to read."""
+    if len(payload) >= 3 and payload[1] & 0x80:
+        code = payload[2]
+        if code != 0x00:
+            reason = RESPONSE_CODES.get(code, "reserved")
+            return f"intermediate reply {payload[0]:02X} {payload[1]:02X}: code 0x{code:02X} ({reason})"
     if payload[:2] == b"\x01\x81" and len(payload) >= 15:
         info = parse_device_info(payload)
         return "GetInformation reply: " + ", ".join(f"{k}={v}" for k, v in info.items())
+    if payload[:2] == b"\x03\x83" and len(payload) >= 8:
+        return "GetSetPoint reply: " + _fmt(parse_setpoint(payload))
+    if payload[:2] == b"\x03\x84" and len(payload) >= 8:
+        return "GetPresentTemperature reply: " + _fmt(parse_present_temperature(payload))
     return f"intermediate DR payload {payload.hex(' ')}"
+
+
+def _fmt(values: dict[str, object]) -> str:
+    return ", ".join(f"{k}={v}" for k, v in values.items())
+
+
+def _temp(raw: bytes, scale: int = 1) -> float | int | None:
+    value = int.from_bytes(raw, "big", signed=True)
+    if value == NOT_SUPPORTED_TEMP:
+        return None
+    return value / scale if scale != 1 else value
+
+
+def parse_setpoint(payload: bytes) -> dict[str, object]:
+    """Decode a GetSetPoint() reply (§11.1.6.2). Set points are whole degrees."""
+    units = UNITS.get(payload[5], f"0x{payload[5]:02X}")
+    values: dict[str, object] = {
+        "device_type": f"0x{int.from_bytes(payload[3:5], 'big'):04X}",
+        "units": units,
+        "setpoint1": _temp(payload[6:8]),
+    }
+    if len(payload) >= 10:
+        values["setpoint2"] = _temp(payload[8:10])
+    return values
+
+
+def parse_present_temperature(payload: bytes) -> dict[str, object]:
+    """Decode a GetPresentTemperature() reply (§11.1.7.2), reported in 1/100 degree."""
+    return {
+        "device_type": f"0x{int.from_bytes(payload[3:5], 'big'):04X}",
+        "units": UNITS.get(payload[5], f"0x{payload[5]:02X}"),
+        "temperature": _temp(payload[6:8], scale=100),
+    }
 
 
 def parse_device_info(payload: bytes) -> dict[str, object]:

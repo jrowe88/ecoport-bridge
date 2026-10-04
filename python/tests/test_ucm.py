@@ -8,6 +8,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 from ecoport.cta2045.framing import LINK_ACK, Frame, StreamParser, frame, split_frames
 from ecoport.cta2045.ucm import (
     GET_INFORMATION,
+    GET_PRESENT_TEMPERATURE,
+    GET_SETPOINT,
+    MAX_PAYLOAD_QUERY,
     OPSTATE_QUERY,
     OUTSIDE_COMM_GOOD,
     UcmResponder,
@@ -162,9 +165,10 @@ def test_probe_sequence_runs_and_reads_operational_state():
     port = FakeSgd(clock)
     lines = []
     session = UcmSession(port, None, UcmResponder(), probe=True, keepalive=0, log=lines.append, clock=clock)
-    run(session, clock, 15)
+    run(session, clock, 25)
     sent = [r for r in port.received if r != LINK_ACK]
     assert OUTSIDE_COMM_GOOD in sent and OPSTATE_QUERY in sent and GET_INFORMATION in sent
+    assert MAX_PAYLOAD_QUERY in sent and GET_SETPOINT in sent and GET_PRESENT_TEMPERATURE in sent
     assert any("operational state 0 (Idle Normal)" in line for line in lines)
     assert session.stats["unanswered"] == 0
 
@@ -176,3 +180,34 @@ def test_probe_retries_three_times_then_gives_up_when_silent():
     run(session, clock, 12)
     assert port.received[:4] == [frame(b"\x08\x01")] * 4
     assert session.stats["unanswered"] >= 1
+
+
+def intermediate(payload_hex):
+    return frame(b"\x08\x02", bytes.fromhex(payload_hex)).hex()
+
+
+def test_read_only_requests_are_exactly_two_byte_payloads():
+    # Set variants reuse opcode 03 03 with a longer payload; never send those.
+    assert GET_SETPOINT == frame(b"\x08\x02", b"\x03\x03")
+    assert GET_PRESENT_TEMPERATURE == frame(b"\x08\x02", b"\x03\x04")
+
+
+def test_decodes_setpoint_and_present_temperature_replies():
+    assert "setpoint1=120" in react(intermediate("03 83 00 00 03 00 00 78")).note
+    note = react(intermediate("03 84 00 00 03 00 2e e0")).note
+    assert "temperature=120.0" in note and "units=F" in note
+    assert "setpoint1=None" in react(intermediate("03 83 00 00 03 01 80 00")).note
+
+
+def test_decodes_intermediate_error_response_code():
+    assert "command not implemented" in react(intermediate("03 83 01")).note
+
+
+def test_repeated_max_payload_queries_get_a_single_response():
+    clock = Clock()
+    port = FakeSgd(clock)
+    session = UcmSession(port, None, UcmResponder(), probe=False, keepalive=0, log=lambda _: None, clock=clock)
+    for delay in (0.0, 0.3, 0.6):
+        port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[3]), delay=delay)
+    run(session, clock, 4)
+    assert port.received.count(frame(b"\x08\x03", b"\x19\x07")) == 1

@@ -4,9 +4,10 @@
 What it sends (and nothing else):
 * Link-layer ACK/NAK replies to every packet the appliance sends.
 * A Maximum Payload Length response when the appliance asks.
-* With --probe: Message Type Supported Queries, "Outside comm status: good",
-  "Query operational state" and Intermediate DR GetInformation, then the
-  status + operational-state pair every --keepalive seconds.
+* With --probe: Message Type Supported Queries, a max payload query,
+  "Outside comm status: good", "Query operational state", and the read-only
+  Intermediate DR GetInformation, GetSetPoint and GetPresentTemperature.
+  Then status, operational state and temperature every --keepalive seconds.
 
 It never sends shed, load-up, setpoint, price or other control commands.
 
@@ -145,6 +146,9 @@ class UcmSession:
                 Outgoing(now + LINK_REPLY_DELAY, "link reply", reaction.link_reply, False)
             )
         for i, (label, data) in enumerate(reaction.app_replies):
+            # A repeated query supersedes any unsent reply to the previous one
+            # (the Rinnai NAKs duplicate max-payload responses with 15 07).
+            self.messages = deque(m for m in self.messages if m.data != data)
             # Replies jump the probe queue but still wait for their own link ACK.
             self.messages.insert(i, Outgoing(0.0, label, data, needs_ack=True))
         if reaction.app_replies:
@@ -264,7 +268,8 @@ def main(argv: list[str] | None = None) -> int:
         "serial_settings": "19200 baud, 8 data bits, no parity, 1 stop bit",
         "transmit_policy": (
             "TRANSMITS: link ACK/NAK, max payload response"
-            + (", discovery, outside-comm-good, opstate query, GetInformation" if args.probe else "")
+            + (", discovery, max payload query, outside-comm-good, opstate query, "
+               "GetInformation, GetSetPoint, GetPresentTemperature" if args.probe else "")
             + "; never control commands. TX log in transmit.jsonl"
         ),
         "scenario": args.scenario,

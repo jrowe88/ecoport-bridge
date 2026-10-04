@@ -70,6 +70,9 @@ transitions — all without sending any CTA-2045 command.
 | `--probe` start + every 60 s | `08 01 00 02 0E 01 ..` | Outside comm status: good |
 | `--probe` start + every 60 s | `08 01 00 02 12 00 ..` | Query operational state |
 | `--probe` start | `08 02 00 02 01 01 ..` | Intermediate DR GetInformation |
+| `--probe` start | `08 03 00 02 18 00 ..` | Ask the heater's max payload |
+| `--probe` start | `08 02 00 02 03 03 ..` | GetSetPoint (read only; Set is longer) |
+| `--probe` start + every 60 s | `08 02 00 02 03 04 ..` | GetPresentTemperature (tank average) |
 
 No shed, load-up, setpoint, price, or other control commands.
 

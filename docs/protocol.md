@@ -104,9 +104,12 @@ or repeated captures)_
 - ~~Max payload failure is timing~~ — confirmed: with a 1.0 s reply delay
   every response is ACKed
   ([`2026-10-03T182455-max-payload-delay`](../captures/rinnai/2026-10-03T182455-max-payload-delay/notes.md)).
-- The heater still re-runs discovery about every 21 s because we advertised
-  `0x06` (128 bytes), below the Level 2 UCM minimum of `0x07` (256 bytes,
-  §22.4.1.1.4). Test with `0x07` (now the default).
+- ~~The heater still re-runs discovery because we advertised `0x06`~~ — not
+  the cause: with `0x07` it still repeats about every 22 s
+  ([`2026-10-03T192213-max-payload-256`](../captures/rinnai/2026-10-03T192213-max-payload-256/notes.md)).
+  The ~20 s idle between rounds matches the passive cycle, so this is probably
+  a normal periodic link check. Untested alternative: the heater expects us to
+  query its max payload too (now part of `--probe`).
 - The ~10 s repeating discovery is the heater retrying because negotiation
   didn't complete. It should stop once max payload is ACKed.
 - ENERGY STAR lists the REHP65 as CTA-2045-B, but this firmware reports
