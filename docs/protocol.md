@@ -84,6 +84,9 @@ _(fill in as captures are recorded — reference the specific capture under
 - GetInformation reply: CTA-2045 version **"A"** (not "B"), vendor ID
   `0x0C22`, device type `0x0003` (Water Heater – Heat Pump), device
   revision 4, capability bitmap `0x00000000`. No model/serial/firmware fields.
+- The heater's own max payload is `0x05` (64 bytes).
+- GetSetPoint (`08 02` `03 03`) and GetPresentTemperature (`03 04`) are rejected
+  with link NAK `15 07` (request not supported).
 - Once a UCM answers, the heater repeats its discovery about every 9–10 s
   (instead of ~32 s). Our `19 06` max-payload response went unanswered when
   sent ~150 ms after our ACK, and the retry got NAK `15 07`. The one ACKed
@@ -108,8 +111,9 @@ or repeated captures)_
   the cause: with `0x07` it still repeats about every 22 s
   ([`2026-10-03T192213-max-payload-256`](../captures/rinnai/2026-10-03T192213-max-payload-256/notes.md)).
   The ~20 s idle between rounds matches the passive cycle, so this is probably
-  a normal periodic link check. Untested alternative: the heater expects us to
-  query its max payload too (now part of `--probe`).
+  a normal periodic link check. Querying the heater's max payload ourselves did
+  not stop it either
+  ([`2026-10-03T195116-temps`](../captures/rinnai/2026-10-03T195116-temps/notes.md)).
 - The ~10 s repeating discovery is the heater retrying because negotiation
   didn't complete. It should stop once max payload is ACKed.
 - ENERGY STAR lists the REHP65 as CTA-2045-B, but this firmware reports

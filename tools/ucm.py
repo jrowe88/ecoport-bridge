@@ -5,9 +5,10 @@ What it sends (and nothing else):
 * Link-layer ACK/NAK replies to every packet the appliance sends.
 * A Maximum Payload Length response when the appliance asks.
 * With --probe: Message Type Supported Queries, a max payload query,
-  "Outside comm status: good", "Query operational state", and the read-only
-  Intermediate DR GetInformation, GetSetPoint and GetPresentTemperature.
-  Then status, operational state and temperature every --keepalive seconds.
+  "Outside comm status: good", "Query operational state" and the read-only
+  Intermediate DR GetInformation. Then status and operational state every
+  --keepalive seconds.
+* With --survey: also one pass of every spec-defined read (SURVEY_SEQUENCE).
 
 It never sends shed, load-up, setpoint, price or other control commands.
 
@@ -30,7 +31,12 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "python" / "src"))
 
 from ecoport.cta2045.framing import Frame, StreamParser
-from ecoport.cta2045.ucm import KEEPALIVE_SEQUENCE, PROBE_SEQUENCE, UcmResponder
+from ecoport.cta2045.ucm import (
+    KEEPALIVE_SEQUENCE,
+    PROBE_SEQUENCE,
+    SURVEY_SEQUENCE,
+    UcmResponder,
+)
 from packet_capture import CaptureWriter
 
 DEFAULT_OUTPUT_ROOT = Path(__file__).resolve().parents[1] / "captures" / "rinnai"
@@ -89,10 +95,10 @@ class UcmSession:
         self.stats = {"rx_packets": 0, "tx_packets": 0, "acked": 0, "unanswered": 0}
         if probe:
             for label, data in PROBE_SEQUENCE:
-                self._queue(label, data)
+                self.queue(label, data)
             self.next_keepalive = clock() + keepalive if keepalive else 0.0
 
-    def _queue(self, label: str, data: bytes) -> None:
+    def queue(self, label: str, data: bytes) -> None:
         self.messages.append(Outgoing(0.0, label, data, needs_ack=True))
 
     def step(self) -> None:
@@ -108,7 +114,7 @@ class UcmSession:
         if self.keepalive and now >= self.next_keepalive:
             self.next_keepalive = now + self.keepalive
             for label, frame_bytes in KEEPALIVE_SEQUENCE:
-                self._queue(label, frame_bytes)
+                self.queue(label, frame_bytes)
         self._send_due(now)
 
     def _receive(self, data: bytes, now: float) -> None:
@@ -242,12 +248,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="Required acknowledgement that this tool writes to the bus.")
     parser.add_argument("--probe", action="store_true",
                         help="Start the handshake ourselves and send read-only queries.")
+    parser.add_argument("--survey", action="store_true",
+                        help="Implies --probe. Then send each spec-defined read once (CTA-2045-B "
+                             "§8.2/§11); no vendor-proprietary types.")
     parser.add_argument("--keepalive", type=float, default=60, metavar="SECONDS",
                         help="With --probe, resend status + opstate query this often (0 = off).")
-    parser.add_argument("--max-payload-indicator", type=_indicator,     default=0x07,
-                            help="Our Max Payload Length response value (default 0x07 = 256 bytes, the "
-                                 "CTA-2045-B Level 2 minimum; "
-                             "'nak' = link NAK, i.e. default 2 bytes only).")
+    parser.add_argument("--max-payload-indicator", type=_indicator, default=0x07,
+                        help="Our Max Payload Length response value (default 0x07 = 256 bytes, the "
+                             "CTA-2045-B Level 2 minimum; 'nak' = link NAK, i.e. default 2 bytes only).")
     parser.add_argument("--app-reply-delay", type=float, default=APP_REPLY_DELAY, metavar="SECONDS",
                         help=f"Wait after our link ACK before an application reply (default {APP_REPLY_DELAY}).")
     parser.add_argument("--rts-tx", action="store_true",
@@ -261,6 +269,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if not args.transmit:
         raise SystemExit("Refusing to run without --transmit (this tool writes to the RS-485 bus).")
+    args.probe = args.probe or args.survey
 
     metadata = {
         "source": "Rinnai REHP65 CTA-2045 active UCM session",
@@ -269,8 +278,10 @@ def main(argv: list[str] | None = None) -> int:
         "transmit_policy": (
             "TRANSMITS: link ACK/NAK, max payload response"
             + (", discovery, max payload query, outside-comm-good, opstate query, "
-               "GetInformation, GetSetPoint, GetPresentTemperature" if args.probe else "")
-            + "; never control commands. TX log in transmit.jsonl"
+               "GetInformation" if args.probe else "")
+            + (", survey of spec-defined reads (supported queries 08 04 / 09 01-0C, "
+               "Intermediate Get* requests)" if args.survey else "")
+            + "; never control commands or vendor-proprietary types. TX log in transmit.jsonl"
         ),
         "scenario": args.scenario,
     }
@@ -290,6 +301,9 @@ def main(argv: list[str] | None = None) -> int:
             args.probe, args.keepalive, log=log, rts_tx=args.rts_tx,
             app_reply_delay=args.app_reply_delay,
         )
+        if args.survey:
+            for label, data in SURVEY_SEQUENCE:
+                session.queue(label, data)
         log(f"UCM on {args.port}; writing to {capture.directory}. Ctrl+C to stop.")
         try:
             while args.duration == 0 or time.monotonic() - started < args.duration:

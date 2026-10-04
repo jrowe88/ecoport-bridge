@@ -83,13 +83,36 @@ PROBE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
     ("Outside comm status: good", OUTSIDE_COMM_GOOD),
     ("Query operational state", OPSTATE_QUERY),
     ("GetInformation", GET_INFORMATION),
-    ("GetSetPoint", GET_SETPOINT),
-    ("GetPresentTemperature", GET_PRESENT_TEMPERATURE),
 )
 KEEPALIVE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
     ("Outside comm status: good", OUTSIDE_COMM_GOOD),
     ("Query operational state", OPSTATE_QUERY),
-    ("GetPresentTemperature", GET_PRESENT_TEMPERATURE),
+)
+
+
+def _intermediate(label: str, payload_hex: str) -> tuple[str, bytes]:
+    return label, frame(INTERMEDIATE_DR, bytes.fromhex(payload_hex))
+
+
+# One pass over every spec-defined *read* (CTA-2045-B §8.2, §11). Each request
+# was checked against the spec: its Set counterpart either uses a different
+# Opcode2 or needs a longer payload, so none of these can change device state.
+# Vendor-proprietary message types and opcodes (0xF0-0xFF) are deliberately excluded.
+SURVEY_SEQUENCE: tuple[tuple[str, bytes], ...] = (
+    ("Supported? Commissioning", supported_query(b"\x08\x04")),
+    *((f"Supported? pass-through 09 {n:02X}", supported_query(bytes((0x09, n)))) for n in range(0x01, 0x0D)),
+    _intermediate("GetSGDEfficiencyLevel", "01 02"),
+    _intermediate("GetUTCTime", "02 00"),
+    _intermediate("GetEnergyPrice", "03 00"),
+    _intermediate("GetTier", "03 01"),
+    _intermediate("GetTemperatureOffset", "03 02"),
+    _intermediate("GetSetPoint", "03 03"),
+    _intermediate("GetPresentTemperature", "03 04"),
+    _intermediate("GetCommodityRead (all)", "06 00"),
+    _intermediate("GetCommoditySubscription", "06 01"),
+    _intermediate("GetActivationStatus index 0", "0A 00 00"),
+    _intermediate("GetPreferenceLevel demand", "0B 00 00"),
+    _intermediate("GetPreferenceLevel energy", "0B 00 01"),
 )
 
 RESPONSE_CODES = {
@@ -109,18 +132,17 @@ NOT_SUPPORTED_TEMP = -0x8000
 
 def describe_intermediate(payload: bytes) -> str:
     """Human-readable summary of an Intermediate DR payload we know how to read."""
-    if len(payload) >= 3 and payload[1] & 0x80:
+    # Activation (0A) and preference (0B) replies have no response-code byte.
+    if len(payload) >= 3 and payload[1] & 0x80 and payload[0] not in (0x0A, 0x0B):
         code = payload[2]
         if code != 0x00:
             reason = RESPONSE_CODES.get(code, "reserved")
             return f"intermediate reply {payload[0]:02X} {payload[1]:02X}: code 0x{code:02X} ({reason})"
-    if payload[:2] == b"\x01\x81" and len(payload) >= 15:
-        info = parse_device_info(payload)
-        return "GetInformation reply: " + ", ".join(f"{k}={v}" for k, v in info.items())
-    if payload[:2] == b"\x03\x83" and len(payload) >= 8:
-        return "GetSetPoint reply: " + _fmt(parse_setpoint(payload))
-    if payload[:2] == b"\x03\x84" and len(payload) >= 8:
-        return "GetPresentTemperature reply: " + _fmt(parse_present_temperature(payload))
+    decoder = REPLY_DECODERS.get(payload[:2])
+    if decoder is not None:
+        name, parse, minimum = decoder
+        if len(payload) >= minimum:
+            return f"{name} reply: " + _fmt(parse(payload))
     return f"intermediate DR payload {payload.hex(' ')}"
 
 
@@ -155,6 +177,76 @@ def parse_present_temperature(payload: bytes) -> dict[str, object]:
         "units": UNITS.get(payload[5], f"0x{payload[5]:02X}"),
         "temperature": _temp(payload[6:8], scale=100),
     }
+
+
+COMMODITY_CODES = {
+    0: "electricity consumed (W, Wh)",
+    1: "electricity produced (W, Wh)",
+    2: "natural gas (cu-ft/h, cu-ft)",
+    3: "water (gal/h, gal)",
+    4: "natural gas (m3/h, m3)",
+    5: "water (l/h, l)",
+    6: "total energy storage capacity (Wh)",
+    7: "present energy storage capacity (Wh)",
+    8: "rated max consumption (W)",
+    9: "rated max production (W)",
+    10: "advanced load up total capacity (Wh)",
+    11: "advanced load up present capacity (Wh)",
+}
+NOT_SUPPORTED_48 = 0xFFFF_FFFF_FFFF
+
+
+def _u48(raw: bytes) -> int | None:
+    value = int.from_bytes(raw, "big")
+    return None if value == NOT_SUPPORTED_48 else value
+
+
+def parse_commodity_read(payload: bytes) -> dict[str, object]:
+    """Decode a Get CommodityRead reply (§11.3.1.2): 13-byte records after the response code."""
+    values: dict[str, object] = {}
+    for start in range(3, len(payload) - 12, 13):
+        code = payload[start]
+        name = COMMODITY_CODES.get(code & 0x7F, f"code {code & 0x7F}")
+        source = "measured" if code & 0x80 else "estimated"
+        rate, total = _u48(payload[start + 1 : start + 7]), _u48(payload[start + 7 : start + 13])
+        values[name] = f"rate={rate} cumulative={total} ({source})"
+    return values
+
+
+def parse_commodity_subscription(payload: bytes) -> dict[str, object]:
+    """Decode a GetCommoditySubscription reply (§11.3.2.2): (type, update seconds) pairs."""
+    return {
+        COMMODITY_CODES.get(payload[i] & 0x7F, f"code {payload[i]}"): f"every {int.from_bytes(payload[i + 1 : i + 3], 'big')} s"
+        for i in range(3, len(payload) - 2, 3)
+    }
+
+
+def parse_utc_time(payload: bytes) -> dict[str, object]:
+    """Decode a GetUTCTime reply (§11.1.2.2): seconds since 2000-01-01 UTC."""
+    from datetime import datetime, timedelta, timezone
+
+    seconds = int.from_bytes(payload[3:7], "big")
+    when = datetime(2000, 1, 1, tzinfo=timezone.utc) + timedelta(seconds=seconds)
+    return {
+        "utc": when.isoformat(),
+        "tz_offset_h": int.from_bytes(payload[7:8], "big", signed=True) / 4,
+        "dst_offset_h": payload[8] / 4,
+    }
+
+
+REPLY_DECODERS = {
+    b"\x01\x81": ("GetInformation", lambda p: parse_device_info(p), 15),
+    b"\x01\x82": ("GetSGDEfficiencyLevel", lambda p: {"level": p[3]}, 4),
+    b"\x02\x80": ("GetUTCTime", parse_utc_time, 9),
+    b"\x03\x81": ("GetTier", lambda p: {"tier": p[3]}, 4),
+    b"\x03\x82": ("GetTemperatureOffset", lambda p: {"offset": p[3], "units": UNITS.get(p[4], p[4])}, 5),
+    b"\x03\x83": ("GetSetPoint", parse_setpoint, 8),
+    b"\x03\x84": ("GetPresentTemperature", parse_present_temperature, 8),
+    b"\x06\x80": ("GetCommodityRead", parse_commodity_read, 16),
+    b"\x06\x81": ("GetCommoditySubscription", parse_commodity_subscription, 6),
+    b"\x0a\x80": ("GetActivationStatus", lambda p: {"index": p[2], "status": p[3]}, 4),
+    b"\x0b\x80": ("GetPreferenceLevel", lambda p: {"type": p[2], "level": p[3]}, 4),
+}
 
 
 def parse_device_info(payload: bytes) -> dict[str, object]:

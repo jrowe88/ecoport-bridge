@@ -13,6 +13,7 @@ from ecoport.cta2045.ucm import (
     MAX_PAYLOAD_QUERY,
     OPSTATE_QUERY,
     OUTSIDE_COMM_GOOD,
+    SURVEY_SEQUENCE,
     UcmResponder,
 )
 from ucm import UcmSession
@@ -168,7 +169,7 @@ def test_probe_sequence_runs_and_reads_operational_state():
     run(session, clock, 25)
     sent = [r for r in port.received if r != LINK_ACK]
     assert OUTSIDE_COMM_GOOD in sent and OPSTATE_QUERY in sent and GET_INFORMATION in sent
-    assert MAX_PAYLOAD_QUERY in sent and GET_SETPOINT in sent and GET_PRESENT_TEMPERATURE in sent
+    assert MAX_PAYLOAD_QUERY in sent
     assert any("operational state 0 (Idle Normal)" in line for line in lines)
     assert session.stats["unanswered"] == 0
 
@@ -211,3 +212,50 @@ def test_repeated_max_payload_queries_get_a_single_response():
         port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[3]), delay=delay)
     run(session, clock, 4)
     assert port.received.count(frame(b"\x08\x03", b"\x19\x07")) == 1
+
+# Get forms verified against CTA-2045-B §11; Set forms differ (opcode2 or length).
+ALLOWED_SURVEY_READS = {
+    "01 02", "02 00", "03 00", "03 01", "03 02", "03 03", "03 04",
+    "06 00", "06 01", "0a 00 00", "0b 00 00", "0b 00 01",
+}
+
+
+def test_survey_sends_only_spec_defined_reads_and_supported_queries():
+    for _label, data in SURVEY_SEQUENCE:
+        packet = Frame(0, data)
+        assert packet.checksum_ok
+        assert packet.msg_type[0] in (0x08, 0x09)  # never vendor-proprietary types
+        if packet.payload:
+            assert packet.msg_type == b"\x08\x02"
+            assert packet.payload.hex(" ") in ALLOWED_SURVEY_READS
+
+
+def test_decodes_survey_replies():
+    commodity = "06 80 00 07" + "ff" * 6 + "00 00 00 00 0f a0"
+    assert "present energy storage capacity (Wh)=rate=None cumulative=4000 (estimated)" in react(
+        intermediate(commodity)
+    ).note
+    assert "status=1" in react(intermediate("0a 80 00 01")).note
+    assert "level=5" in react(intermediate("0b 80 00 05")).note
+    assert "utc=2000-01-01T00:01:00+00:00" in react(intermediate("02 80 00 00 00 00 3c ec 04")).note
+
+
+def test_survey_runs_to_completion_when_heater_naks_everything():
+    clock = Clock()
+    port = FakeSgd(clock, ack=False)
+    port.write_original = port.write
+
+    def nak_all(data):
+        port.inbox.extend(data)
+        for packet in port.parser.feed(data):
+            port.received.append(packet.raw)
+            if not packet.is_link_control:
+                port.scheduled.append((clock.t + 0.02, b"\x15\x07"))
+
+    port.write = nak_all
+    session = UcmSession(port, None, UcmResponder(), probe=False, keepalive=0, log=lambda _: None, clock=clock)
+    for label, data in SURVEY_SEQUENCE:
+        session.queue(label, data)
+    run(session, clock, 40)
+    assert [r for r in port.received if r != LINK_ACK] == [d for _, d in SURVEY_SEQUENCE]
+    assert session.stats["unanswered"] == 0
