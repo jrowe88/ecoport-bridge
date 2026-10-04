@@ -1,0 +1,440 @@
+23:24:24.658 UCM on COM4; writing to C:\Dev\jrowe88\ecoport-bridge\captures\rinnai\2026-10-03T232424-commodity-1. Ctrl+C to stop.
+23:24:24.675 TX 08 01 00 00 7e cd            Supported? Basic DR
+23:24:24.683 RX 06 00                        link ACK
+23:24:25.701 TX 08 02 00 00 7a d0            Supported? Intermediate DR
+23:24:25.721 RX 06 00                        link ACK
+23:24:26.743 TX 08 03 00 00 76 d3            Supported? Data-Link
+23:24:26.761 RX 06 00                        link ACK
+23:24:27.787 TX 08 03 00 02 18 00 ba 75      Query SGD max payload
+23:24:27.800 RX 06 00                        link ACK
+23:24:28.008 RX 08 03 00 02 19 05 ad 7c      SGD max payload indicator 0x05
+23:24:28.097 TX 06 00                        link reply
+23:24:28.828 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:24:28.839 RX 06 00                        link ACK
+23:24:29.047 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:24:29.136 TX 06 00                        link reply
+23:24:29.865 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:24:29.878 RX 06 00                        link ACK
+23:24:30.086 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:24:30.173 TX 06 00                        link reply
+23:24:30.906 TX 08 02 00 02 01 01 04 43      GetInformation
+23:24:30.917 RX 06 00                        link ACK
+23:24:31.141 RX 08 02 00 10 01 81 00 41 00 0c 22 00 03 00 04 00 00 00 00 00 14 2e GetInformation reply: response_code=0, cta2045_version=A, vendor_id=0x0C22, device_type=0x0003, device_revision=4, capability_bitmap=0x00000000
+23:24:31.218 TX 06 00                        link reply
+23:24:31.946 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:24:31.956 RX 06 00                        link ACK
+23:24:32.180 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 77 cd 2c GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=631 (estimated)
+23:24:32.259 TX 06 00                        link reply
+23:24:39.774 RX 08 01 00 00 7e cd            supported query 08 01
+23:24:39.856 TX 06 00                        link reply
+23:24:40.077 RX 08 02 00 00 7a d0            supported query 08 02
+23:24:40.165 TX 06 00                        link reply
+23:24:40.381 RX 08 03 00 00 76 d3            supported query 08 03
+23:24:40.471 TX 06 00                        link reply
+23:24:40.685 RX 08 03 00 02 18 00 ba 75      max payload query
+23:24:40.767 TX 06 00                        link reply
+23:24:41.765 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:24:41.788 RX 06 00                        link ACK
+23:25:01.836 RX 08 01 00 00 7e cd            supported query 08 01
+23:25:01.927 TX 06 00                        link reply
+23:25:02.139 RX 08 02 00 00 7a d0            supported query 08 02
+23:25:02.223 TX 06 00                        link reply
+23:25:02.443 RX 08 03 00 00 76 d3            supported query 08 03
+23:25:02.518 TX 06 00                        link reply
+23:25:02.730 RX 08 03 00 02 18 00 ba 75      max payload query
+23:25:02.815 TX 06 00                        link reply
+23:25:03.810 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:25:03.833 RX 06 00                        link ACK
+23:25:23.881 RX 08 01 00 00 7e cd            supported query 08 01
+23:25:23.968 TX 06 00                        link reply
+23:25:24.185 RX 08 02 00 00 7a d0            supported query 08 02
+23:25:24.265 TX 06 00                        link reply
+23:25:24.488 RX 08 03 00 00 76 d3            supported query 08 03
+23:25:24.576 TX 06 00                        link reply
+23:25:24.684 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:25:24.792 RX 08 03 00 02 18 00 ba 75      max payload query
+23:25:24.871 TX 06 00                        link reply
+23:25:25.009    no ACK for Outside comm status: good; retry 1/3
+23:25:26.407 RX 08 03 00 02 18 00 ba 75      max payload query
+23:25:26.490 TX 06 00                        link reply
+23:25:27.484 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:25:27.493 RX 06 00                        link ACK
+23:25:28.514 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good (retry 1)
+23:25:28.533 RX 06 00                        link ACK
+23:25:28.741 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:25:28.824 TX 06 00                        link reply
+23:25:29.554 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:25:29.572 RX 06 00                        link ACK
+23:25:29.780 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:25:29.866 TX 06 00                        link reply
+23:25:30.600 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:25:30.611 RX 06 00                        link ACK
+23:25:30.835 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 89 a9 3e GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=649 (estimated)
+23:25:30.910 TX 06 00                        link reply
+23:25:38.924 RX 08 01 00 00 7e cd            supported query 08 01
+23:25:39.011 TX 06 00                        link reply
+23:25:39.229 RX 08 02 00 00 7a d0            supported query 08 02
+23:25:39.318 TX 06 00                        link reply
+23:25:39.532 RX 08 03 00 00 76 d3            supported query 08 03
+23:25:39.615 TX 06 00                        link reply
+23:25:39.835 RX 08 03 00 02 18 00 ba 75      max payload query
+23:25:39.926 TX 06 00                        link reply
+23:25:40.925 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:25:40.938 RX 06 00                        link ACK
+23:26:00.985 RX 08 01 00 00 7e cd            supported query 08 01
+23:26:01.067 TX 06 00                        link reply
+23:26:01.289 RX 08 02 00 00 7a d0            supported query 08 02
+23:26:01.366 TX 06 00                        link reply
+23:26:01.576 RX 08 03 00 00 76 d3            supported query 08 03
+23:26:01.662 TX 06 00                        link reply
+23:26:01.880 RX 08 03 00 02 18 00 ba 75      max payload query
+23:26:01.959 TX 06 00                        link reply
+23:26:02.970 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:26:02.983 RX 06 00                        link ACK
+23:26:23.031 RX 08 01 00 00 7e cd            supported query 08 01
+23:26:23.109 TX 06 00                        link reply
+23:26:23.319 RX 08 02 00 00 7a d0            supported query 08 02
+23:26:23.404 TX 06 00                        link reply
+23:26:23.622 RX 08 03 00 00 76 d3            supported query 08 03
+23:26:23.699 TX 06 00                        link reply
+23:26:23.910 RX 08 03 00 02 18 00 ba 75      max payload query
+23:26:23.997 TX 06 00                        link reply
+23:26:24.992 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:26:25.014 RX 06 00                        link ACK
+23:26:26.042 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:26:26.053 RX 06 00                        link ACK
+23:26:26.261 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:26:26.341 TX 06 00                        link reply
+23:26:27.072 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:26:27.092 RX 06 00                        link ACK
+23:26:27.299 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:26:27.384 TX 06 00                        link reply
+23:26:28.115 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:26:28.131 RX 06 00                        link ACK
+23:26:28.355 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 9b 85 50 GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=667 (estimated)
+23:26:28.442 TX 06 00                        link reply
+23:26:36.060 RX 08 01 00 00 7e cd            supported query 08 01
+23:26:36.146 TX 06 00                        link reply
+23:26:36.364 RX 08 02 00 00 7a d0            supported query 08 02
+23:26:36.441 TX 06 00                        link reply
+23:26:36.652 RX 08 03 00 00 76 d3            supported query 08 03
+23:26:36.736 TX 06 00                        link reply
+23:26:36.955 RX 08 03 00 02 18 00 ba 75      max payload query
+23:26:37.032 TX 06 00                        link reply
+23:26:38.044 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:26:38.059 RX 06 00                        link ACK
+23:26:58.121 RX 08 01 00 00 7e cd            supported query 08 01
+23:26:58.203 TX 06 00                        link reply
+23:26:58.425 RX 08 02 00 00 7a d0            supported query 08 02
+23:26:58.515 TX 06 00                        link reply
+23:26:58.729 RX 08 03 00 00 76 d3            supported query 08 03
+23:26:58.810 TX 06 00                        link reply
+23:26:59.033 RX 08 03 00 02 18 00 ba 75      max payload query
+23:26:59.123 TX 06 00                        link reply
+23:27:00.118 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:27:00.135 RX 06 00                        link ACK
+23:27:20.183 RX 08 01 00 00 7e cd            supported query 08 01
+23:27:20.262 TX 06 00                        link reply
+23:27:20.486 RX 08 02 00 00 7a d0            supported query 08 02
+23:27:20.574 TX 06 00                        link reply
+23:27:20.790 RX 08 03 00 00 76 d3            supported query 08 03
+23:27:20.869 TX 06 00                        link reply
+23:27:21.094 RX 08 03 00 02 18 00 ba 75      max payload query
+23:27:21.180 TX 06 00                        link reply
+23:27:22.178 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:27:22.197 RX 06 00                        link ACK
+23:27:24.708 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:27:24.723 RX 06 00                        link ACK
+23:27:24.930 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:27:25.021 TX 06 00                        link reply
+23:27:25.751 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:27:25.762 RX 06 00                        link ACK
+23:27:25.971 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:27:26.048 TX 06 00                        link reply
+23:27:26.782 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:27:26.801 RX 06 00                        link ACK
+23:27:27.025 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 77 cd 2c GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=631 (estimated)
+23:27:27.110 TX 06 00                        link reply
+23:27:34.219 RX 08 01 00 00 7e cd            supported query 08 01
+23:27:34.301 TX 06 00                        link reply
+23:27:34.523 RX 08 02 00 00 7a d0            supported query 08 02
+23:27:34.599 TX 06 00                        link reply
+23:27:34.810 RX 08 03 00 00 76 d3            supported query 08 03
+23:27:34.898 TX 06 00                        link reply
+23:27:35.115 RX 08 03 00 02 18 00 ba 75      max payload query
+23:27:35.191 TX 06 00                        link reply
+23:27:36.206 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:27:36.217 RX 06 00                        link ACK
+23:27:56.264 RX 08 01 00 00 7e cd            supported query 08 01
+23:27:56.343 TX 06 00                        link reply
+23:27:56.568 RX 08 02 00 00 7a d0            supported query 08 02
+23:27:56.657 TX 06 00                        link reply
+23:27:56.872 RX 08 03 00 00 76 d3            supported query 08 03
+23:27:56.952 TX 06 00                        link reply
+23:27:57.175 RX 08 03 00 02 18 00 ba 75      max payload query
+23:27:57.263 TX 06 00                        link reply
+23:27:58.258 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:27:58.278 RX 06 00                        link ACK
+23:28:18.325 RX 08 01 00 00 7e cd            supported query 08 01
+23:28:18.410 TX 06 00                        link reply
+23:28:18.629 RX 08 02 00 00 7a d0            supported query 08 02
+23:28:18.720 TX 06 00                        link reply
+23:28:18.932 RX 08 03 00 00 76 d3            supported query 08 03
+23:28:19.016 TX 06 00                        link reply
+23:28:19.236 RX 08 03 00 02 18 00 ba 75      max payload query
+23:28:19.322 TX 06 00                        link reply
+23:28:20.326 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:28:20.339 RX 06 00                        link ACK
+23:28:24.722 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:28:24.735 RX 06 00                        link ACK
+23:28:24.943 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:28:25.032 TX 06 00                        link reply
+23:28:25.763 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:28:25.774 RX 06 00                        link ACK
+23:28:25.983 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:28:26.062 TX 06 00                        link reply
+23:28:26.790 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:28:26.814 RX 06 00                        link ACK
+23:28:27.037 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 9b 85 50 GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=667 (estimated)
+23:28:27.115 TX 06 00                        link reply
+23:28:34.359 RX 08 01 00 00 7e cd            supported query 08 01
+23:28:34.444 TX 06 00                        link reply
+23:28:34.663 RX 08 02 00 00 7a d0            supported query 08 02
+23:28:34.739 TX 06 00                        link reply
+23:28:34.950 RX 08 03 00 00 76 d3            supported query 08 03
+23:28:35.035 TX 06 00                        link reply
+23:28:35.254 RX 08 03 00 02 18 00 ba 75      max payload query
+23:28:35.333 TX 06 00                        link reply
+23:28:36.332 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:28:36.341 RX 06 00                        link ACK
+23:28:55.413 RX 08 01 00 00 7e cd            supported query 08 01
+23:28:55.504 TX 06 00                        link reply
+23:28:55.717 RX 08 02 00 00 7a d0            supported query 08 02
+23:28:55.796 TX 06 00                        link reply
+23:28:56.021 RX 08 03 00 00 76 d3            supported query 08 03
+23:28:56.109 TX 06 00                        link reply
+23:28:56.324 RX 08 03 00 02 18 00 ba 75      max payload query
+23:28:56.402 TX 06 00                        link reply
+23:28:57.401 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:28:57.411 RX 06 00                        link ACK
+23:29:17.475 RX 08 01 00 00 7e cd            supported query 08 01
+23:29:17.537 TX 06 00                        link reply
+23:29:17.762 RX 08 02 00 00 7a d0            supported query 08 02
+23:29:17.829 TX 06 00                        link reply
+23:29:18.050 RX 08 03 00 00 76 d3            supported query 08 03
+23:29:18.140 TX 06 00                        link reply
+23:29:18.354 RX 08 03 00 02 18 00 ba 75      max payload query
+23:29:18.436 TX 06 00                        link reply
+23:29:19.436 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:29:19.457 RX 06 00                        link ACK
+23:29:24.731 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:29:24.748 RX 06 00                        link ACK
+23:29:24.957 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:29:25.043 TX 06 00                        link reply
+23:29:25.773 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:29:25.788 RX 06 00                        link ACK
+23:29:25.996 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:29:26.085 TX 06 00                        link reply
+23:29:26.819 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:29:26.827 RX 06 00                        link ACK
+23:29:27.067 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 89 a9 3e GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=649 (estimated)
+23:29:27.147 TX 06 00                        link reply
+23:29:34.516 RX 08 01 00 00 7e cd            supported query 08 01
+23:29:34.595 TX 06 00                        link reply
+23:29:34.804 RX 08 02 00 00 7a d0            supported query 08 02
+23:29:34.893 TX 06 00                        link reply
+23:29:35.108 RX 08 03 00 00 76 d3            supported query 08 03
+23:29:35.188 TX 06 00                        link reply
+23:29:35.412 RX 08 03 00 02 18 00 ba 75      max payload query
+23:29:35.501 TX 06 00                        link reply
+23:29:36.501 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:29:36.514 RX 06 00                        link ACK
+23:29:56.562 RX 08 01 00 00 7e cd            supported query 08 01
+23:29:56.642 TX 06 00                        link reply
+23:29:56.865 RX 08 02 00 00 7a d0            supported query 08 02
+23:29:56.952 TX 06 00                        link reply
+23:29:57.169 RX 08 03 00 00 76 d3            supported query 08 03
+23:29:57.247 TX 06 00                        link reply
+23:29:57.457 RX 08 03 00 02 18 00 ba 75      max payload query
+23:29:57.542 TX 06 00                        link reply
+23:29:58.537 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:29:58.560 RX 06 00                        link ACK
+23:30:18.623 RX 08 01 00 00 7e cd            supported query 08 01
+23:30:18.711 TX 06 00                        link reply
+23:30:18.927 RX 08 02 00 00 7a d0            supported query 08 02
+23:30:19.007 TX 06 00                        link reply
+23:30:19.230 RX 08 03 00 00 76 d3            supported query 08 03
+23:30:19.317 TX 06 00                        link reply
+23:30:19.534 RX 08 03 00 02 18 00 ba 75      max payload query
+23:30:19.615 TX 06 00                        link reply
+23:30:20.610 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:30:20.621 RX 06 00                        link ACK
+23:30:24.738 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:30:24.746 RX 06 00                        link ACK
+23:30:24.954 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:30:25.031 TX 06 00                        link reply
+23:30:25.763 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:30:25.785 RX 06 00                        link ACK
+23:30:25.977 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:30:26.058 TX 06 00                        link reply
+23:30:26.803 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:30:26.824 RX 06 00                        link ACK
+23:30:27.048 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 89 a9 3e GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=649 (estimated)
+23:30:27.132 TX 06 00                        link reply
+23:30:34.657 RX 08 01 00 00 7e cd            supported query 08 01
+23:30:34.744 TX 06 00                        link reply
+23:30:34.961 RX 08 02 00 00 7a d0            supported query 08 02
+23:30:35.039 TX 06 00                        link reply
+23:30:35.249 RX 08 03 00 00 76 d3            supported query 08 03
+23:30:35.336 TX 06 00                        link reply
+23:30:35.553 RX 08 03 00 02 18 00 ba 75      max payload query
+23:30:35.631 TX 06 00                        link reply
+23:30:36.643 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:30:36.656 RX 06 00                        link ACK
+23:30:56.719 RX 08 01 00 00 7e cd            supported query 08 01
+23:30:56.810 TX 06 00                        link reply
+23:30:57.023 RX 08 02 00 00 7a d0            supported query 08 02
+23:30:57.107 TX 06 00                        link reply
+23:30:57.326 RX 08 03 00 00 76 d3            supported query 08 03
+23:30:57.416 TX 06 00                        link reply
+23:30:57.630 RX 08 03 00 02 18 00 ba 75      max payload query
+23:30:57.714 TX 06 00                        link reply
+23:30:58.714 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:30:58.733 RX 06 00                        link ACK
+23:31:18.764 RX 08 01 00 00 7e cd            supported query 08 01
+23:31:18.841 TX 06 00                        link reply
+23:31:19.052 RX 08 02 00 00 7a d0            supported query 08 02
+23:31:19.138 TX 06 00                        link reply
+23:31:19.356 RX 08 03 00 00 76 d3            supported query 08 03
+23:31:19.433 TX 06 00                        link reply
+23:31:19.643 RX 08 03 00 02 18 00 ba 75      max payload query
+23:31:19.725 TX 06 00                        link reply
+23:31:20.723 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:31:20.730 RX 06 00                        link ACK
+23:31:24.754 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:31:24.775 RX 06 00                        link ACK
+23:31:24.967 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:31:25.049 TX 06 00                        link reply
+23:31:25.799 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:31:25.814 RX 06 00                        link ACK
+23:31:26.022 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:31:26.112 TX 06 00                        link reply
+23:31:26.844 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:31:26.853 RX 06 00                        link ACK
+23:31:27.093 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 77 cd 2c GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=631 (estimated)
+23:31:27.172 TX 06 00                        link reply
+23:31:34.814 RX 08 01 00 00 7e cd            supported query 08 01
+23:31:34.902 TX 06 00                        link reply
+23:31:35.118 RX 08 02 00 00 7a d0            supported query 08 02
+23:31:35.199 TX 06 00                        link reply
+23:31:35.422 RX 08 03 00 00 76 d3            supported query 08 03
+23:31:35.499 TX 06 00                        link reply
+23:31:35.709 RX 08 03 00 02 18 00 ba 75      max payload query
+23:31:35.794 TX 06 00                        link reply
+23:31:36.792 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:31:36.813 RX 06 00                        link ACK
+23:31:56.859 RX 08 01 00 00 7e cd            supported query 08 01
+23:31:56.947 TX 06 00                        link reply
+23:31:57.163 RX 08 02 00 00 7a d0            supported query 08 02
+23:31:57.243 TX 06 00                        link reply
+23:31:57.467 RX 08 03 00 00 76 d3            supported query 08 03
+23:31:57.536 TX 06 00                        link reply
+23:31:57.755 RX 08 03 00 02 18 00 ba 75      max payload query
+23:31:57.832 TX 06 00                        link reply
+23:31:58.842 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:31:58.858 RX 06 00                        link ACK
+23:32:18.921 RX 08 01 00 00 7e cd            supported query 08 01
+23:32:19.012 TX 06 00                        link reply
+23:32:19.225 RX 08 02 00 00 7a d0            supported query 08 02
+23:32:19.307 TX 06 00                        link reply
+23:32:19.529 RX 08 03 00 00 76 d3            supported query 08 03
+23:32:19.606 TX 06 00                        link reply
+23:32:19.817 RX 08 03 00 02 18 00 ba 75      max payload query
+23:32:19.902 TX 06 00                        link reply
+23:32:20.898 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:32:20.920 RX 06 00                        link ACK
+23:32:24.768 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:32:24.788 RX 06 00                        link ACK
+23:32:24.996 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:32:25.067 TX 06 00                        link reply
+23:32:25.815 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:32:25.828 RX 06 00                        link ACK
+23:32:26.035 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:32:26.123 TX 06 00                        link reply
+23:32:26.853 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:32:26.866 RX 06 00                        link ACK
+23:32:27.091 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 9b 85 50 GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=667 (estimated)
+23:32:27.169 TX 06 00                        link reply
+23:32:34.956 RX 08 01 00 00 7e cd            supported query 08 01
+23:32:35.046 TX 06 00                        link reply
+23:32:35.259 RX 08 02 00 00 7a d0            supported query 08 02
+23:32:35.342 TX 06 00                        link reply
+23:32:35.563 RX 08 03 00 00 76 d3            supported query 08 03
+23:32:35.653 TX 06 00                        link reply
+23:32:35.867 RX 08 03 00 02 18 00 ba 75      max payload query
+23:32:35.949 TX 06 00                        link reply
+23:32:36.944 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:32:36.954 RX 06 00                        link ACK
+23:32:57.017 RX 08 01 00 00 7e cd            supported query 08 01
+23:32:57.098 TX 06 00                        link reply
+23:32:57.321 RX 08 02 00 00 7a d0            supported query 08 02
+23:32:57.409 TX 06 00                        link reply
+23:32:57.625 RX 08 03 00 00 76 d3            supported query 08 03
+23:32:57.702 TX 06 00                        link reply
+23:32:57.928 RX 08 03 00 02 18 00 ba 75      max payload query
+23:32:57.996 TX 06 00                        link reply
+23:32:58.995 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:32:59.015 RX 06 00                        link ACK
+23:33:19.062 RX 08 01 00 00 7e cd            supported query 08 01
+23:33:19.144 TX 06 00                        link reply
+23:33:19.366 RX 08 02 00 00 7a d0            supported query 08 02
+23:33:19.455 TX 06 00                        link reply
+23:33:19.670 RX 08 03 00 00 76 d3            supported query 08 03
+23:33:19.751 TX 06 00                        link reply
+23:33:19.974 RX 08 03 00 02 18 00 ba 75      max payload query
+23:33:20.059 TX 06 00                        link reply
+23:33:21.052 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:33:21.060 RX 06 00                        link ACK
+23:33:24.773 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+23:33:24.785 RX 06 00                        link ACK
+23:33:24.993 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+23:33:25.085 TX 06 00                        link reply
+23:33:25.819 TX 08 01 00 02 12 00 d8 5f      Query operational state
+23:33:25.840 RX 06 00                        link ACK
+23:33:26.032 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+23:33:26.116 TX 06 00                        link reply
+23:33:26.861 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead
+23:33:26.879 RX 06 00                        link ACK
+23:33:27.103 RX 08 02 00 2a 06 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 02 77 cd 2c GetCommodityRead reply: electricity consumed (W, Wh)=rate=0 cumulative=0 (estimated), total energy storage capacity (Wh)=rate=0 cumulative=12011 (estimated), present energy storage capacity (Wh)=rate=0 cumulative=631 (estimated)
+23:33:27.185 TX 06 00                        link reply
+23:33:35.112 RX 08 01 00 00 7e cd            supported query 08 01
+23:33:35.195 TX 06 00                        link reply
+23:33:35.416 RX 08 02 00 00 7a d0            supported query 08 02
+23:33:35.508 TX 06 00                        link reply
+23:33:35.721 RX 08 03 00 00 76 d3            supported query 08 03
+23:33:35.802 TX 06 00                        link reply
+23:33:36.023 RX 08 03 00 02 18 00 ba 75      max payload query
+23:33:36.101 TX 06 00                        link reply
+23:33:37.112 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:33:37.127 RX 06 00                        link ACK
+23:33:57.158 RX 08 01 00 00 7e cd            supported query 08 01
+23:33:57.246 TX 06 00                        link reply
+23:33:57.461 RX 08 02 00 00 7a d0            supported query 08 02
+23:33:57.544 TX 06 00                        link reply
+23:33:57.765 RX 08 03 00 00 76 d3            supported query 08 03
+23:33:57.853 TX 06 00                        link reply
+23:33:58.069 RX 08 03 00 02 18 00 ba 75      max payload query
+23:33:58.148 TX 06 00                        link reply
+23:33:59.155 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:33:59.172 RX 06 00                        link ACK
+23:34:19.224 RX 08 01 00 00 7e cd            supported query 08 01
+23:34:19.301 TX 06 00                        link reply
+23:34:19.523 RX 08 02 00 00 7a d0            supported query 08 02
+23:34:19.611 TX 06 00                        link reply
+23:34:19.828 RX 08 03 00 00 76 d3            supported query 08 03
+23:34:19.907 TX 06 00                        link reply
+23:34:20.130 RX 08 03 00 02 18 00 ba 75      max payload query
+23:34:20.218 TX 06 00                        link reply
+23:34:21.211 TX 08 03 00 02 19 07 a9 7e      Max payload response
+23:34:21.233 RX 06 00                        link ACK
+23:34:24.680 Stats: {'rx_packets': 218, 'tx_packets': 219, 'acked': 65, 'unanswered': 0}

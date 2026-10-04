@@ -193,6 +193,27 @@ def test_fast_reply_sharing_prefix_with_our_request_is_parsed_intact():
     assert not any("drop" in line for line in lines)
 
 
+def test_requests_wait_for_heater_discovery_round_to_finish():
+    # Regression (commodity-1 run): our keepalive went out between discovery
+    # frames 3 and 4 (~300 ms apart), collided, and was never link-ACKed.
+    clock = Clock()
+    port = FakeSgd(clock)
+    sent_at = []
+    session = UcmSession(port, None, UcmResponder(), probe=False, keepalive=0, log=lambda _: None, clock=clock)
+    original_write = port.write
+    port.write = lambda data: (sent_at.append((clock.t, data)), original_write(data))
+    for i, hex_frame in enumerate(RINNAI_DISCOVERY[:3]):
+        port.sgd_sends(bytes.fromhex(hex_frame), delay=0.3 * i)
+    port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[3]), delay=1.2)
+    clock.t = 0.15
+    session.queue("Outside comm status: good", OUTSIDE_COMM_GOOD)
+    run(session, clock, 5)
+    request_times = [t for t, data in sent_at if data == OUTSIDE_COMM_GOOD]
+    assert len(request_times) == 1
+    assert request_times[0] >= 1.2 + 0.6
+    assert session.stats["unanswered"] == 0
+
+
 def test_echo_filter_strips_adapter_echo_when_enabled():
     clock = Clock()
     port = FakeSgd(clock, echo=True)

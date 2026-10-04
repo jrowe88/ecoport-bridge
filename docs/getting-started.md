@@ -82,7 +82,8 @@ python tools\ucm.py --port COM4 --scenario first-ucm-probe --transmit --probe --
 
 Look for `RX 06 00 ... link ACK` after each TX — that is the heater
 answering. Output goes to a capture directory with `capture.bin` (RX only),
-`transmit.jsonl` (our TX plus any adapter echo), and `session.log`.
+`transmit.jsonl` (our TX), and `session.log`. The FTDI adapter does not echo
+our TX. If yours does, add `--echo-filter`.
 
 If every TX gets "no ACK": check D+/D- polarity first, then whether the
 adapter needs `--rts-tx` (adapters without automatic direction control).

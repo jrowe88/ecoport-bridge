@@ -47,6 +47,7 @@ ACK_TIMEOUT = 0.30  # tMA max (200 ms) plus USB latency margin
 BUS_IDLE = 0.04  # don't start talking within 40 ms of the last received byte
 STALE_PARTIAL = 0.50  # tML: a message must complete within 500 ms
 PROBE_GAP = 1.0
+SGD_QUIET = 0.6  # Rinnai discovery rounds send 4 frames ~300 ms apart; don't start a request inside one
 ECHO_WINDOW = 0.05
 MAX_RETRIES = 3  # §6.1.5.2
 
@@ -58,6 +59,7 @@ class Outgoing:
     data: bytes
     needs_ack: bool
     attempt: int = 0
+    reply: bool = False
 
 
 class UcmSession:
@@ -94,6 +96,7 @@ class UcmSession:
         self.echo_deadline = 0.0
         self.last_rx = -1.0
         self.next_message_at = 0.0
+        self.sgd_quiet_until = 0.0
         self.next_keepalive = 0.0
         self.stats = {"rx_packets": 0, "tx_packets": 0, "acked": 0, "unanswered": 0}
         if probe:
@@ -151,6 +154,7 @@ class UcmSession:
                 self.next_message_at = now + PROBE_GAP
             return
         if reaction.link_reply:
+            self.sgd_quiet_until = now + SGD_QUIET
             self.link_replies.append(
                 Outgoing(now + LINK_REPLY_DELAY, "link reply", reaction.link_reply, False)
             )
@@ -159,7 +163,7 @@ class UcmSession:
             # (the Rinnai NAKs duplicate max-payload responses with 15 07).
             self.messages = deque(m for m in self.messages if m.data != data)
             # Replies jump the probe queue but still wait for their own link ACK.
-            self.messages.insert(i, Outgoing(0.0, label, data, needs_ack=True))
+            self.messages.insert(i, Outgoing(0.0, label, data, needs_ack=True, reply=True))
         if reaction.app_replies:
             self.next_message_at = max(
                 self.next_message_at, now + LINK_REPLY_DELAY + self.app_reply_delay
@@ -193,6 +197,7 @@ class UcmSession:
             and not self.link_replies
             and self.messages
             and now >= self.next_message_at
+            and (self.messages[0].reply or now >= self.sgd_quiet_until)
             and self._bus_idle(now)
         ):
             message = self.messages.popleft()
