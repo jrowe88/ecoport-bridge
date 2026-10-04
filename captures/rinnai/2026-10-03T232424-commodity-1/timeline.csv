@@ -1,0 +1,11 @@
+time,opstate,electricity_w,capacity_wh,take_wh,mark,other
+23:24:32.180,0 Idle Normal,0,12011,631,,
+23:25:30.835,0 Idle Normal,0,12011,649,,
+23:26:28.355,0 Idle Normal,0,12011,667,,
+23:27:27.025,0 Idle Normal,0,12011,631,,
+23:28:27.037,0 Idle Normal,0,12011,667,,
+23:29:27.067,0 Idle Normal,0,12011,649,,
+23:30:27.048,0 Idle Normal,0,12011,649,,
+23:31:27.093,0 Idle Normal,0,12011,631,,
+23:32:27.091,0 Idle Normal,0,12011,667,,
+23:33:27.103,0 Idle Normal,0,12011,631,,

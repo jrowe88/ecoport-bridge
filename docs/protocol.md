@@ -117,6 +117,13 @@ _(fill in as captures are recorded — reference the specific capture under
   idle and full tank for 10 minutes. Present take jittered between 631, 649 and
   667 Wh (18 Wh steps); capacity was steady at 12011 Wh. Next, capture a heating
   cycle to see whether take rises as hot water is used and falls while heating.
+- **Heating cycle**
+  ([`2026-10-04T082724-heating-cycle-1`](../captures/rinnai/2026-10-04T082724-heating-cycle-1/notes.md)):
+  after a shower, opstate was 1 (Running Normal) and the electricity rate was a
+  constant 242 W (cumulative stays 0). Present take fell steadily from 4202 to
+  3066 Wh over 30 min (~2.3 kWh/h). Take therefore tracks hot water used and
+  recovered, making it a usable "state of charge": SoC ≈ 1 − take / 12011.
+  The 242 W looks like a fixed estimate, not a measurement (implied COP ~9.5).
 
 ## Hypotheses
 
@@ -204,8 +211,8 @@ here as it's confirmed via captures/experiments, and distinguish:
 | Present temperature | ✓ | ✗ NAK 07 |
 | Setpoint | ✓ | ✗ NAK 07 |
 | Temperature offset | ✓ | ✗ NAK 07 |
-| Commodity reading | ✓ | ✓ capacity 12011 Wh + present take |
-| Energy consumption | ✓ | reports 0 (estimated) |
+| Commodity reading | ✓ | ✓ capacity 12011 Wh + present take (tracks usage/recovery) |
+| Energy consumption | ✓ | rate 0 W idle / 242 W heating (constant, estimated); cumulative 0 |
 | Commissioning / pass-through | ✓ | ✗ NAK 06 |
 | Shed | ✓ | ? |
 | End shed | ✓ | ? |

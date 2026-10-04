@@ -23,7 +23,7 @@ Do not infer protocol meanings until the raw traffic has been decoded.
 - Context: the operator took a shower just before the start; the compressor was already running at 08:27.
 - Clean link: 1324 RX / 1324 TX, 0 retries, 0 unanswered, 0 dropped bytes. The 15 s keepalive (comm good, opstate, Commodity Read) never collided with discovery.
 - Opstate was **1 (Running Normal)** for all 122 reads; heating had not finished by 08:57.
-- Commodity Read time series is in `commodity.csv` (120 samples):
+- Commodity Read time series is in `timeline.csv` (from `tools/ucm_timeline.py`) (120 samples):
   - Electricity consumed rate: **242 W, constant**. Cumulative stays 0.
   - Present energy take: **4202 Wh at 08:27 → 3066 Wh at 08:57**, a steady decline of ~2.3 kWh/h (18 Wh quantisation steps). Idle full tank last night was ~650 Wh, so the shower drew roughly 3.5 kWh from the tank.
   - Total capacity: unchanged at 12011 Wh.

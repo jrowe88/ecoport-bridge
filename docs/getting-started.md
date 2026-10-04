@@ -89,6 +89,20 @@ If every TX gets "no ACK": check D+/D- polarity first, then whether the
 adapter needs `--rts-tx` (adapters without automatic direction control).
 `--port loop://` runs a hardware-free smoke test.
 
+### Marking operator actions and reading the timeline
+
+While `ucm.py` runs, type a short note in its window and press Enter, e.g.
+`setpoint 120 -> 125` or `element mode ON`. It is logged as a timestamped
+`MARK` line. Afterwards:
+
+```powershell
+python tools\ucm_timeline.py captures\rinnai\<capture-dir>
+```
+
+This writes `timeline.csv` (every opstate/Commodity Read sample and mark) and
+prints only the rows where something changed, with the energy-take slope (Wh/h)
+since the previous change. Small take jitter (18 Wh steps) is suppressed.
+
 ## Safety note
 
 The CTA-2045 AC-form-factor connector can carry mains power in addition to

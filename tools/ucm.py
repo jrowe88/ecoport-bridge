@@ -6,11 +6,12 @@ What it sends (and nothing else):
 * A Maximum Payload Length response when the appliance asks.
 * With --probe: Message Type Supported Queries, a max payload query,
   "Outside comm status: good", "Query operational state" and the read-only
-  Intermediate DR GetInformation. Then status and operational state every
-  --keepalive seconds.
+  Intermediate DR GetInformation and Commodity Read. Then status, operational
+  state and Commodity Read every --keepalive seconds.
 * With --survey: also one pass of every spec-defined read (SURVEY_SEQUENCE).
 
 It never sends shed, load-up, setpoint, price or other control commands.
+While it runs, type a note and press Enter to log a timestamped MARK line.
 
 Usage:
     python tools/ucm.py --port COM4 --scenario first-ack --transmit --probe
@@ -19,8 +20,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import queue
 import random
 import sys
+import threading
 import time
 from collections import deque
 from dataclasses import dataclass
@@ -278,6 +281,19 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
+def start_mark_reader() -> queue.Queue[str]:
+    """Read operator notes from stdin on a daemon thread so the serial loop never blocks."""
+    marks: queue.Queue[str] = queue.Queue()
+
+    def reader() -> None:
+        for line in sys.stdin:
+            if line.strip():
+                marks.put(line.strip())
+
+    threading.Thread(target=reader, daemon=True).start()
+    return marks
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if not args.transmit:
@@ -318,9 +334,13 @@ def main(argv: list[str] | None = None) -> int:
             for label, data in SURVEY_SEQUENCE:
                 session.queue(label, data)
         log(f"UCM on {args.port}; writing to {capture.directory}. Ctrl+C to stop.")
+        log("Type a note and press Enter to timestamp an operator action (logged as MARK).")
+        marks = start_mark_reader()
         try:
             while args.duration == 0 or time.monotonic() - started < args.duration:
                 session.step()
+                while not marks.empty():
+                    log(f"MARK {marks.get_nowait()}")
         except KeyboardInterrupt:
             log("Stopped by operator.")
         log(f"Stats: {session.stats}")
