@@ -33,7 +33,7 @@ def test_acks_every_rinnai_discovery_frame():
 
 def test_max_payload_query_gets_ack_then_response():
     reaction = react("08 03 00 02 18 00 ba 75")
-    assert reaction.app_replies == [("Max payload response", frame(b"\x08\x03", b"\x19\x06"))]
+    assert reaction.app_replies == [("Max payload response", frame(b"\x08\x03", b"\x19\x07"))]
 
 
 def test_max_payload_query_can_be_naked_for_default_length():
@@ -149,7 +149,7 @@ def test_session_acks_rinnai_discovery_with_correct_timing():
     port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[0]))
     port.sgd_sends(bytes.fromhex(RINNAI_DISCOVERY[3]), delay=1.0)
     run(session, clock, 4)
-    assert port.received == [LINK_ACK, LINK_ACK, frame(b"\x08\x03", b"\x19\x06")]
+    assert port.received == [LINK_ACK, LINK_ACK, frame(b"\x08\x03", b"\x19\x07")]
     ack_time, response_time = sent_at[1][0], sent_at[2][0]
     assert 0.04 <= ack_time - 1.0 <= 0.2
     assert response_time - ack_time >= 0.95
