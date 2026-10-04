@@ -101,10 +101,12 @@ or repeated captures)_
 - ~~Replying `06 00` (link ACK) to the Basic DR query should be enough for
   the Rinnai to treat us as a UCM~~ — confirmed in part: it communicates,
   but max-payload negotiation doesn't complete yet.
-- Max payload failure is timing: the heater doesn't hear an application
-  reply sent ~150 ms after our ACK, and then NAKs the retry. Test: reply
-  after 1.0 s (now the `ucm.py` default). Fallbacks: advertise `0x00`
-  (2 bytes) or link-NAK the query.
+- ~~Max payload failure is timing~~ — confirmed: with a 1.0 s reply delay
+  every response is ACKed
+  ([`2026-10-03T182455-max-payload-delay`](../captures/rinnai/2026-10-03T182455-max-payload-delay/notes.md)).
+- The heater still re-runs discovery about every 21 s because we advertised
+  `0x06` (128 bytes), below the Level 2 UCM minimum of `0x07` (256 bytes,
+  §22.4.1.1.4). Test with `0x07` (now the default).
 - The ~10 s repeating discovery is the heater retrying because negotiation
   didn't complete. It should stop once max payload is ACKed.
 - ENERGY STAR lists the REHP65 as CTA-2045-B, but this firmware reports

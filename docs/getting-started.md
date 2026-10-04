@@ -65,7 +65,7 @@ transitions — all without sending any CTA-2045 command.
 | When | Bytes | Meaning |
 |---|---|---|
 | Any packet received | `06 00` / `15 xx` | Link ACK / NAK, ~60 ms later |
-| Appliance asks max payload | `08 03 00 02 19 06 ..` | "We accept up to 128 bytes" |
+| Appliance asks max payload | `08 03 00 02 19 07 ..` | "We accept up to 256 bytes" (Level 2 minimum) |
 | `--probe` start | `08 01/02/03 00 00 ..` | Message Type Supported Queries |
 | `--probe` start + every 60 s | `08 01 00 02 0E 01 ..` | Outside comm status: good |
 | `--probe` start + every 60 s | `08 01 00 02 12 00 ..` | Query operational state |

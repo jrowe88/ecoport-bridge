@@ -240,8 +240,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="Start the handshake ourselves and send read-only queries.")
     parser.add_argument("--keepalive", type=float, default=60, metavar="SECONDS",
                         help="With --probe, resend status + opstate query this often (0 = off).")
-    parser.add_argument("--max-payload-indicator", type=_indicator, default=0x06,
-                        help="Our Max Payload Length response value (default 0x06 = 128 bytes; "
+    parser.add_argument("--max-payload-indicator", type=_indicator,     default=0x07,
+                            help="Our Max Payload Length response value (default 0x07 = 256 bytes, the "
+                                 "CTA-2045-B Level 2 minimum; "
                              "'nak' = link NAK, i.e. default 2 bytes only).")
     parser.add_argument("--app-reply-delay", type=float, default=APP_REPLY_DELAY, metavar="SECONDS",
                         help=f"Wait after our link ACK before an application reply (default {APP_REPLY_DELAY}).")

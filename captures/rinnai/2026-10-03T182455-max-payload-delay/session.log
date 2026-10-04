@@ -1,0 +1,140 @@
+18:24:55.452 UCM on COM4; writing to C:\Dev\jrowe88\ecoport-bridge\captures\rinnai\2026-10-03T182455-max-payload-delay. Ctrl+C to stop.
+18:24:55.467 TX 08 01 00 00 7e cd            Supported? Basic DR
+18:24:55.795    no ACK for Supported? Basic DR; retry 1/3
+18:24:56.116 RX 08 01 00 00 7e cd            supported query 08 01
+18:24:56.202 TX 06 00                        link reply
+18:24:56.419 RX 08 02 00 00 7a d0            supported query 08 02
+18:24:56.498 TX 06 00                        link reply
+18:24:56.723 RX 08 03 00 00 76 d3            supported query 08 03
+18:24:56.796 TX 06 00                        link reply
+18:24:57.011 RX 08 03 00 02 18 00 ba 75      max payload query
+18:24:57.093 TX 06 00                        link reply
+18:24:58.091 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:24:58.098 RX 06 00                        link ACK
+18:24:59.118 TX 08 01 00 00 7e cd            Supported? Basic DR (retry 1)
+18:24:59.137 RX 06 00                        link ACK
+18:25:00.160 TX 08 02 00 00 7a d0            Supported? Intermediate DR
+18:25:00.176 RX 06 00                        link ACK
+18:25:01.204 TX 08 03 00 00 76 d3            Supported? Data-Link
+18:25:01.215 RX 06 00                        link ACK
+18:25:02.246 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+18:25:02.254 RX 06 00                        link ACK
+18:25:02.670 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+18:25:02.760 TX 06 00                        link reply
+18:25:03.273 TX 08 01 00 02 12 00 d8 5f      Query operational state
+18:25:03.294 RX 06 00                        link ACK
+18:25:03.693 RX 08 01 00 02 13 01 d3 62      operational state 1 (Running Normal)
+18:25:03.776 TX 06 00                        link reply
+18:25:04.321 TX 08 02 00 02 01 01 04 43      GetInformation
+18:25:04.332 RX 06 00                        link ACK
+18:25:04.749 RX 08 02 00 10 01 81 00 41 00 0c 22 00 03 00 04 00 00 00 00 00 14 2e GetInformation reply: response_code=0, cta2045_version=A, vendor_id=0x0C22, device_type=0x0003, device_revision=4, capability_bitmap=0x00000000
+18:25:04.833 TX 06 00                        link reply
+18:25:12.150 RX 08 01 00 00 7e cd            supported query 08 01
+18:25:12.227 TX 06 00                        link reply
+18:25:12.438 RX 08 02 00 00 7a d0            supported query 08 02
+18:25:12.523 TX 06 00                        link reply
+18:25:12.741 RX 08 03 00 00 76 d3            supported query 08 03
+18:25:12.817 TX 06 00                        link reply
+18:25:13.029 RX 08 03 00 02 18 00 ba 75      max payload query
+18:25:13.114 TX 06 00                        link reply
+18:25:14.112 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:25:14.132 RX 06 00                        link ACK
+18:25:33.187 RX 08 01 00 00 7e cd            supported query 08 01
+18:25:33.263 TX 06 00                        link reply
+18:25:33.475 RX 08 02 00 00 7a d0            supported query 08 02
+18:25:33.561 TX 06 00                        link reply
+18:25:33.779 RX 08 03 00 00 76 d3            supported query 08 03
+18:25:33.870 TX 06 00                        link reply
+18:25:34.083 RX 08 03 00 02 18 00 ba 75      max payload query
+18:25:34.164 TX 06 00                        link reply
+18:25:35.173 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:25:35.185 RX 06 00                        link ACK
+18:25:55.231 RX 08 01 00 00 7e cd            supported query 08 01
+18:25:55.301 TX 06 00                        link reply
+18:25:55.472 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+18:25:55.519 RX 08 02 00 00 7a d0            supported query 08 02
+18:25:55.598 TX 06 00                        link reply
+18:25:55.797    no ACK for Outside comm status: good; retry 1/3
+18:25:55.822 RX 08 03 00 00 76 d3            supported query 08 03
+18:25:55.893 TX 06 00                        link reply
+18:25:56.111 RX 08 03 00 02 18 00 ba 75      max payload query
+18:25:56.203 TX 06 00                        link reply
+18:25:57.200 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:25:57.214 RX 06 00                        link ACK
+18:25:58.240 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good (retry 1)
+18:25:58.253 RX 06 00                        link ACK
+18:25:58.652 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+18:25:58.737 TX 06 00                        link reply
+18:25:59.283 TX 08 01 00 02 12 00 d8 5f      Query operational state
+18:25:59.292 RX 06 00                        link ACK
+18:25:59.707 RX 08 01 00 02 13 01 d3 62      operational state 1 (Running Normal)
+18:25:59.794 TX 06 00                        link reply
+18:26:07.252 RX 08 01 00 00 7e cd            supported query 08 01
+18:26:07.341 TX 06 00                        link reply
+18:26:07.556 RX 08 02 00 00 7a d0            supported query 08 02
+18:26:07.638 TX 06 00                        link reply
+18:26:07.860 RX 08 03 00 00 76 d3            supported query 08 03
+18:26:07.950 TX 06 00                        link reply
+18:26:08.164 RX 08 03 00 02 18 00 ba 75      max payload query
+18:26:08.246 TX 06 00                        link reply
+18:26:09.254 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:26:09.267 RX 06 00                        link ACK
+18:26:29.297 RX 08 01 00 00 7e cd            supported query 08 01
+18:26:29.362 TX 06 00                        link reply
+18:26:29.585 RX 08 02 00 00 7a d0            supported query 08 02
+18:26:29.672 TX 06 00                        link reply
+18:26:29.889 RX 08 03 00 00 76 d3            supported query 08 03
+18:26:29.966 TX 06 00                        link reply
+18:26:30.193 RX 08 03 00 02 18 00 ba 75      max payload query
+18:26:30.259 TX 06 00                        link reply
+18:26:31.256 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:26:31.265 RX 06 00                        link ACK
+18:26:50.334 RX 08 01 00 00 7e cd            supported query 08 01
+18:26:50.421 TX 06 00                        link reply
+18:26:50.638 RX 08 02 00 00 7a d0            supported query 08 02
+18:26:50.717 TX 06 00                        link reply
+18:26:50.926 RX 08 03 00 00 76 d3            supported query 08 03
+18:26:51.013 TX 06 00                        link reply
+18:26:51.230 RX 08 03 00 02 18 00 ba 75      max payload query
+18:26:51.308 TX 06 00                        link reply
+18:26:52.308 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:26:52.317 RX 06 00                        link ACK
+18:26:55.473 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+18:26:55.482 RX 06 00                        link ACK
+18:26:55.897 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+18:26:55.989 TX 06 00                        link reply
+18:26:56.503 TX 08 01 00 02 12 00 d8 5f      Query operational state
+18:26:56.521 RX 06 00                        link ACK
+18:26:56.921 RX 08 01 00 02 13 01 d3 62      operational state 1 (Running Normal)
+18:26:57.002 TX 06 00                        link reply
+18:27:04.354 RX 08 01 00 00 7e cd            supported query 08 01
+18:27:04.435 TX 06 00                        link reply
+18:27:04.658 RX 08 02 00 00 7a d0            supported query 08 02
+18:27:04.744 TX 06 00                        link reply
+18:27:04.961 RX 08 03 00 00 76 d3            supported query 08 03
+18:27:05.041 TX 06 00                        link reply
+18:27:05.265 RX 08 03 00 02 18 00 ba 75      max payload query
+18:27:05.356 TX 06 00                        link reply
+18:27:06.350 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:27:06.369 RX 06 00                        link ACK
+18:27:26.398 RX 08 01 00 00 7e cd            supported query 08 01
+18:27:26.478 TX 06 00                        link reply
+18:27:26.702 RX 08 02 00 00 7a d0            supported query 08 02
+18:27:26.791 TX 06 00                        link reply
+18:27:27.006 RX 08 03 00 00 76 d3            supported query 08 03
+18:27:27.086 TX 06 00                        link reply
+18:27:27.309 RX 08 03 00 02 18 00 ba 75      max payload query
+18:27:27.398 TX 06 00                        link reply
+18:27:28.392 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:27:28.412 RX 06 00                        link ACK
+18:27:48.443 RX 08 01 00 00 7e cd            supported query 08 01
+18:27:48.529 TX 06 00                        link reply
+18:27:48.746 RX 08 02 00 00 7a d0            supported query 08 02
+18:27:48.829 TX 06 00                        link reply
+18:27:49.050 RX 08 03 00 00 76 d3            supported query 08 03
+18:27:49.136 TX 06 00                        link reply
+18:27:49.354 RX 08 03 00 02 18 00 ba 75      max payload query
+18:27:49.437 TX 06 00                        link reply
+18:27:50.442 TX 08 03 00 02 19 06 ab 7d      Max payload response
+18:27:50.456 RX 06 00                        link ACK
+18:27:55.462 Stats: {'rx_packets': 67, 'tx_packets': 69, 'acked': 20, 'unanswered': 0}

@@ -1,0 +1,84 @@
+{"timestamp":"2026-10-03T18:24:55.466-06:00","direction":"tx","label":"Supported? Basic DR","hex":"08 01 00 00 7e cd"}
+{"timestamp":"2026-10-03T18:24:56.202-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:24:56.498-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:24:56.795-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:24:57.093-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:24:58.089-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:24:59.117-06:00","direction":"tx","label":"Supported? Basic DR","hex":"08 01 00 00 7e cd"}
+{"timestamp":"2026-10-03T18:25:00.160-06:00","direction":"tx","label":"Supported? Intermediate DR","hex":"08 02 00 00 7a d0"}
+{"timestamp":"2026-10-03T18:25:01.204-06:00","direction":"tx","label":"Supported? Data-Link","hex":"08 03 00 00 76 d3"}
+{"timestamp":"2026-10-03T18:25:02.246-06:00","direction":"tx","label":"Outside comm status: good","hex":"08 01 00 02 0e 01 e2 58"}
+{"timestamp":"2026-10-03T18:25:02.461-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:25:02.462-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T18:25:02.759-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:03.273-06:00","direction":"tx","label":"Query operational state","hex":"08 01 00 02 12 00 d8 5f"}
+{"timestamp":"2026-10-03T18:25:03.485-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:25:03.486-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T18:25:03.775-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:04.320-06:00","direction":"tx","label":"GetInformation","hex":"08 02 00 02 01 01 04 43"}
+{"timestamp":"2026-10-03T18:25:04.540-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:25:04.540-06:00","direction":"echo","label":"echo","hex":"02 00"}
+{"timestamp":"2026-10-03T18:25:04.833-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:12.227-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:12.522-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:12.817-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:13.114-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:14.112-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:25:33.263-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:33.560-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:33.870-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:34.164-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:35.173-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:25:55.301-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:55.472-06:00","direction":"tx","label":"Outside comm status: good","hex":"08 01 00 02 0e 01 e2 58"}
+{"timestamp":"2026-10-03T18:25:55.597-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:55.892-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:56.203-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:57.200-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:25:58.239-06:00","direction":"tx","label":"Outside comm status: good","hex":"08 01 00 02 0e 01 e2 58"}
+{"timestamp":"2026-10-03T18:25:58.461-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:25:58.462-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T18:25:58.737-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:25:59.283-06:00","direction":"tx","label":"Query operational state","hex":"08 01 00 02 12 00 d8 5f"}
+{"timestamp":"2026-10-03T18:25:59.499-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:25:59.499-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T18:25:59.794-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:07.341-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:07.638-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:07.950-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:08.245-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:09.254-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:26:29.361-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:29.672-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:29.966-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:30.259-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:31.255-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:26:50.421-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:50.717-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:51.012-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:51.308-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:52.308-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:26:55.473-06:00","direction":"tx","label":"Outside comm status: good","hex":"08 01 00 02 0e 01 e2 58"}
+{"timestamp":"2026-10-03T18:26:55.689-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:26:55.689-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T18:26:55.989-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:26:56.503-06:00","direction":"tx","label":"Query operational state","hex":"08 01 00 02 12 00 d8 5f"}
+{"timestamp":"2026-10-03T18:26:56.712-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T18:26:56.728-06:00","direction":"echo","label":"echo","hex":"01"}
+{"timestamp":"2026-10-03T18:26:56.728-06:00","direction":"echo","label":"echo","hex":"00 02"}
+{"timestamp":"2026-10-03T18:26:57.002-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:04.435-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:04.743-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:05.041-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:05.356-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:06.350-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:27:26.478-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:26.790-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:27.086-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:27.398-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:28.392-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}
+{"timestamp":"2026-10-03T18:27:48.529-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:48.828-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:49.136-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:49.437-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T18:27:50.442-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 06 ab 7d"}

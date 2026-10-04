@@ -126,7 +126,8 @@ class Reaction:
 
 @dataclass
 class UcmResponder:
-    max_payload_indicator: int | None = 0x06  # 128 bytes (§9); None = link NAK (2-byte default)
+    # 0x07 = 256 bytes, the Level 2 minimum (§22.4.1.1.4); None = link NAK (2-byte default)
+    max_payload_indicator: int | None = 0x07
 
     def react(self, packet: Frame) -> Reaction:
         if packet.is_link_ack:
