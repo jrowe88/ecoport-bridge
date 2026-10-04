@@ -112,6 +112,11 @@ _(fill in as captures are recorded — reference the specific capture under
   dropped as junk. The heater then retransmitted and we only parsed the retry.
   In earlier sessions, every `echo` record in `transmit.jsonl` is really a
   misread heater header. The filter is now opt-in (`--echo-filter`, 50 ms).
+- **Commodity Read over time**
+  ([`2026-10-03T232424-commodity-1`](../captures/rinnai/2026-10-03T232424-commodity-1/notes.md)):
+  idle and full tank for 10 minutes. Present take jittered between 631, 649 and
+  667 Wh (18 Wh steps); capacity was steady at 12011 Wh. Next, capture a heating
+  cycle to see whether take rises as hot water is used and falls while heating.
 
 ## Hypotheses
 
