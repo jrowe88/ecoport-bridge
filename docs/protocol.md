@@ -124,6 +124,16 @@ _(fill in as captures are recorded — reference the specific capture under
   3066 Wh over 30 min (~2.3 kWh/h). Take therefore tracks hot water used and
   recovered, making it a usable "state of charge": SoC ≈ 1 − take / 12011.
   The 242 W looks like a fixed estimate, not a measurement (implied COP ~9.5).
+- **Panel modes and setpoint**
+  ([`2026-10-04T123929-panel-modes-1`](../captures/rinnai/2026-10-04T123929-panel-modes-1/notes.md)):
+  - Setpoint changes total capacity right away: 120 °F → 12011 Wh, 121 °F →
+    12408 Wh, 125 °F → 13201 Wh. This is non-linear, so inferring the setpoint
+    needs a calibration table.
+  - The electricity rate identifies the heat source: 0 W idle, ~242–286 W
+    compressor, ~4510 W element alone, ~4850 W element plus compressor.
+  - Vacation mode makes Commodity Read return all zeros.
+  - Heat pump only, hybrid, e-heater and economy modes are indistinguishable
+    while idle.
 
 ## Hypotheses
 
@@ -157,6 +167,17 @@ or repeated captures)_
   GetPresentTemperature, CTA-2045-B §11.1.7).
 - A compressor transition may cause a distinct packet or cadence change;
   capture a normal heating transition before treating this as observed.
+- ~~**Operating mode from read-only data**~~ — tested in
+  [`panel-modes-1`](../captures/rinnai/2026-10-04T123929-panel-modes-1/notes.md):
+  - Setpoint does change capacity, though non-linearly (~200–400 Wh/°F).
+  - The electricity rate does distinguish compressor from element.
+  - Opstate never distinguishes them.
+  - Idle panel modes are invisible, except vacation (all zeros).
+- The element-plus-compressor reading (~4850 W) dropping to ~4510 W suggests
+  the compressor stopped about a minute before the element did. Confirm with
+  another element run.
+- The heater's discovery period may follow our keepalive interval: 15 s with a
+  15 s keepalive, ~22 s with 60 s.
 
 ## Candidate data points of interest
 
@@ -212,7 +233,7 @@ here as it's confirmed via captures/experiments, and distinguish:
 | Setpoint | ✓ | ✗ NAK 07 |
 | Temperature offset | ✓ | ✗ NAK 07 |
 | Commodity reading | ✓ | ✓ capacity 12011 Wh + present take (tracks usage/recovery) |
-| Energy consumption | ✓ | rate 0 W idle / 242 W heating (constant, estimated); cumulative 0 |
+| Energy consumption | ✓ | rate is a per-component estimate: 0 idle / ~242–286 W compressor / ~4510 W element / ~4850 W both; cumulative 0 |
 | Commissioning / pass-through | ✓ | ✗ NAK 06 |
 | Shed | ✓ | ? |
 | End shed | ✓ | ? |
