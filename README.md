@@ -102,6 +102,7 @@ Early planning / hardware on order. See `docs/reverse-engineering.md` and
 - [`docs/architecture.md`](docs/architecture.md) — software layering
 - [`docs/hardware.md`](docs/hardware.md) — connector, pinout, safety, bring-up hardware
 - [`docs/protocol.md`](docs/protocol.md) — CTA-2045 protocol facts, capability matrix
+- [`docs/capabilities.md`](docs/capabilities.md) — what we can see, infer, log and control on the Rinnai REHP65
 - [`docs/reverse-engineering.md`](docs/reverse-engineering.md) — staged plan (EPRI oracle → passive capture → queries → writes)
 - [`docs/references.md`](docs/references.md) — source material, tools, and libraries (EPRI, `python-cta2045`, ANSI, EcoPort DB, OpenADR, connector part numbers)
 - [`docs/troubleshooting.md`](docs/troubleshooting.md) — common issues
