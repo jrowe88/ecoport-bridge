@@ -7,16 +7,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 
 from ecoport.cta2045.framing import LINK_ACK, Frame, StreamParser, frame, split_frames
 from ecoport.cta2045.ucm import (
+    END_SHED,
     GET_INFORMATION,
     GET_PRESENT_TEMPERATURE,
     GET_SETPOINT,
+    KEEPALIVE_SEQUENCE,
     MAX_PAYLOAD_QUERY,
     OPSTATE_QUERY,
     OUTSIDE_COMM_GOOD,
+    PROBE_SEQUENCE,
     SURVEY_SEQUENCE,
     UcmResponder,
+    event_duration_byte,
+    parse_control,
 )
-from ucm import UcmSession
+from ucm import UcmSession, end_control, operator_input
 
 RINNAI_DISCOVERY = [
     "08 01 00 00 7e cd",
@@ -307,3 +312,76 @@ def test_survey_runs_to_completion_when_heater_naks_everything():
     run(session, clock, 40)
     assert [r for r in port.received if r != LINK_ACK] == [d for _, d in SURVEY_SEQUENCE]
     assert session.stats["unanswered"] == 0
+# --- Control commands (only sent with --allow-control) ---------------------------
+
+CONTROL_OPCODES = {0x01, 0x02, 0x06, 0x0A, 0x0B, 0x17}
+
+
+def test_event_duration_uses_spec_square_scale():
+    assert event_duration_byte(7.5) == 0x0F  # 2 * 15^2 = 450 s
+    assert event_duration_byte(30) == 0x1E  # 1800 s
+    assert event_duration_byte(0) == 0x00  # unknown
+    assert event_duration_byte(10_000) == 0xFE
+
+
+def test_parse_control_builds_basic_dr_frames():
+    assert parse_control("/shed") == ("Shed 7.5 min", frame(b"\x08\x01", b"\x01\x0f"))
+    assert parse_control("/loadup 30") == ("Load Up 30.0 min", frame(b"\x08\x01", b"\x17\x1e"))
+    assert parse_control("/cpe 7.5")[1] == frame(b"\x08\x01", b"\x0a\x0f")
+    assert parse_control("/ge 7.5")[1] == frame(b"\x08\x01", b"\x0b\x0f")
+    assert parse_control("/end") == ("End Shed / Run Normal", END_SHED)
+    assert parse_control("/power 50")[1] == frame(b"\x08\x01", b"\x06\x40")
+
+
+def test_parse_control_rejects_bad_input():
+    for text in ("/setpoint 130", "/shed 0", "/shed 500", "/power", "/power 150", "/"):
+        try:
+            parse_control(text)
+        except ValueError:
+            continue
+        raise AssertionError(f"accepted {text!r}")
+
+
+def test_default_sequences_never_contain_control_commands():
+    for _label, data in PROBE_SEQUENCE + KEEPALIVE_SEQUENCE + SURVEY_SEQUENCE:
+        packet = Frame(0, data)
+        assert not (packet.msg_type == b"\x08\x01" and packet.payload and packet.payload[0] in CONTROL_OPCODES)
+
+
+def test_operator_input_needs_allow_control():
+    clock = Clock()
+    port = FakeSgd(clock)
+    lines = []
+    session = UcmSession(port, None, UcmResponder(), probe=False, keepalive=0, log=lines.append, clock=clock)
+    assert operator_input(session, "/shed 7.5", False, lines.append) is False
+    assert operator_input(session, "setpoint now 125", True, lines.append) is False
+    run(session, clock, 3)
+    assert port.received == []
+    assert "MARK setpoint now 125" in lines
+
+
+def test_control_command_is_sent_then_opstate_then_end_shed_on_exit():
+    clock = Clock()
+    port = FakeSgd(clock)
+    lines = []
+    session = UcmSession(port, None, UcmResponder(), probe=False, keepalive=0, log=lines.append, clock=clock)
+    assert operator_input(session, "/shed 7.5", True, lines.append) is True
+    run(session, clock, 4)
+    shed = frame(b"\x08\x01", b"\x01\x0f")
+    sent = [r for r in port.received if r != LINK_ACK]
+    assert sent[:2] == [shed, OPSTATE_QUERY]
+
+    def tick():
+        clock.t += 0.01
+
+    end_control(session, lines.append, tick=tick)
+    assert [r for r in port.received if r != LINK_ACK][-1] == END_SHED
+    assert session.idle()
+
+
+def test_decodes_customer_override_and_app_nak_reason():
+    react_override = UcmResponder().react(Frame(0, frame(b"\x08\x01", b"\x11\x01")))
+    assert "CUSTOMER OVERRIDE" in react_override.note
+    assert react_override.app_replies[0][1] == frame(b"\x08\x01", b"\x03\x11")
+    nak = UcmResponder().react(Frame(0, frame(b"\x08\x01", b"\x04\x05")))
+    assert "customer override in effect" in nak.note

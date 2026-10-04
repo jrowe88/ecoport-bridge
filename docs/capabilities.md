@@ -103,7 +103,7 @@ corresponding writes to be unsupported too.
 - Respond to utility DR events.
 - Use the tank as a ~12 kWh thermal battery.
 
-**Proposed first control test (needs your go-ahead; this is a write to the appliance):**
+**Control test (approved 2026-10-04; a write to the appliance):**
 
 1. Wait until the heater is idle and full.
 2. Send **Shed with a short duration** (`01 0F`, ~7.5 min).
@@ -112,12 +112,15 @@ corresponding writes to be unsupported too.
 4. Send **End Shed** (`02 00`). It reverts anyway when the event duration ends.
 5. Then try **Load Up** (`17 0F`) on a partly used tank.
 
-Safeguards built into the tool:
+Safeguards, implemented in `tools/ucm.py --allow-control` (see
+`docs/getting-started.md`):
 
-- An explicit `--allow-control` flag.
-- One command per run.
+- An explicit `--allow-control` flag; without it, `/` commands are refused.
+- Commands are typed one at a time by the operator. Each is followed by an
+  opstate query.
 - End Shed is always sent on exit or Ctrl+C.
-- A short duration is always set.
+- Every event has a duration (default 7.5 min, max 120 min), so it ends even if
+  End Shed is lost.
 - The panel override always works. The CTA-2045 fallback also returns the heater
   to normal if communication stops.
 

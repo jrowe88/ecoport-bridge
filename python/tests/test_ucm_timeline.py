@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 
-from ucm_timeline import changes, parse
+from ucm_timeline import calibration, changes, parse
 
 COMMODITY = (
     "{t} RX 08 02 00 2a 06 80 ... GetCommodityRead reply: "
@@ -38,3 +38,16 @@ def test_changes_skip_jitter_and_report_slope():
     assert "08:00:17.000" not in times  # 18 Wh jitter with no other change
     assert times == ["08:00:02.000", "08:00:20.000", "08:00:32.000", "09:00:32.000"]
     assert round(shown[-1][1]) == -1200
+
+
+def test_calibration_reads_capacity_one_poll_after_setpoint_mark():
+    log = [
+        COMMODITY.format(t="10:00:00.000", w=0, cap=12011, take=600),
+        "10:00:05.000 MARK sp 121",
+        COMMODITY.format(t="10:00:15.000", w=0, cap=12011, take=600),  # too soon to trust
+        COMMODITY.format(t="10:00:30.000", w=0, cap=12408, take=900),
+        "10:01:00.000 MARK sp 125 (heater started)",
+        COMMODITY.format(t="10:01:30.000", w=0, cap=13201, take=1800),
+        "10:02:00.000 MARK about to change",
+    ]
+    assert calibration(parse(log)) == [(121.0, "10:00:30.000", "12408"), (125.0, "10:01:30.000", "13201")]

@@ -10,7 +10,9 @@ What it sends (and nothing else):
   state and Commodity Read every --keepalive seconds.
 * With --survey: also one pass of every spec-defined read (SURVEY_SEQUENCE).
 
-It never sends shed, load-up, setpoint, price or other control commands.
+Without --allow-control it never sends shed, load-up, setpoint, price or other
+control commands. With it, the operator can type Basic DR commands (/shed 7.5,
+/loadup 15, /end, ...); End Shed is always sent on exit.
 While it runs, type a note and press Enter to log a timestamped MARK line.
 
 Usage:
@@ -35,10 +37,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "python" / "src"))
 
 from ecoport.cta2045.framing import Frame, StreamParser
 from ecoport.cta2045.ucm import (
+    END_SHED,
     KEEPALIVE_SEQUENCE,
+    OPSTATE_QUERY,
     PROBE_SEQUENCE,
     SURVEY_SEQUENCE,
     UcmResponder,
+    parse_control,
 )
 from packet_capture import CaptureWriter
 
@@ -109,6 +114,13 @@ class UcmSession:
 
     def queue(self, label: str, data: bytes) -> None:
         self.messages.append(Outgoing(0.0, label, data, needs_ack=True))
+
+    def send_next(self, label: str, data: bytes) -> None:
+        """Put a message at the front of the queue (still waits for any in-flight ACK)."""
+        self.messages.appendleft(Outgoing(0.0, label, data, needs_ack=True))
+
+    def idle(self) -> bool:
+        return self.awaiting is None and not self.messages and not self.link_replies
 
     def step(self) -> None:
         now = self.clock()
@@ -276,6 +288,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="Raise RTS while transmitting (only for adapters without auto-direction).")
     parser.add_argument("--echo-filter", action="store_true",
                         help="Strip our own transmitted bytes if the adapter echoes them (FTDI on COM4 does not).")
+    parser.add_argument("--allow-control", action="store_true",
+                        help="Accept typed Basic DR commands (/shed, /cpe, /ge, /loadup, /power, /end). "
+                             "End Shed is sent on exit.")
     parser.add_argument("--duration", type=float, default=0, metavar="SECONDS")
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
     return parser.parse_args(argv)
@@ -310,7 +325,10 @@ def main(argv: list[str] | None = None) -> int:
                "GetInformation" if args.probe else "")
             + (", survey of spec-defined reads (supported queries 08 04 / 09 01-0C, "
                "Intermediate Get* requests)" if args.survey else "")
-            + "; never control commands or vendor-proprietary types. TX log in transmit.jsonl"
+            + ("; Basic DR control commands typed by the operator (/shed, /cpe, /ge, /loadup, "
+               "/power, /end) with End Shed on exit" if args.allow_control
+               else "; never control commands")
+            + "; never vendor-proprietary types. TX log in transmit.jsonl"
         ),
         "scenario": args.scenario,
     }
@@ -335,17 +353,60 @@ def main(argv: list[str] | None = None) -> int:
                 session.queue(label, data)
         log(f"UCM on {args.port}; writing to {capture.directory}. Ctrl+C to stop.")
         log("Type a note and press Enter to timestamp an operator action (logged as MARK).")
+        if args.allow_control:
+            log("CONTROL ENABLED: /shed [min], /cpe [min], /ge [min], /loadup [min], /power <0-100>, /end. "
+                "End Shed is sent automatically on exit.")
         marks = start_mark_reader()
+        control_sent = False
         try:
             while args.duration == 0 or time.monotonic() - started < args.duration:
                 session.step()
                 while not marks.empty():
-                    log(f"MARK {marks.get_nowait()}")
+                    control_sent |= operator_input(session, marks.get_nowait(), args.allow_control, log)
         except KeyboardInterrupt:
             log("Stopped by operator.")
+        if control_sent:
+            end_control(session, log)
         log(f"Stats: {session.stats}")
         session_log.close()
     return 0
+
+
+def operator_input(session: UcmSession, text: str, allow_control: bool, log) -> bool:
+    """Log an operator line; ``/command`` lines queue a Basic DR command. Returns True if one was queued."""
+    log(f"MARK {text}")
+    if not text.startswith("/"):
+        return False
+    if not allow_control:
+        log("   control commands need --allow-control; nothing sent")
+        return False
+    try:
+        label, data = parse_control(text)
+    except ValueError as error:
+        log(f"   {error}; nothing sent")
+        return False
+    # Command first, then confirm its effect with an opstate query (§10: ACK != state change).
+    session.send_next("Query operational state", OPSTATE_QUERY)
+    session.send_next(label, data)
+    log(f"   queued {label}: {data.hex(' ')}")
+    return True
+
+
+def end_control(session: UcmSession, log, timeout: float = 10.0, tick=None) -> None:
+    """Send End Shed / Run Normal and wait for it to be acknowledged (or give up after ``timeout``)."""
+    log("Sending End Shed before exit.")
+    session.send_next("End Shed / Run Normal (exit)", END_SHED)
+    deadline = session.clock() + timeout
+    try:
+        while session.clock() < deadline and not session.idle():
+            session.step()
+            if tick:
+                tick()
+    except KeyboardInterrupt:
+        log("   interrupted; the heater will still revert when the event duration expires")
+        return
+    sent = not any(m.data == END_SHED for m in session.messages)
+    log("   End Shed sent" if sent else "   End Shed NOT sent; event will expire on its own")
 
 
 if __name__ == "__main__":

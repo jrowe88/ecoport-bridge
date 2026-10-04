@@ -103,6 +103,32 @@ This writes `timeline.csv` (every opstate/Commodity Read sample and mark) and
 prints only the rows where something changed, with the energy-take slope (Wh/h)
 since the previous change. Small take jitter (18 Wh steps) is suppressed.
 
+Setpoint calibration: right after each panel change, type `sp <new temp>`
+(e.g. `sp 118`). The timeline tool then also writes `calibration.csv`, mapping
+setpoint to total energy storage capacity, using the first Commodity Read at
+least one poll after each mark.
+
+### Control commands (writes to the appliance)
+
+With `--allow-control`, lines starting with `/` are sent as CTA-2045 Basic DR
+commands. Durations are in minutes (default 7.5, max 120). The spec encodes
+them as 2·n² seconds, so values are rounded, e.g. 7.5, 30 or 60.
+
+| Type | Sends | Expected effect |
+|---|---|---|
+| `/shed [min]` | `01 dd` Shed | Opstate 4 Idle Curtailed / 2 Running Curtailed |
+| `/cpe [min]` | `0A dd` Critical Peak Event | Deeper curtailment |
+| `/ge [min]` | `0B dd` Grid Emergency | Deepest curtailment |
+| `/loadup [min]` | `17 dd` Load Up | Opstate 3/6 Heightened; heats now |
+| `/power <0-100>` | `06 pp` Request for Power Level | Limit average power |
+| `/end` | `02 00` End Shed / Run Normal | Cancel the event |
+
+Each command is followed by an opstate query. An App ACK (`03 xx`) means only
+"received and supported"; the opstate shows whether the heater complied. An
+App NAK (`04 rr`) gives a reason. **End Shed is sent automatically on exit**
+(including Ctrl+C) whenever a command was sent. The event duration and the
+panel's own override are further fallbacks.
+
 ## Safety note
 
 The CTA-2045 AC-form-factor connector can carry mains power in addition to

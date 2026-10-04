@@ -4,6 +4,8 @@
 Collects operational state, Commodity Read values and operator MARK lines,
 writes them all to timeline.csv in the capture directory, and prints only the
 rows where something changed (plus the energy-take slope since the last change).
+Marks of the form ``sp 118`` (typed right after changing the setpoint) also
+produce calibration.csv: setpoint -> total energy storage capacity.
 
 Usage:
     python tools/ucm_timeline.py captures/rinnai/<capture-dir>
@@ -22,6 +24,8 @@ TIME = re.compile(r"^(\d\d:\d\d:\d\d\.\d{3}) ")
 OPSTATE = re.compile(r"RX .*operational state (\d+) \(([^)]*)\)")
 COMMODITY = re.compile(r"([a-z][a-z ]*?) \([^)]*\)=rate=(\S+) cumulative=(\S+)")
 MARK = re.compile(r" MARK (.*)$")
+SETPOINT_MARK = re.compile(r"^sp\s*(\d+(?:\.\d+)?)\b", re.IGNORECASE)
+SETTLE_SECONDS = 16  # one 15 s poll after the panel change
 
 TAKE = "present energy storage capacity"
 CAPACITY = "total energy storage capacity"
@@ -102,6 +106,22 @@ def changes(rows: list[Row]) -> list[tuple[Row, float | None]]:
     return shown
 
 
+def calibration(rows: list[Row]) -> list[tuple[float, str, str]]:
+    """(setpoint, time, capacity_wh) for each ``sp <temp>`` mark, read one poll after the mark."""
+    table = []
+    for i, row in enumerate(rows):
+        match = SETPOINT_MARK.match(row.mark) if row.mark else None
+        if not match:
+            continue
+        due = _seconds(row.time) + SETTLE_SECONDS
+        sample = next(
+            (r for r in rows[i + 1:] if not r.mark and r.capacity_wh and _seconds(r.time) >= due), None
+        )
+        if sample:
+            table.append((float(match[1]), sample.time, sample.capacity_wh))
+    return table
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("capture", type=Path, help="Capture directory containing session.log")
@@ -121,6 +141,21 @@ def main(argv: list[str] | None = None) -> int:
         rate = f"{slope:+.0f}" if slope is not None else ""
         print(f"{r.time:<12} {r.opstate:<20} {r.electricity_w:>7} {r.capacity_wh:>7} {r.take_wh:>8} {rate:>7}  {r.mark}")
     print(f"\n{len(rows)} rows -> {args.capture / 'timeline.csv'}")
+    table = calibration(rows)
+    if table:
+        with (args.capture / "calibration.csv").open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["setpoint", "time", "capacity_wh"])
+            writer.writerows(table)
+        print(f"\n{'setpoint':>8} {'capacity Wh':>12} {'Wh/deg vs prev':>15}")
+        previous = None
+        for setpoint, _time, capacity in table:
+            per_degree = ""
+            if previous and setpoint != previous[0]:
+                per_degree = f"{(int(capacity) - int(previous[1])) / (setpoint - previous[0]):.0f}"
+            print(f"{setpoint:>8g} {capacity:>12} {per_degree:>15}")
+            previous = (setpoint, capacity)
+        print(f"-> {args.capture / 'calibration.csv'}")
     return 0
 
 

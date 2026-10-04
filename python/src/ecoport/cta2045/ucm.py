@@ -1,13 +1,15 @@
 """Minimal, conservative CTA-2045 UCM (communication module) behaviour.
 
-Pure protocol logic with no serial I/O, so it can be unit tested. It only
-answers the SGD and sends discovery, connection-status and read-only
-queries. It never sends curtailment, load-up, setpoint or similar commands.
+Pure protocol logic with no serial I/O, so it can be unit tested. By default it
+only answers the SGD and sends discovery, connection-status and read-only
+queries. Basic DR control commands (shed, load up, ...) are only built by
+``parse_control``, which ``tools/ucm.py`` uses only with ``--allow-control``.
 References are to ANSI/CTA-2045-B.
 """
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 
 from .framing import LINK_ACK, Frame, frame
@@ -26,6 +28,12 @@ DL_MAX_PAYLOAD_RESPONSE = 0x19
 
 BASIC_APP_ACK = 0x03
 BASIC_APP_NAK = 0x04
+BASIC_SHED = 0x01
+BASIC_END_SHED = 0x02
+BASIC_POWER_LEVEL = 0x06
+BASIC_CRITICAL_PEAK = 0x0A
+BASIC_GRID_EMERGENCY = 0x0B
+BASIC_LOAD_UP = 0x17
 BASIC_OUTSIDE_COMM_STATUS = 0x0E
 BASIC_CUSTOMER_OVERRIDE = 0x11
 BASIC_OPSTATE_QUERY = 0x12
@@ -53,6 +61,29 @@ OPERATIONAL_STATES = {
     14: "Idle, Price Stream",
 }
 
+APP_NAK_REASONS = {
+    0x00: "no reason given",
+    0x01: "opcode1 not supported",
+    0x02: "opcode2 invalid",
+    0x03: "busy",
+    0x04: "length invalid",
+    0x05: "customer override in effect",
+}
+
+MAX_EVENT_MINUTES = 120
+DEFAULT_EVENT_MINUTES = 7.5
+
+
+def event_duration_byte(minutes: float) -> int:
+    """§10.1.2: seconds = 2 * value**2; 0x00 = unknown, 0xFF = longer than representable."""
+    if minutes <= 0:
+        return 0x00
+    return max(0x01, min(0xFE, round(math.sqrt(minutes * 60 / 2))))
+
+
+def event_duration_minutes(value: int) -> float:
+    return 2 * value * value / 60
+
 
 def link_nak(code: int) -> bytes:
     return bytes((0x15, code))
@@ -68,6 +99,44 @@ def supported_query(msg_type: bytes) -> bytes:
 
 OUTSIDE_COMM_GOOD = basic(BASIC_OUTSIDE_COMM_STATUS, 0x01)
 OPSTATE_QUERY = basic(BASIC_OPSTATE_QUERY)
+END_SHED = basic(BASIC_END_SHED)
+
+# Operator commands accepted by parse_control: name -> (opcode1, label, argument kind).
+CONTROL_COMMANDS = {
+    "shed": (BASIC_SHED, "Shed", "minutes"),
+    "cpe": (BASIC_CRITICAL_PEAK, "Critical Peak Event", "minutes"),
+    "ge": (BASIC_GRID_EMERGENCY, "Grid Emergency", "minutes"),
+    "loadup": (BASIC_LOAD_UP, "Load Up", "minutes"),
+    "power": (BASIC_POWER_LEVEL, "Request for Power Level", "percent"),
+    "end": (BASIC_END_SHED, "End Shed / Run Normal", None),
+}
+
+
+def parse_control(text: str) -> tuple[str, bytes]:
+    """Turn e.g. ``/shed 7.5`` into a labelled Basic DR frame. Raises ValueError on bad input.
+
+    Durations are minutes (default 7.5, max 120, rounded to the spec's square scale).
+    ``/power`` takes 0-100 (% of rated power absorbed).
+    """
+    words = text.strip().lstrip("/").split()
+    if not words or words[0].lower() not in CONTROL_COMMANDS:
+        raise ValueError(f"unknown command; use one of: /{', /'.join(CONTROL_COMMANDS)}")
+    opcode1, label, kind = CONTROL_COMMANDS[words[0].lower()]
+    if kind is None:
+        return label, basic(opcode1)
+    if kind == "percent":
+        if len(words) != 2:
+            raise ValueError("usage: /power <0-100>")
+        percent = float(words[1])
+        if not 0 <= percent <= 100:
+            raise ValueError("power must be 0-100 %")
+        return f"{label} {percent:g}%", basic(opcode1, round(percent * 0x7F / 100))
+    minutes = float(words[1]) if len(words) > 1 else DEFAULT_EVENT_MINUTES
+    if not 0 < minutes <= MAX_EVENT_MINUTES:
+        raise ValueError(f"duration must be >0 and <= {MAX_EVENT_MINUTES} minutes")
+    value = event_duration_byte(minutes)
+    return f"{label} {event_duration_minutes(value):.1f} min", basic(opcode1, value)
+
 MAX_PAYLOAD_QUERY = frame(DATA_LINK, bytes((DL_MAX_PAYLOAD_QUERY, 0x00)))
 GET_INFORMATION = frame(INTERMEDIATE_DR, b"\x01\x01")
 # Get variants are exactly 2 bytes; the Set variants share opcodes but are longer (§11.1.6).
@@ -337,12 +406,14 @@ class UcmResponder:
         if opcode1 == BASIC_APP_ACK:
             return Reaction(LINK_ACK, note=f"app ACK of opcode 0x{opcode2:02X}")
         if opcode1 == BASIC_APP_NAK:
-            return Reaction(LINK_ACK, note=f"app NAK reason 0x{opcode2:02X}")
+            reason = APP_NAK_REASONS.get(opcode2, "reserved")
+            return Reaction(LINK_ACK, note=f"app NAK reason 0x{opcode2:02X} ({reason})")
         if opcode1 in BASIC_SGD_NOTIFICATIONS:
+            what = {BASIC_CUSTOMER_OVERRIDE: "CUSTOMER OVERRIDE", BASIC_SLEEP: "sleep", BASIC_WAKE: "wake"}
             return Reaction(
                 LINK_ACK,
                 [("App ACK", basic(BASIC_APP_ACK, opcode1))],
-                note=f"basic opcode 0x{opcode1:02X} value 0x{opcode2:02X}",
+                note=f"{what[opcode1]} (opcode 0x{opcode1:02X} value 0x{opcode2:02X})",
             )
         return Reaction(
             LINK_ACK,
