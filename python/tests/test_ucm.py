@@ -91,11 +91,13 @@ class Clock:
 
 
 class FakeSgd:
-    """Serial port stand-in: echoes our bytes (like a 2-wire adapter) and plays an SGD."""
+    """Serial port stand-in that plays an SGD; ``echo`` mimics adapters that echo our TX."""
 
-    def __init__(self, clock, ack=True):
+    def __init__(self, clock, ack=True, echo=False, reply_delay=0.3):
         self.clock = clock
         self.ack = ack
+        self.echo = echo
+        self.reply_delay = reply_delay
         self.inbox = bytearray()
         self.scheduled = []  # (due, bytes)
         self.received = []
@@ -122,14 +124,15 @@ class FakeSgd:
         pass
 
     def write(self, data):
-        self.inbox.extend(data)  # echo
+        if self.echo:
+            self.inbox.extend(data)
         for packet in self.parser.feed(data):
             self.received.append(packet.raw)
             if packet.is_link_control or not self.ack:
                 continue
             self.scheduled.append((self.clock.t + 0.05, LINK_ACK))
             if packet.raw == OPSTATE_QUERY:
-                self.scheduled.append((self.clock.t + 0.3, frame(b"\x08\x01", b"\x13\x00")))
+                self.scheduled.append((self.clock.t + self.reply_delay, frame(b"\x08\x01", b"\x13\x00")))
 
     def sgd_sends(self, data, delay=0.0):
         self.scheduled.append((self.clock.t + delay, data))
@@ -170,6 +173,32 @@ def test_probe_sequence_runs_and_reads_operational_state():
     sent = [r for r in port.received if r != LINK_ACK]
     assert OUTSIDE_COMM_GOOD in sent and OPSTATE_QUERY in sent and GET_INFORMATION in sent
     assert MAX_PAYLOAD_QUERY in sent
+    assert any("operational state 0 (Idle Normal)" in line for line in lines)
+    assert session.stats["unanswered"] == 0
+
+
+def probe_session(port, clock, lines, **kwargs):
+    return UcmSession(port, None, UcmResponder(), probe=True, keepalive=0, log=lines.append, clock=clock, **kwargs)
+
+
+def test_fast_reply_sharing_prefix_with_our_request_is_parsed_intact():
+    # Regression: the 250 ms echo filter ate the "08 01 00 02" header of the heater's
+    # opstate reply (it matches our "08 01 00 02 12 00" query) and dropped the tail.
+    clock = Clock()
+    port = FakeSgd(clock, reply_delay=0.2)
+    lines = []
+    session = probe_session(port, clock, lines)
+    run(session, clock, 25)
+    assert any("operational state 0 (Idle Normal)" in line for line in lines)
+    assert not any("drop" in line for line in lines)
+
+
+def test_echo_filter_strips_adapter_echo_when_enabled():
+    clock = Clock()
+    port = FakeSgd(clock, echo=True)
+    lines = []
+    session = probe_session(port, clock, lines, echo_filter=True)
+    run(session, clock, 25)
     assert any("operational state 0 (Idle Normal)" in line for line in lines)
     assert session.stats["unanswered"] == 0
 
@@ -243,10 +272,8 @@ def test_decodes_survey_replies():
 def test_survey_runs_to_completion_when_heater_naks_everything():
     clock = Clock()
     port = FakeSgd(clock, ack=False)
-    port.write_original = port.write
 
     def nak_all(data):
-        port.inbox.extend(data)
         for packet in port.parser.feed(data):
             port.received.append(packet.raw)
             if not packet.is_link_control:

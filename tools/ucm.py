@@ -47,6 +47,7 @@ ACK_TIMEOUT = 0.30  # tMA max (200 ms) plus USB latency margin
 BUS_IDLE = 0.04  # don't start talking within 40 ms of the last received byte
 STALE_PARTIAL = 0.50  # tML: a message must complete within 500 ms
 PROBE_GAP = 1.0
+ECHO_WINDOW = 0.05
 MAX_RETRIES = 3  # §6.1.5.2
 
 
@@ -73,10 +74,12 @@ class UcmSession:
         clock=time.monotonic,
         rts_tx: bool = False,
         app_reply_delay: float = APP_REPLY_DELAY,
+        echo_filter: bool = False,
     ) -> None:
         self.port = port
         self.capture = capture
         self.responder = responder
+        self.echo_filter = echo_filter
         self.keepalive = keepalive if probe else 0
         self.log = log
         self.clock = clock
@@ -205,8 +208,11 @@ class UcmSession:
         if self.rts_tx:
             self.port.rts = False
         self.stats["tx_packets"] += 1
-        self.echo.extend(item.data)
-        self.echo_deadline = self.clock() + 0.25
+        if self.echo_filter:
+            # A real echo arrives within a few ms. Waiting longer would swallow the
+            # SGD's reply headers, which often start with the same bytes as our TX.
+            self.echo.extend(item.data)
+            self.echo_deadline = self.clock() + ECHO_WINDOW
         if self.capture:
             self.capture.record_tx(item.data, datetime.now().astimezone(), item.label)
         retry = f" (retry {item.attempt})" if item.attempt else ""
@@ -260,6 +266,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help=f"Wait after our link ACK before an application reply (default {APP_REPLY_DELAY}).")
     parser.add_argument("--rts-tx", action="store_true",
                         help="Raise RTS while transmitting (only for adapters without auto-direction).")
+    parser.add_argument("--echo-filter", action="store_true",
+                        help="Strip our own transmitted bytes if the adapter echoes them (FTDI on COM4 does not).")
     parser.add_argument("--duration", type=float, default=0, metavar="SECONDS")
     parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
     return parser.parse_args(argv)
@@ -299,7 +307,7 @@ def main(argv: list[str] | None = None) -> int:
         session = UcmSession(
             connection, capture, UcmResponder(args.max_payload_indicator),
             args.probe, args.keepalive, log=log, rts_tx=args.rts_tx,
-            app_reply_delay=args.app_reply_delay,
+            app_reply_delay=args.app_reply_delay, echo_filter=args.echo_filter,
         )
         if args.survey:
             for label, data in SURVEY_SEQUENCE:

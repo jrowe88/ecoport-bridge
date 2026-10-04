@@ -1,0 +1,76 @@
+{"timestamp":"2026-10-03T20:37:00.179-06:00","direction":"tx","label":"Supported? Basic DR","hex":"08 01 00 00 7e cd"}
+{"timestamp":"2026-10-03T20:37:01.206-06:00","direction":"tx","label":"Supported? Intermediate DR","hex":"08 02 00 00 7a d0"}
+{"timestamp":"2026-10-03T20:37:02.245-06:00","direction":"tx","label":"Supported? Data-Link","hex":"08 03 00 00 76 d3"}
+{"timestamp":"2026-10-03T20:37:03.283-06:00","direction":"tx","label":"Query SGD max payload","hex":"08 03 00 02 18 00 ba 75"}
+{"timestamp":"2026-10-03T20:37:03.497-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:37:03.497-06:00","direction":"echo","label":"echo","hex":"03 00 02"}
+{"timestamp":"2026-10-03T20:37:03.783-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:04.329-06:00","direction":"tx","label":"Outside comm status: good","hex":"08 01 00 02 0e 01 e2 58"}
+{"timestamp":"2026-10-03T20:37:04.552-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:37:04.552-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T20:37:04.824-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:05.370-06:00","direction":"tx","label":"Query operational state","hex":"08 01 00 02 12 00 d8 5f"}
+{"timestamp":"2026-10-03T20:37:05.591-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:37:05.591-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T20:37:05.868-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:06.413-06:00","direction":"tx","label":"GetInformation","hex":"08 02 00 02 01 01 04 43"}
+{"timestamp":"2026-10-03T20:37:06.630-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:37:06.631-06:00","direction":"echo","label":"echo","hex":"02 00"}
+{"timestamp":"2026-10-03T20:37:06.914-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:07.442-06:00","direction":"tx","label":"Supported? Commissioning","hex":"08 04 00 00 72 d6"}
+{"timestamp":"2026-10-03T20:37:08.486-06:00","direction":"tx","label":"Supported? pass-through 09 01","hex":"09 01 00 00 79 d1"}
+{"timestamp":"2026-10-03T20:37:09.526-06:00","direction":"tx","label":"Supported? pass-through 09 02","hex":"09 02 00 00 75 d4"}
+{"timestamp":"2026-10-03T20:37:10.572-06:00","direction":"tx","label":"Supported? pass-through 09 03","hex":"09 03 00 00 71 d7"}
+{"timestamp":"2026-10-03T20:37:11.597-06:00","direction":"tx","label":"Supported? pass-through 09 04","hex":"09 04 00 00 6d da"}
+{"timestamp":"2026-10-03T20:37:12.636-06:00","direction":"tx","label":"Supported? pass-through 09 05","hex":"09 05 00 00 69 dd"}
+{"timestamp":"2026-10-03T20:37:13.680-06:00","direction":"tx","label":"Supported? pass-through 09 06","hex":"09 06 00 00 65 e0"}
+{"timestamp":"2026-10-03T20:37:14.721-06:00","direction":"tx","label":"Supported? pass-through 09 07","hex":"09 07 00 00 61 e3"}
+{"timestamp":"2026-10-03T20:37:15.765-06:00","direction":"tx","label":"Supported? pass-through 09 08","hex":"09 08 00 00 5d e6"}
+{"timestamp":"2026-10-03T20:37:16.794-06:00","direction":"tx","label":"Supported? pass-through 09 09","hex":"09 09 00 00 59 e9"}
+{"timestamp":"2026-10-03T20:37:17.838-06:00","direction":"tx","label":"Supported? pass-through 09 0A","hex":"09 0a 00 00 55 ec"}
+{"timestamp":"2026-10-03T20:37:18.882-06:00","direction":"tx","label":"Supported? pass-through 09 0B","hex":"09 0b 00 00 51 ef"}
+{"timestamp":"2026-10-03T20:37:19.908-06:00","direction":"tx","label":"Supported? pass-through 09 0C","hex":"09 0c 00 00 4d f2"}
+{"timestamp":"2026-10-03T20:37:20.932-06:00","direction":"tx","label":"GetSGDEfficiencyLevel","hex":"08 02 00 02 01 02 02 44"}
+{"timestamp":"2026-10-03T20:37:21.971-06:00","direction":"tx","label":"GetUTCTime","hex":"08 02 00 02 02 00 03 44"}
+{"timestamp":"2026-10-03T20:37:23.011-06:00","direction":"tx","label":"GetEnergyPrice","hex":"08 02 00 02 03 00 ff 46"}
+{"timestamp":"2026-10-03T20:37:24.050-06:00","direction":"tx","label":"GetTier","hex":"08 02 00 02 03 01 fd 47"}
+{"timestamp":"2026-10-03T20:37:25.103-06:00","direction":"tx","label":"GetTemperatureOffset","hex":"08 02 00 02 03 02 fb 48"}
+{"timestamp":"2026-10-03T20:37:26.129-06:00","direction":"tx","label":"GetSetPoint","hex":"08 02 00 02 03 03 f9 49"}
+{"timestamp":"2026-10-03T20:37:27.175-06:00","direction":"tx","label":"GetPresentTemperature","hex":"08 02 00 02 03 04 f7 4a"}
+{"timestamp":"2026-10-03T20:37:28.218-06:00","direction":"tx","label":"GetCommodityRead (all)","hex":"08 02 00 02 06 00 f6 4c"}
+{"timestamp":"2026-10-03T20:37:28.436-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:37:28.436-06:00","direction":"echo","label":"echo","hex":"02 00"}
+{"timestamp":"2026-10-03T20:37:29.387-06:00","direction":"tx","label":"GetCommoditySubscription","hex":"08 02 00 02 06 01 f4 4d"}
+{"timestamp":"2026-10-03T20:37:30.414-06:00","direction":"tx","label":"GetActivationStatus index 0","hex":"08 02 00 03 0a 00 00 25 19"}
+{"timestamp":"2026-10-03T20:37:31.454-06:00","direction":"tx","label":"GetPreferenceLevel demand","hex":"08 02 00 03 0b 00 00 21 1c"}
+{"timestamp":"2026-10-03T20:37:32.499-06:00","direction":"tx","label":"GetPreferenceLevel energy","hex":"08 02 00 03 0b 00 01 1f 1d"}
+{"timestamp":"2026-10-03T20:37:39.648-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:39.942-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:40.239-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:40.536-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:37:41.535-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 07 a9 7e"}
+{"timestamp":"2026-10-03T20:38:00.182-06:00","direction":"tx","label":"Outside comm status: good","hex":"08 01 00 02 0e 01 e2 58"}
+{"timestamp":"2026-10-03T20:38:00.391-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:38:00.391-06:00","direction":"echo","label":"echo","hex":"01"}
+{"timestamp":"2026-10-03T20:38:00.407-06:00","direction":"echo","label":"echo","hex":"00"}
+{"timestamp":"2026-10-03T20:38:00.407-06:00","direction":"echo","label":"echo","hex":"02"}
+{"timestamp":"2026-10-03T20:38:00.680-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:01.225-06:00","direction":"tx","label":"Query operational state","hex":"08 01 00 02 12 00 d8 5f"}
+{"timestamp":"2026-10-03T20:38:01.446-06:00","direction":"echo","label":"echo","hex":"08"}
+{"timestamp":"2026-10-03T20:38:01.446-06:00","direction":"echo","label":"echo","hex":"01 00 02"}
+{"timestamp":"2026-10-03T20:38:01.719-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:09.721-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:10.016-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:10.328-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:10.622-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:11.620-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 07 a9 7e"}
+{"timestamp":"2026-10-03T20:38:31.764-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:32.057-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:32.354-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:32.651-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:33.662-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 07 a9 7e"}
+{"timestamp":"2026-10-03T20:38:53.808-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:54.101-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:54.394-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:54.706-06:00","direction":"tx","label":"link reply","hex":"06 00"}
+{"timestamp":"2026-10-03T20:38:55.703-06:00","direction":"tx","label":"Max payload response","hex":"08 03 00 02 19 07 a9 7e"}

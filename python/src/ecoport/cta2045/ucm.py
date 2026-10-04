@@ -73,6 +73,8 @@ GET_INFORMATION = frame(INTERMEDIATE_DR, b"\x01\x01")
 # Get variants are exactly 2 bytes; the Set variants share opcodes but are longer (§11.1.6).
 GET_SETPOINT = frame(INTERMEDIATE_DR, b"\x03\x03")
 GET_PRESENT_TEMPERATURE = frame(INTERMEDIATE_DR, b"\x03\x04")
+# Rinnai REHP65 answers this one: tank capacity and present energy take (Wh).
+GET_COMMODITY_READ = frame(INTERMEDIATE_DR, b"\x06\x00")
 
 # Read-only startup probe, sent by the UCM in this order.
 PROBE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
@@ -83,10 +85,12 @@ PROBE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
     ("Outside comm status: good", OUTSIDE_COMM_GOOD),
     ("Query operational state", OPSTATE_QUERY),
     ("GetInformation", GET_INFORMATION),
+    ("GetCommodityRead", GET_COMMODITY_READ),
 )
 KEEPALIVE_SEQUENCE: tuple[tuple[str, bytes], ...] = (
     ("Outside comm status: good", OUTSIDE_COMM_GOOD),
     ("Query operational state", OPSTATE_QUERY),
+    ("GetCommodityRead", GET_COMMODITY_READ),
 )
 
 

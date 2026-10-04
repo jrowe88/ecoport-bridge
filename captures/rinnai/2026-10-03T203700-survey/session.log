@@ -1,0 +1,126 @@
+20:37:00.164 UCM on COM4; writing to C:\Dev\jrowe88\ecoport-bridge\captures\rinnai\2026-10-03T203700-survey. Ctrl+C to stop.
+20:37:00.180 TX 08 01 00 00 7e cd            Supported? Basic DR
+20:37:00.189 RX 06 00                        link ACK
+20:37:01.206 TX 08 02 00 00 7a d0            Supported? Intermediate DR
+20:37:01.227 RX 06 00                        link ACK
+20:37:02.245 TX 08 03 00 00 76 d3            Supported? Data-Link
+20:37:02.266 RX 06 00                        link ACK
+20:37:03.283 TX 08 03 00 02 18 00 ba 75      Query SGD max payload
+20:37:03.306 RX 06 00                        link ACK
+20:37:03.705 RX 08 03 00 02 19 05 ad 7c      SGD max payload indicator 0x05
+20:37:03.783 TX 06 00                        link reply
+20:37:04.329 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+20:37:04.344 RX 06 00                        link ACK
+20:37:04.744 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+20:37:04.824 TX 06 00                        link reply
+20:37:05.370 TX 08 01 00 02 12 00 d8 5f      Query operational state
+20:37:05.384 RX 06 00                        link ACK
+20:37:05.783 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+20:37:05.868 TX 06 00                        link reply
+20:37:06.413 TX 08 02 00 02 01 01 04 43      GetInformation
+20:37:06.423 RX 06 00                        link ACK
+20:37:06.839 RX 08 02 00 10 01 81 00 41 00 0c 22 00 03 00 04 00 00 00 00 00 14 2e GetInformation reply: response_code=0, cta2045_version=A, vendor_id=0x0C22, device_type=0x0003, device_revision=4, capability_bitmap=0x00000000
+20:37:06.914 TX 06 00                        link reply
+20:37:07.443 TX 08 04 00 00 72 d6            Supported? Commissioning
+20:37:07.462 RX 15 06                        link NAK code 0x06
+20:37:08.486 TX 09 01 00 00 79 d1            Supported? pass-through 09 01
+20:37:08.501 RX 15 06                        link NAK code 0x06
+20:37:09.527 TX 09 02 00 00 75 d4            Supported? pass-through 09 02
+20:37:09.540 RX 15 06                        link NAK code 0x06
+20:37:10.572 TX 09 03 00 00 71 d7            Supported? pass-through 09 03
+20:37:10.579 RX 15 06                        link NAK code 0x06
+20:37:11.597 TX 09 04 00 00 6d da            Supported? pass-through 09 04
+20:37:11.618 RX 15 06                        link NAK code 0x06
+20:37:12.636 TX 09 05 00 00 69 dd            Supported? pass-through 09 05
+20:37:12.657 RX 15 06                        link NAK code 0x06
+20:37:13.680 TX 09 06 00 00 65 e0            Supported? pass-through 09 06
+20:37:13.697 RX 15 06                        link NAK code 0x06
+20:37:14.721 TX 09 07 00 00 61 e3            Supported? pass-through 09 07
+20:37:14.736 RX 15 06                        link NAK code 0x06
+20:37:15.765 TX 09 08 00 00 5d e6            Supported? pass-through 09 08
+20:37:15.775 RX 15 06                        link NAK code 0x06
+20:37:16.795 TX 09 09 00 00 59 e9            Supported? pass-through 09 09
+20:37:16.814 RX 15 06                        link NAK code 0x06
+20:37:17.838 TX 09 0a 00 00 55 ec            Supported? pass-through 09 0A
+20:37:17.853 RX 15 06                        link NAK code 0x06
+20:37:18.882 TX 09 0b 00 00 51 ef            Supported? pass-through 09 0B
+20:37:18.892 RX 15 06                        link NAK code 0x06
+20:37:19.908 TX 09 0c 00 00 4d f2            Supported? pass-through 09 0C
+20:37:19.915 RX 15 06                        link NAK code 0x06
+20:37:20.933 TX 08 02 00 02 01 02 02 44      GetSGDEfficiencyLevel
+20:37:20.954 RX 15 07                        link NAK code 0x07
+20:37:21.971 TX 08 02 00 02 02 00 03 44      GetUTCTime
+20:37:21.993 RX 15 07                        link NAK code 0x07
+20:37:23.011 TX 08 02 00 02 03 00 ff 46      GetEnergyPrice
+20:37:23.032 RX 15 07                        link NAK code 0x07
+20:37:24.050 TX 08 02 00 02 03 01 fd 47      GetTier
+20:37:24.071 RX 15 07                        link NAK code 0x07
+20:37:25.103 TX 08 02 00 02 03 02 fb 48      GetTemperatureOffset
+20:37:25.126 RX 15 07                        link NAK code 0x07
+20:37:26.129 TX 08 02 00 02 03 03 f9 49      GetSetPoint
+20:37:26.150 RX 15 07                        link NAK code 0x07
+20:37:27.176 TX 08 02 00 02 03 04 f7 4a      GetPresentTemperature
+20:37:27.189 RX 15 07                        link NAK code 0x07
+20:37:28.219 TX 08 02 00 02 06 00 f6 4c      GetCommodityRead (all)
+20:37:28.228 RX 06 00                        link ACK
+20:37:28.453 RX 06 00                        link ACK
+20:37:28.643 RX 06 00                        link ACK
+20:37:28.851 RX 06 00                        link ACK
+20:37:29.386    drop partial 00 00 00 2e eb 07 00 00 00 00 00 00 00 00 00 00 01 c2 3a 75
+20:37:29.387 TX 08 02 00 02 06 01 f4 4d      GetCommoditySubscription
+20:37:29.411 RX 15 07                        link NAK code 0x07
+20:37:30.415 TX 08 02 00 03 0a 00 00 25 19   GetActivationStatus index 0
+20:37:30.434 RX 15 07                        link NAK code 0x07
+20:37:31.454 TX 08 02 00 03 0b 00 00 21 1c   GetPreferenceLevel demand
+20:37:31.473 RX 15 07                        link NAK code 0x07
+20:37:32.499 TX 08 02 00 03 0b 00 01 1f 1d   GetPreferenceLevel energy
+20:37:32.512 RX 15 07                        link NAK code 0x07
+20:37:39.562 RX 08 01 00 00 7e cd            supported query 08 01
+20:37:39.648 TX 06 00                        link reply
+20:37:39.866 RX 08 02 00 00 7a d0            supported query 08 02
+20:37:39.942 TX 06 00                        link reply
+20:37:40.153 RX 08 03 00 00 76 d3            supported query 08 03
+20:37:40.239 TX 06 00                        link reply
+20:37:40.457 RX 08 03 00 02 18 00 ba 75      max payload query
+20:37:40.536 TX 06 00                        link reply
+20:37:41.535 TX 08 03 00 02 19 07 a9 7e      Max payload response
+20:37:41.544 RX 06 00                        link ACK
+20:38:00.182 TX 08 01 00 02 0e 01 e2 58      Outside comm status: good
+20:38:00.200 RX 06 00                        link ACK
+20:38:00.599 RX 08 01 00 02 03 0e e9 4f      app ACK of opcode 0x0E
+20:38:00.680 TX 06 00                        link reply
+20:38:01.225 TX 08 01 00 02 12 00 d8 5f      Query operational state
+20:38:01.239 RX 06 00                        link ACK
+20:38:01.638 RX 08 01 00 02 13 00 d5 61      operational state 0 (Idle Normal)
+20:38:01.721 TX 06 00                        link reply
+20:38:09.632 RX 08 01 00 00 7e cd            supported query 08 01
+20:38:09.722 TX 06 00                        link reply
+20:38:09.935 RX 08 02 00 00 7a d0            supported query 08 02
+20:38:10.016 TX 06 00                        link reply
+20:38:10.239 RX 08 03 00 00 76 d3            supported query 08 03
+20:38:10.328 TX 06 00                        link reply
+20:38:10.543 RX 08 03 00 02 18 00 ba 75      max payload query
+20:38:10.622 TX 06 00                        link reply
+20:38:11.620 TX 08 03 00 02 19 07 a9 7e      Max payload response
+20:38:11.630 RX 06 00                        link ACK
+20:38:31.676 RX 08 01 00 00 7e cd            supported query 08 01
+20:38:31.765 TX 06 00                        link reply
+20:38:31.980 RX 08 02 00 00 7a d0            supported query 08 02
+20:38:32.057 TX 06 00                        link reply
+20:38:32.268 RX 08 03 00 00 76 d3            supported query 08 03
+20:38:32.355 TX 06 00                        link reply
+20:38:32.572 RX 08 03 00 02 18 00 ba 75      max payload query
+20:38:32.652 TX 06 00                        link reply
+20:38:33.662 TX 08 03 00 02 19 07 a9 7e      Max payload response
+20:38:33.674 RX 06 00                        link ACK
+20:38:53.720 RX 08 01 00 00 7e cd            supported query 08 01
+20:38:53.808 TX 06 00                        link reply
+20:38:54.024 RX 08 02 00 00 7a d0            supported query 08 02
+20:38:54.102 TX 06 00                        link reply
+20:38:54.312 RX 08 03 00 00 76 d3            supported query 08 03
+20:38:54.395 TX 06 00                        link reply
+20:38:54.616 RX 08 03 00 02 18 00 ba 75      max payload query
+20:38:54.706 TX 06 00                        link reply
+20:38:55.704 TX 08 03 00 02 19 07 a9 7e      Max payload response
+20:38:55.720 RX 06 00                        link ACK
+20:39:00.163 Stats: {'rx_packets': 63, 'tx_packets': 60, 'acked': 14, 'unanswered': 0}

@@ -71,6 +71,7 @@ transitions — all without sending any CTA-2045 command.
 | `--probe` start + every 60 s | `08 01 00 02 12 00 ..` | Query operational state |
 | `--probe` start | `08 02 00 02 01 01 ..` | Intermediate DR GetInformation |
 | `--probe` start | `08 03 00 02 18 00 ..` | Ask the heater's max payload |
+| `--probe` start + every 60 s | `08 02 00 02 06 00 ..` | Commodity Read (tank capacity / present energy take, Wh) |
 | `--survey` only | `08 04` / `09 01–0C` supported queries, Intermediate `01 02`, `02 00`, `03 00–04`, `06 00`, `06 01`, `0A 00 00`, `0B 00 00/01` | One pass of every spec-defined read (Get forms only; their Set counterparts use a different opcode or a longer payload) |
 
 No shed, load-up, setpoint, price, or other control commands.

@@ -80,7 +80,8 @@ _(fill in as captures are recorded — reference the specific capture under
   the heater link-ACKs our queries in ~10–20 ms, App-ACKs "Outside Comm
   Status: Good", answers the operational-state query with `13 01` (Running
   Normal), and answers GetInformation. Its application replies arrive about
-  400 ms after its link ACK.
+  200 ms after its link ACK. (Earlier notes said ~400 ms. That was an artefact
+  of our echo filter, described below.)
 - GetInformation reply: CTA-2045 version **"A"** (not "B"), vendor ID
   `0x0C22`, device type `0x0003` (Water Heater – Heat Pump), device
   revision 4, capability bitmap `0x00000000`. No model/serial/firmware fields.
@@ -91,6 +92,26 @@ _(fill in as captures are recorded — reference the specific capture under
   (instead of ~32 s). Our `19 06` max-payload response went unanswered when
   sent ~150 ms after our ACK, and the retry got NAK `15 07`. The one ACKed
   attempt was sent ~0.9 s after our ACK.
+- **Spec-defined read survey**
+  ([`2026-10-03T203700-survey`](../captures/rinnai/2026-10-03T203700-survey/notes.md)):
+  - Commissioning `08 04` and every pass-through type `09 01`–`09 0C` →
+    NAK `15 06` (unsupported message type).
+  - Every Intermediate Get → NAK `15 07`, **except Commodity Read** (`08 02`
+    `06 00`). That covers efficiency, UTC time, price, tier, temperature offset,
+    setpoint, present temperature, commodity subscription, activation status and
+    preference levels.
+  - **Commodity Read is supported.** Reply `06 80 00` + 3 records:
+    electricity consumed rate 0 / cumulative 0 (estimated); total energy
+    storage capacity 12011 Wh; present energy storage (take) capacity
+    432 → 450 Wh, i.e. the tank was nearly full (opstate Idle Normal).
+    This is the only live "tank state" signal found so far.
+- **Echo-filter bug (fixed):** `tools/ucm.py` assumed the adapter echoes our
+  TX and stripped matching bytes for 250 ms. The FTDI adapter does *not* echo.
+  The heater's replies often start with the same bytes as our request
+  (`08 01 00 02`, `08 02 00`), so their headers were eaten and the rest was
+  dropped as junk. The heater then retransmitted and we only parsed the retry.
+  In earlier sessions, every `echo` record in `transmit.jsonl` is really a
+  misread heater header. The filter is now opt-in (`--echo-filter`, 50 ms).
 
 ## Hypotheses
 
@@ -172,14 +193,15 @@ here as it's confirmed via captures/experiments, and distinguish:
 
 | Function | CTA-2045 | Rinnai REHP65 |
 |---|---|---|
-| Link negotiation | ✓ | ? |
-| Device information | ✓ | ? |
-| Operating state | ✓ | ? |
-| Present temperature | ✓ | ? |
-| Setpoint | ✓ | ? |
-| Temperature offset | ✓ | ? |
-| Commodity reading | ✓ | ? |
-| Energy consumption | ✓ | ? |
+| Link negotiation | ✓ | ✓ max payload 64 B (`0x05`) |
+| Device information | ✓ | ✓ GetInformation (version "A") |
+| Operating state | ✓ | ✓ |
+| Present temperature | ✓ | ✗ NAK 07 |
+| Setpoint | ✓ | ✗ NAK 07 |
+| Temperature offset | ✓ | ✗ NAK 07 |
+| Commodity reading | ✓ | ✓ capacity 12011 Wh + present take |
+| Energy consumption | ✓ | reports 0 (estimated) |
+| Commissioning / pass-through | ✓ | ✗ NAK 06 |
 | Shed | ✓ | ? |
 | End shed | ✓ | ? |
 | Load-up | ✓ | ? |
