@@ -13478,7 +13478,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Snapeda:CONN4_BM04B-SRSS_JST"
+		(property "Footprint" "Custom:CONN4_BM04B-SRSS_JST"
 			(at 41.9101 158.75 90)
 			(hide yes)
 			(show_name no)

@@ -99,7 +99,7 @@ Early planning / hardware on order. See `docs/reverse-engineering.md` and
 
 ## Documentation
 
-- [`docs/architecture.md`](docs/architecture.md) — software layering
+- [`docs/architecture.md`](docs/architecture.md) — software layering and the device ↔ Azure cloud architecture (telemetry, commands, storage, dashboard, security)
 - [`docs/hardware.md`](docs/hardware.md) — connector, pinout, safety, bring-up hardware
 - [`docs/protocol.md`](docs/protocol.md) — CTA-2045 protocol facts, capability matrix
 - [`docs/capabilities.md`](docs/capabilities.md) — what we can see, infer, log and control on the Rinnai REHP65

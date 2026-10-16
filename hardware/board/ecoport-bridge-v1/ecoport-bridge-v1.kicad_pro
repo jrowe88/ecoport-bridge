@@ -52,7 +52,7 @@
         "zones": {
           "border_display_style": 2,
           "border_hatch_pitch": 0.5,
-          "corner_radius": 0.2,
+          "corner_radius": 1.0,
           "corner_smoothing": 2,
           "fill_mode": 0,
           "hatch_gap": 1.5,
@@ -60,7 +60,7 @@
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.0,
+          "min_clearance": 0.5,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
           "pad_connection": 1,
@@ -78,7 +78,7 @@
       ],
       "drc_exclusions": [
         [
-          "creepage|65162390|40115623|8488de5d-a9d5-4041-84f9-2767f54ab394|1a86a20c-1805-4829-86e4-620611f0f9de",
+          "creepage|65162390|40115623|65d15641-9099-4602-96b0-ad6aba96d0d5|1a86a20c-1805-4829-86e4-620611f0f9de",
           ""
         ]
       ],
