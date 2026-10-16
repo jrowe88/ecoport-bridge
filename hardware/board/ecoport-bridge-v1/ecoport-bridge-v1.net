@@ -1,0 +1,6392 @@
+(export
+	(version "E")
+	(design
+		(source "C:\\Dev\\jrowe88\\ecoport-bridge\\hardware\\board\\ecoport-bridge-v1\\ecoport-bridge-v1.kicad_sch")
+		(date "2026-10-12T20:04:30")
+		(tool "Eeschema 10.0.7")
+		(sheet
+			(number "1")
+			(name "/")
+			(tstamps "/")
+			(title_block
+				(title "EcoPort-Bridge UCM")
+				(company "Jim Rowe")
+				(rev "1.0")
+				(date "2026-10-12")
+				(source "ecoport-bridge-v1.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "Schematic of the EcoPort Bridge")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+	)
+	(components
+		(comp
+			(ref "C1")
+			(value "22µF")
+			(footprint "Capacitor_SMD:C_1206_3216Metric")
+			(datasheet "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8942/490_Chip_Multilayer_CAT2021_MLCC.pdf")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "25V")
+				(field
+					(name "MPN") "GRM319R61C226ME15J")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
+				(field
+					(name "Datasheet") "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8942/490_Chip_Multilayer_CAT2021_MLCC.pdf")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "25V")
+			)
+			(property
+				(name "MPN")
+				(value "GRM319R61C226ME15J")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "2508a807-8b38-4443-82d4-f4cdddf5def1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C2")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b48dd7e2-743b-43a2-ad4f-cb7907d620c1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C3")
+			(value "1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRT188R71E105KE13-01A-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "25V")
+				(field
+					(name "MPN") "GRT188R71E105KE13D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRT188R71E105KE13-01A-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "25V")
+			)
+			(property
+				(name "MPN")
+				(value "GRT188R71E105KE13D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "74826c6d-d0d9-4260-94e9-d78e4107046a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C4")
+			(value "1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRT188R71E105KE13-01A-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "25V")
+				(field
+					(name "MPN") "GRT188R71E105KE13D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRT188R71E105KE13-01A-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "25V")
+			)
+			(property
+				(name "MPN")
+				(value "GRT188R71E105KE13D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "88cd9bfb-36b2-46a9-8fff-d906d40a932d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C5")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6ac94f49-93b5-443c-abe9-e5217b148f5b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C6")
+			(value "22µF")
+			(footprint "Capacitor_SMD:C_1206_3216Metric")
+			(datasheet "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8942/490_Chip_Multilayer_CAT2021_MLCC.pdf")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "25V")
+				(field
+					(name "MPN") "GRM319R61C226ME15J")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
+				(field
+					(name "Datasheet") "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8942/490_Chip_Multilayer_CAT2021_MLCC.pdf")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "25V")
+			)
+			(property
+				(name "MPN")
+				(value "GRM319R61C226ME15J")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "78b6ffed-8534-4503-82b7-05155c7b778a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C7")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "176404d6-6c4c-4450-bb03-9f4f43c067c1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C8")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c6809eb1-be0c-4c37-81e9-8b536cd37eb6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C9")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b064dde3-54aa-4906-a2cf-c9d97a5d84f7")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C10")
+			(value "1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRT188R71E105KE13-01A-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "25V")
+				(field
+					(name "MPN") "GRT188R71E105KE13D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRT188R71E105KE13-01A-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "25V")
+			)
+			(property
+				(name "MPN")
+				(value "GRT188R71E105KE13D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "13325ff6-8fd3-49e9-8374-d325400f3955")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C11")
+			(value "22µF")
+			(footprint "Capacitor_SMD:C_1206_3216Metric")
+			(datasheet "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8942/490_Chip_Multilayer_CAT2021_MLCC.pdf")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "25V")
+				(field
+					(name "MPN") "GRM319R61C226ME15J")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
+				(field
+					(name "Datasheet") "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8942/490_Chip_Multilayer_CAT2021_MLCC.pdf")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "25V")
+			)
+			(property
+				(name "MPN")
+				(value "GRM319R61C226ME15J")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5b7803e2-ace1-4b76-a7e4-ad765c39cc1f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C12")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "367a8737-94d2-45b6-b4bb-4137c98e58cf")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C13")
+			(value "0.1µF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(datasheet "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Voltage") "50V")
+				(field
+					(name "MPN") "GCJ188R71H104KA12D")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCJ188R71H104KA12-02B-EN_PDF_CERAMICCAPACITORSMD")
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Voltage")
+				(value "50V")
+			)
+			(property
+				(name "MPN")
+				(value "GCJ188R71H104KA12D")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "47e2bd5e-ecf7-400d-92c8-fc7e68d6a0d5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D1")
+			(value "SM712_SOT23")
+			(footprint "Package_TO_SOT_SMD:SOT-23")
+			(datasheet "https://www.smc-diodes.com/propdf/SM712%20N2270%20REV.A.pdf")
+			(description "7V/12V, 600W Asymmetrical TVS Diode Array, SOT-23")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "SM712")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23")
+				(field
+					(name "Datasheet") "https://www.smc-diodes.com/propdf/SM712%20N2270%20REV.A.pdf")
+				(field
+					(name "Description") "7V/12V, 600W Asymmetrical TVS Diode Array, SOT-23")
+			)
+			(libsource
+				(lib "Diode")
+				(part "SM712_SOT23")
+				(description "7V/12V, 600W Asymmetrical TVS Diode Array, SOT-23")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "SM712")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "transient voltage suppressor thyrector transil")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "14d6a1c7-2703-4cc4-84fa-a09698c86df0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D2")
+			(value "WS2812")
+			(footprint "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm")
+			(datasheet "https://cdn-shop.adafruit.com/datasheets/WS2812.pdf")
+			(description "RGB LED with integrated controller")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "WS2812")
+				(field
+					(name "Footprint") "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm")
+				(field
+					(name "Datasheet") "https://cdn-shop.adafruit.com/datasheets/WS2812.pdf")
+				(field
+					(name "Description") "RGB LED with integrated controller")
+			)
+			(libsource
+				(lib "LED")
+				(part "WS2812")
+				(description "RGB LED with integrated controller")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "WS2812")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "RGB LED NeoPixel addressable")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "LED*WS2812*PLCC*5.0x5.0mm*P1.6mm*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4e03875b-ff71-4d83-99c9-58dd21876f62")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D3")
+			(value "WS2812")
+			(footprint "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm")
+			(datasheet "https://cdn-shop.adafruit.com/datasheets/WS2812.pdf")
+			(description "RGB LED with integrated controller")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "WS2812")
+				(field
+					(name "Footprint") "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm")
+				(field
+					(name "Datasheet") "https://cdn-shop.adafruit.com/datasheets/WS2812.pdf")
+				(field
+					(name "Description") "RGB LED with integrated controller")
+			)
+			(libsource
+				(lib "LED")
+				(part "WS2812")
+				(description "RGB LED with integrated controller")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "WS2812")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "RGB LED NeoPixel addressable")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "LED*WS2812*PLCC*5.0x5.0mm*P1.6mm*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4eb39476-d895-45b4-884b-414c6acb72e7")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J1")
+			(value "420B2V12FL0")
+			(footprint "Custom:Onshore_Header_2x06_P4.20mm_Vertical")
+			(datasheet "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2614/420B2V12FL0.pdf")
+			(description "Generic connector, double row, 02x06, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "420B2V12FL0")
+				(field
+					(name "Footprint") "Custom:Onshore_Header_2x06_P4.20mm_Vertical")
+				(field
+					(name "Datasheet") "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2614/420B2V12FL0.pdf")
+				(field
+					(name "Description") "Generic connector, double row, 02x06, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(libsource
+				(lib "Custom")
+				(part "EcoPort_Dual_Row_Housing")
+				(description "Generic connector, double row, 02x06, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "420B2V12FL0")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_2x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0a66855a-e7ed-400c-8345-7e1540edc8e4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J2")
+			(value "Conn_01x02")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(libsource
+				(lib "Connector_Generic")
+				(part "Conn_01x02")
+				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "559fb8c2-ca15-4e75-8433-e2f68a4bf5ff")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J3")
+			(value "SM04B-SRSS-TB")
+			(footprint "EasyEDA:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN")
+			(datasheet "https://www.jst-mfg.com/product/pdf/eng/eSH.pdf")
+			(fields
+				(field
+					(name "Manufacturer") "JST")
+				(field
+					(name "MPN") "SM04B-SRSS-TB")
+				(field
+					(name "LCSC Part") "C160404")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "EasyEDA:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN")
+				(field
+					(name "Datasheet") "https://www.jst-mfg.com/product/pdf/eng/eSH.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "EasyEDA")
+				(part "SM04B-SRSS-TB")
+				(description "")
+			)
+			(property
+				(name "Manufacturer")
+				(value "JST")
+			)
+			(property
+				(name "MPN")
+				(value "SM04B-SRSS-TB")
+			)
+			(property
+				(name "LCSC Part")
+				(value "C160404")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "Wire To Board / Wire To Wire Connector")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "27475f6e-b831-4651-b57e-21743dc502e2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J4")
+			(value "USB4085-GF-A")
+			(footprint "EasyEDA:USC-C-SMD_USB4085-GF-A")
+			(datasheet "https://www.lcsc.com/datasheet/C9900013983.pdf")
+			(fields
+				(field
+					(name "MPN") "USB4085-GF-A")
+				(field
+					(name "LCSC Part") "C9900013983")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "EasyEDA:USC-C-SMD_USB4085-GF-A")
+				(field
+					(name "Datasheet") "https://www.lcsc.com/datasheet/C9900013983.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "EasyEDA")
+				(part "USB4085-GF-A")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "USB4085-GF-A")
+			)
+			(property
+				(name "LCSC Part")
+				(value "C9900013983")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d473a1f4-da3f-4f6a-87d4-700fd6e0661f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "S1")
+						)
+						(pin
+							(num "A1")
+						)
+						(pin
+							(num "A12")
+						)
+						(pin
+							(num "B12")
+						)
+						(pin
+							(num "B1")
+						)
+						(pin
+							(num "A4")
+						)
+						(pin
+							(num "A9")
+						)
+						(pin
+							(num "B4")
+						)
+						(pin
+							(num "B9")
+						)
+						(pin
+							(num "A5")
+						)
+						(pin
+							(num "B5")
+						)
+						(pin
+							(num "A7")
+						)
+						(pin
+							(num "B7")
+						)
+						(pin
+							(num "A6")
+						)
+						(pin
+							(num "B6")
+						)
+						(pin
+							(num "A8")
+						)
+						(pin
+							(num "B8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J5")
+			(value "Conn_01x02")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(libsource
+				(lib "Connector_Generic")
+				(part "Conn_01x02")
+				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "beae8843-be4b-473e-a05d-52cecf24dde2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R1")
+			(value "120Ω")
+			(footprint "Resistor_SMD:R_1206_3216Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC1206FR-07120RL")
+				(field
+					(name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC1206FR-07120RL")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "64f6f1c0-6fbb-4ba7-bf4c-7e861b4a4937")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R2")
+			(value "390Ω")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "dnp")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a9a06eaf-e9ed-4ef2-a34f-37c4b83bceaf")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R3")
+			(value "390Ω")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(property
+				(name "dnp")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "56dfb3fe-d407-458d-83c7-22c0fb6dba04")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R4")
+			(value "10kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-1010KL")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-1010KL")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1d596e80-dec6-422f-8471-7841c17f7e6e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R5")
+			(value "10kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-1010KL")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-1010KL")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0f6f7bf5-a078-4aaf-805e-f27abc675a99")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R6")
+			(value "4.7kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-074K7L")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-074K7L")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "50f8519a-400f-4f48-a59a-c16f4a60d216")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R7")
+			(value "4.7kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-074K7L")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-074K7L")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6a83e20a-5721-4f44-913e-d7fef143f010")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R8")
+			(value "470Ω")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-07470RL")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-07470RL")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "55981454-47ba-4eb9-953c-4b4e464d1b2b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R9")
+			(value "10kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-1010KL")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-1010KL")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "03dee527-87c2-4516-8e2a-1c206c12008f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R10")
+			(value "10kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-1010KL")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-1010KL")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b02488eb-3ca3-4449-b80b-78866109c731")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R11")
+			(value "5.1kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-105K1L")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-105K1L")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ebc7fa33-8b82-4d05-8ec6-28dc63862cca")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R12")
+			(value "5.1kΩ")
+			(footprint "Resistor_SMD:R_0603_1608Metric")
+			(datasheet "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+			(description "Resistor, US symbol")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "RC0603FR-105K1L")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0603_1608Metric")
+				(field
+					(name "Datasheet") "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L")
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(libsource
+				(lib "Device")
+				(part "R_US")
+				(description "Resistor, US symbol")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "RC0603FR-105K1L")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d8bbe78f-e50b-456d-98fe-8e0590c08792")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SW1")
+			(value "Reset Button")
+			(footprint "Snapeda:SW_TS04-66-50-BK-260-SMT")
+			(datasheet "https://www.sameskydevices.com/product/resource/ts04.pdf")
+			(fields
+				(field
+					(name "STANDARD") "Manufacturer Recommendations")
+				(field
+					(name "PARTREV") "1.0")
+				(field
+					(name "MANUFACTURER") "CUI Devices")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "TS04-66-50-BK-260-SMT")
+				(field
+					(name "Footprint") "Snapeda:SW_TS04-66-50-BK-260-SMT")
+				(field
+					(name "Datasheet") "https://www.sameskydevices.com/product/resource/ts04.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Custom")
+				(part "TS04-66-50-BK-260-SMT")
+				(description "")
+			)
+			(property
+				(name "STANDARD")
+				(value "Manufacturer Recommendations")
+			)
+			(property
+				(name "PARTREV")
+				(value "1.0")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "CUI Devices")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "TS04-66-50-BK-260-SMT")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "05742260-f3b5-4057-85c6-f206c68d9909")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SW2")
+			(value "Boot Button")
+			(footprint "Snapeda:SW_TS04-66-50-BK-260-SMT")
+			(datasheet "https://www.sameskydevices.com/product/resource/ts04.pdf")
+			(fields
+				(field
+					(name "STANDARD") "Manufacturer Recommendations")
+				(field
+					(name "PARTREV") "1.0")
+				(field
+					(name "MANUFACTURER") "CUI Devices")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "TS04-66-50-BK-260-SMT")
+				(field
+					(name "Footprint") "Snapeda:SW_TS04-66-50-BK-260-SMT")
+				(field
+					(name "Datasheet") "https://www.sameskydevices.com/product/resource/ts04.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Custom")
+				(part "TS04-66-50-BK-260-SMT")
+				(description "")
+			)
+			(property
+				(name "STANDARD")
+				(value "Manufacturer Recommendations")
+			)
+			(property
+				(name "PARTREV")
+				(value "1.0")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "CUI Devices")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "TS04-66-50-BK-260-SMT")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "edb42e06-ef13-4e28-8f9c-9a078b2c710c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP1")
+			(value "TestPoint")
+			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+			(datasheet "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+			(description "test point")
+			(fields
+				(field
+					(name "MPN") "5001")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+				(field
+					(name "Datasheet") "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "MPN")
+				(value "5001")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "e77d3a97-1153-431d-8cfa-d6810d6532c0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP2")
+			(value "TestPoint")
+			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+			(datasheet "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+			(description "test point")
+			(fields
+				(field
+					(name "MPN") "5001")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+				(field
+					(name "Datasheet") "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "MPN")
+				(value "5001")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b19f1ce7-11b3-426d-9349-138c861f2a74")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP3")
+			(value "TestPoint")
+			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+			(datasheet "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+			(description "test point")
+			(fields
+				(field
+					(name "MPN") "5000")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+				(field
+					(name "Datasheet") "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "MPN")
+				(value "5000")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "15b49b4e-8640-46cb-ad89-cd0c460d4c71")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP4")
+			(value "TestPoint")
+			(footprint "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+			(datasheet "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+			(description "test point")
+			(fields
+				(field
+					(name "MPN") "5000")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Keystone_5000-5004_Miniature")
+				(field
+					(name "Datasheet") "https://www.keyelco.com/userAssets/file/K75p62.pdf")
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "MPN")
+				(value "5000")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8ede9d8c-e4d6-46b6-b421-fb9f65c8d723")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP5")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "59dcfe9f-655d-4a19-ab47-6d03804f607e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP6")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f97fd7cf-660c-4114-905e-707da1be3de4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP7")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dfae7e3d-e1b1-476d-8a8a-7b705815d7d6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP8")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8eb2903b-3b0c-4e48-82b2-03fc0cde02a1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP9")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "38481f58-7471-4c44-83f7-0f5cfbdabc2a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP10")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9ac1c8c1-8d59-42fc-80b1-b6e9828ea966")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP11")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f6ff422e-7b67-4e5a-891e-0b155e9298f6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP12")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1f186833-19b2-4800-a446-dbad73fbe250")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP13")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "aa9cb87d-e9f8-4faf-b898-82ad3c53faa0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP14")
+			(value "TestPoint")
+			(footprint "Custom:TestPoint_Pad_D2.0mm")
+			(description "test point")
+			(fields
+				(field
+					(name "Footprint") "Custom:TestPoint_Pad_D2.0mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(libsource
+				(lib "Connector")
+				(part "TestPoint")
+				(description "test point")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "test point tp")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Pin* Test*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "418fd457-dda7-4af7-92a8-911b76d1fbf0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U1")
+			(value "IRM-05-5")
+			(footprint "Converter_ACDC:Converter_ACDC_MeanWell_IRM-05-xx_THT")
+			(datasheet "https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF")
+			(description "5V, 1A, 5W, Isolated, AC-DC, 222A(IRM05)")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "IRM-05-5")
+				(field
+					(name "Footprint") "Converter_ACDC:Converter_ACDC_MeanWell_IRM-05-xx_THT")
+				(field
+					(name "Datasheet") "https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF")
+				(field
+					(name "Description") "5V, 1A, 5W, Isolated, AC-DC, 222A(IRM05)")
+			)
+			(libsource
+				(lib "Converter_ACDC")
+				(part "IRM-05-5")
+				(description "5V, 1A, 5W, Isolated, AC-DC, 222A(IRM05)")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "IRM-05-5")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "Miniature Module-type Power Supply MeanWell")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Converter*ACDC*MeanWell*IRM*05*THT*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1f9bac4e-d7bc-400f-856f-4ea24f239e61")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U2")
+			(value "TLV75733PDBVR")
+			(footprint "Package_TO_SOT_SMD:SOT-23-5")
+			(datasheet "https://www.ti.com/lit/ds/symlink/tlv757p.pdf")
+			(description "1A Low IQ Small Size Low Dropout Voltage Regulator, Fixed Output 3.3V, SOT-23-5")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "TLV75733PDBVR")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
+				(field
+					(name "Datasheet") "https://www.ti.com/lit/ds/symlink/tlv757p.pdf")
+				(field
+					(name "Description") "1A Low IQ Small Size Low Dropout Voltage Regulator, Fixed Output 3.3V, SOT-23-5")
+			)
+			(libsource
+				(lib "Regulator_Linear")
+				(part "TLV75733PDBV")
+				(description "1A Low IQ Small Size Low Dropout Voltage Regulator, Fixed Output 3.3V, SOT-23-5")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "TLV75733PDBVR")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "LDO Regulator Fixed Positive")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a9fbf20c-04d2-4da8-802c-e96a56db7321")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U3")
+			(value "SP3485EET")
+			(footprint "EasyEDA:TSSOP-8_L4.4-W3.0-P0.65-LS6.4-BL")
+			(datasheet "https://www.umw-ic.com/static/pdf/cecb359e0426a973e3b8a012c8645a98.pdf")
+			(fields
+				(field
+					(name "Manufacturer") "UMW(友台半导体)")
+				(field
+					(name "MPN") "SP3485EET")
+				(field
+					(name "LCSC Part") "C20617894")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "EasyEDA:TSSOP-8_L4.4-W3.0-P0.65-LS6.4-BL")
+				(field
+					(name "Datasheet") "https://www.umw-ic.com/static/pdf/cecb359e0426a973e3b8a012c8645a98.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "EasyEDA")
+				(part "SP3485EET")
+				(description "")
+			)
+			(property
+				(name "Manufacturer")
+				(value "UMW(友台半导体)")
+			)
+			(property
+				(name "MPN")
+				(value "SP3485EET")
+			)
+			(property
+				(name "LCSC Part")
+				(value "C20617894")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "RS-485/RS-422 ICs")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0efa2c44-0c87-49e3-8f76-464c4fb4a37d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U4")
+			(value "USBLC6-2SC6")
+			(footprint "Package_TO_SOT_SMD:SOT-23-6")
+			(datasheet "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+			(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "USB4085-GF-A")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
+				(field
+					(name "Datasheet") "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+				(field
+					(name "Description") "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			)
+			(libsource
+				(lib "Power_Protection")
+				(part "USBLC6-2SC6")
+				(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "USB4085-GF-A")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d8a1cc20-f42c-4c9b-bc21-17457dede7ea")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U5")
+			(value "SN74LV1T34DCKR")
+			(footprint "EasyEDA:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR")
+			(datasheet "https://www.ti.com/lit/ds/symlink/sn74lv1t34.pdf")
+			(fields
+				(field
+					(name "Manufacturer") "TI(德州仪器)")
+				(field
+					(name "MPN") "SN74LV1T34DCKR")
+				(field
+					(name "LCSC Part") "C78541")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "Footprint") "EasyEDA:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR")
+				(field
+					(name "Datasheet") "https://www.ti.com/lit/ds/symlink/sn74lv1t34.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "EasyEDA")
+				(part "SN74LV1T34DCKR")
+				(description "")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TI(德州仪器)")
+			)
+			(property
+				(name "MPN")
+				(value "SN74LV1T34DCKR")
+			)
+			(property
+				(name "LCSC Part")
+				(value "C78541")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "Buffers / Drivers")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "cdc33777-1a9c-4cfd-bb06-4d305b4762fc")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U6")
+			(value "ESP32-C6-WROOM-1-N8")
+			(footprint "Snapeda:XCVR_ESP32-C6-WROOM-1-N8")
+			(datasheet "https://documentation.espressif.com/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf")
+			(fields
+				(field
+					(name "PARTREV") "1.0")
+				(field
+					(name "STANDARD") "Manufacturer Recommendations")
+				(field
+					(name "MAXIMUM_PACKAGE_HEIGHT") "3.25mm")
+				(field
+					(name "MANUFACTURER") "Espressif Systems")
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "ESP32-C6-WROOM-1-N8")
+				(field
+					(name "Footprint") "Snapeda:XCVR_ESP32-C6-WROOM-1-N8")
+				(field
+					(name "Datasheet") "https://documentation.espressif.com/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf")
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "SnapEDA")
+				(part "ESP32-C6-WROOM-1-N8")
+				(description "")
+			)
+			(property
+				(name "PARTREV")
+				(value "1.0")
+			)
+			(property
+				(name "STANDARD")
+				(value "Manufacturer Recommendations")
+			)
+			(property
+				(name "MAXIMUM_PACKAGE_HEIGHT")
+				(value "3.25mm")
+			)
+			(property
+				(name "MANUFACTURER")
+				(value "Espressif Systems")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "ESP32-C6-WROOM-1-N8")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "95895c36-e271-4a14-be3f-f545cb6593eb")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "29_1")
+						)
+						(pin
+							(num "29_2")
+						)
+						(pin
+							(num "29_3")
+						)
+						(pin
+							(num "29_4")
+						)
+						(pin
+							(num "29_5")
+						)
+						(pin
+							(num "29_6")
+						)
+						(pin
+							(num "29_7")
+						)
+						(pin
+							(num "29_8")
+						)
+						(pin
+							(num "29_9")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U7")
+			(value "USBLC6-2SC6")
+			(footprint "Package_TO_SOT_SMD:SOT-23-6")
+			(datasheet "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+			(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			(fields
+				(field
+					(name "Voltage")
+				)
+				(field
+					(name "MPN") "USB4085-GF-A")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
+				(field
+					(name "Datasheet") "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+				(field
+					(name "Description") "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			)
+			(libsource
+				(lib "Power_Protection")
+				(part "USBLC6-2SC6")
+				(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			)
+			(property
+				(name "Voltage")
+				(value "")
+			)
+			(property
+				(name "MPN")
+				(value "USB4085-GF-A")
+			)
+			(property
+				(name "Sheetname")
+				(value "ecoport-bridge-v1")
+			)
+			(property
+				(name "Sheetfile")
+				(value "ecoport-bridge-v1.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "usb ethernet video")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "SOT?23*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4a5f82dd-9673-4a7a-967e-145781dc2bfa")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+	)
+	(groups)
+	(variants)
+	(libparts
+		(libpart
+			(lib "Connector")
+			(part "TestPoint")
+			(description "test point")
+			(footprints
+				(fp "Pin*")
+				(fp "Test*")
+			)
+			(fields
+				(field
+					(name "Reference") "TP")
+				(field
+					(name "Value") "TestPoint")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "test point")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Connector_Generic")
+			(part "Conn_01x02")
+			(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "Conn_01x02")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "Pin_1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "Pin_2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Converter_ACDC")
+			(part "IRM-05-5")
+			(description "5V, 1A, 5W, Isolated, AC-DC, 222A(IRM05)")
+			(docs "https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF")
+			(footprints
+				(fp "Converter*ACDC*MeanWell*IRM*05*THT*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "IRM-05-5")
+				(field
+					(name "Footprint") "Converter_ACDC:Converter_ACDC_MeanWell_IRM-05-xx_THT")
+				(field
+					(name "Datasheet") "https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF")
+				(field
+					(name "Description") "5V, 1A, 5W, Isolated, AC-DC, 222A(IRM05)")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "AC/N")
+					(type "power_in")
+				)
+				(pin
+					(num "2")
+					(name "AC/L")
+					(type "power_in")
+				)
+				(pin
+					(num "3")
+					(name "-Vo")
+					(type "power_out")
+				)
+				(pin
+					(num "4")
+					(name "+Vo")
+					(type "power_out")
+				)
+			)
+		)
+		(libpart
+			(lib "Custom")
+			(part "EcoPort_Dual_Row_Housing")
+			(description "Generic connector, double row, 02x06, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			(docs "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2614/420B2V12FL0.pdf")
+			(footprints
+				(fp "Connector*:*_2x??_*")
+			)
+			(fields
+				(field
+					(name "Reference") "J1")
+				(field
+					(name "Value") "EcoPort Connector")
+				(field
+					(name "Footprint") "Custom:Onshore_Header_2x06_P4.20mm_Vertical")
+				(field
+					(name "Datasheet") "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2614/420B2V12FL0.pdf")
+				(field
+					(name "Description") "Generic connector, double row, 02x06, top/bottom pin numbering scheme (row 1: 1...pins_per_row, row2: pins_per_row+1 ... num_pins), script generated (kicad-library-utils/schlib/autogen/connector/)")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "Data-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "3")
+					(name "Vendor")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "5")
+					(name "AC_Line2")
+					(type "power_out")
+				)
+				(pin
+					(num "6")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "7")
+					(name "Data+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "Gnd")
+					(type "passive")
+				)
+				(pin
+					(num "9")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "10")
+					(name "Earth_Gnd")
+					(type "power_out")
+				)
+				(pin
+					(num "11")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "12")
+					(name "AC_Line_1")
+					(type "power_out")
+				)
+			)
+		)
+		(libpart
+			(lib "Custom")
+			(part "TS04-66-50-BK-260-SMT")
+			(fields
+				(field
+					(name "Reference") "SW2")
+				(field
+					(name "Value") "Boot Button")
+				(field
+					(name "Footprint") "Snapeda:SW_TS04-66-50-BK-260-SMT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+				(field
+					(name "STANDARD") "Manufacturer Recommendations")
+				(field
+					(name "PARTREV") "1.0")
+				(field
+					(name "MANUFACTURER") "CUI Devices")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "C")
+			(description "Unpolarized capacitor")
+			(footprints
+				(fp "C_*")
+			)
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "C")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "R_US")
+			(description "Resistor, US symbol")
+			(footprints
+				(fp "R_*")
+			)
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "R_US")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor, US symbol")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Diode")
+			(part "SM712_SOT23")
+			(description "7V/12V, 600W Asymmetrical TVS Diode Array, SOT-23")
+			(docs "https://www.littelfuse.com/~/media/electronics/datasheets/tvs_diode_arrays/littelfuse_tvs_diode_array_sm712_datasheet.pdf.pdf")
+			(footprints
+				(fp "SOT?23*")
+			)
+			(fields
+				(field
+					(name "Reference") "D")
+				(field
+					(name "Value") "SM712_SOT23")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23")
+				(field
+					(name "Datasheet") "https://www.littelfuse.com/~/media/electronics/datasheets/tvs_diode_arrays/littelfuse_tvs_diode_array_sm712_datasheet.pdf.pdf")
+				(field
+					(name "Description") "7V/12V, 600W Asymmetrical TVS Diode Array, SOT-23")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "A1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "A2")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "common")
+					(type "input")
+				)
+			)
+		)
+		(libpart
+			(lib "EasyEDA")
+			(part "SM04B-SRSS-TB")
+			(docs "https://lcsc.com/product-detail/Others_JST-Sales-America__JST-Sales-America-SM04B-SRSS-TB-LF-SN_C160404.html")
+			(fields
+				(field
+					(name "Reference") "JP")
+				(field
+					(name "Value") "SM04B-SRSS-TB")
+				(field
+					(name "Footprint") "EasyEDA:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN")
+				(field
+					(name "Datasheet") "https://lcsc.com/product-detail/Others_JST-Sales-America__JST-Sales-America-SM04B-SRSS-TB-LF-SN_C160404.html")
+				(field
+					(name "Description")
+				)
+				(field
+					(name "Manufacturer") "JST")
+				(field
+					(name "MPN") "SM04B-SRSS-TB(LF)(SN)")
+				(field
+					(name "LCSC Part") "C160404")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "VCC")
+					(type "power_in")
+				)
+				(pin
+					(num "3")
+					(name "SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "GND")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "EasyEDA")
+			(part "SN74LV1T34DCKR")
+			(docs "https://lcsc.com/product-detail/Others_Texas-Instruments_SN74LV1T34DCKR_Texas-Instruments-TI-SN74LV1T34DCKR_C78541.html")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SN74LV1T34DCKR")
+				(field
+					(name "Footprint") "EasyEDA:SC-70-5_L2.1-W1.3-P0.65-LS2.1-BR")
+				(field
+					(name "Datasheet") "https://lcsc.com/product-detail/Others_Texas-Instruments_SN74LV1T34DCKR_Texas-Instruments-TI-SN74LV1T34DCKR_C78541.html")
+				(field
+					(name "Description")
+				)
+				(field
+					(name "Manufacturer") "TI(德州仪器)")
+				(field
+					(name "MPN") "SN74LV1T34DCKR")
+				(field
+					(name "LCSC Part") "C78541")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "2")
+					(name "A")
+					(type "input")
+				)
+				(pin
+					(num "3")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "Y")
+					(type "output")
+				)
+				(pin
+					(num "5")
+					(name "VCC")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "EasyEDA")
+			(part "SP3485EET")
+			(docs "https://www.lcsc.com/datasheet/C20617894.pdf")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SP3485EET")
+				(field
+					(name "Footprint") "EasyEDA:TSSOP-8_L4.4-W3.0-P0.65-LS6.4-BL")
+				(field
+					(name "Datasheet") "https://www.lcsc.com/datasheet/C20617894.pdf")
+				(field
+					(name "Description")
+				)
+				(field
+					(name "Manufacturer") "UMW(友台半导体)")
+				(field
+					(name "MPN") "SP3485EET(UMW)")
+				(field
+					(name "LCSC Part") "C20617894")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "RO")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "~{RE}")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "DE")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "DI")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "A")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "B")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "VCC")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "EasyEDA")
+			(part "USB4085-GF-A")
+			(docs "https://www.lcsc.com/datasheet/C9900013983.pdf")
+			(fields
+				(field
+					(name "Reference") "USB")
+				(field
+					(name "Value") "USB4085-GF-A")
+				(field
+					(name "Footprint") "EasyEDA:USC-C-SMD_USB4085-GF-A")
+				(field
+					(name "Datasheet") "https://www.lcsc.com/datasheet/C9900013983.pdf")
+				(field
+					(name "Description")
+				)
+				(field
+					(name "MPN") "USB4085-GF-A")
+				(field
+					(name "LCSC Part") "C9900013983")
+			)
+			(pins
+				(pin
+					(num "A1")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "A4")
+					(name "VBUS")
+					(type "power_out")
+				)
+				(pin
+					(num "A5")
+					(name "CC1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A6")
+					(name "D+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A7")
+					(name "D-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A8")
+					(name "SBU1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "A9")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "A12")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "B1")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "B4")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "B5")
+					(name "CC2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B6")
+					(name "D+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B7")
+					(name "D-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B8")
+					(name "SBU2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "B9")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "B12")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "S1")
+					(name "SHIELD")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "LED")
+			(part "WS2812")
+			(description "RGB LED with integrated controller")
+			(docs "https://cdn-shop.adafruit.com/datasheets/WS2812.pdf")
+			(footprints
+				(fp "LED*WS2812*PLCC*5.0x5.0mm*P1.6mm*")
+			)
+			(fields
+				(field
+					(name "Reference") "D")
+				(field
+					(name "Value") "WS2812")
+				(field
+					(name "Footprint") "LED_SMD:LED_WS2812_PLCC6_5.0x5.0mm_P1.6mm")
+				(field
+					(name "Datasheet") "https://cdn-shop.adafruit.com/datasheets/WS2812.pdf")
+				(field
+					(name "Description") "RGB LED with integrated controller")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "DOUT")
+					(type "output")
+				)
+				(pin
+					(num "2")
+					(name "DIN")
+					(type "input")
+				)
+				(pin
+					(num "3")
+					(name "VCC")
+					(type "power_in")
+				)
+				(pin
+					(num "4")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "5")
+					(name "VDD")
+					(type "power_in")
+				)
+				(pin
+					(num "6")
+					(name "VSS")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "Power_Protection")
+			(part "USBLC6-2SC6")
+			(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			(docs "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+			(footprints
+				(fp "SOT?23*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "USBLC6-2SC6")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
+				(field
+					(name "Datasheet") "https://www.st.com/resource/en/datasheet/usblc6-2.pdf")
+				(field
+					(name "Description") "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "I/O1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "I/O2")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "I/O2")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "VBUS")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "I/O1")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Regulator_Linear")
+			(part "TLV75733PDBV")
+			(description "1A Low IQ Small Size Low Dropout Voltage Regulator, Fixed Output 3.3V, SOT-23-5")
+			(docs "https://www.ti.com/lit/ds/symlink/tlv757p.pdf")
+			(footprints
+				(fp "SOT?23*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "TLV75733PDBV")
+				(field
+					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
+				(field
+					(name "Datasheet") "https://www.ti.com/lit/ds/symlink/tlv757p.pdf")
+				(field
+					(name "Description") "1A Low IQ Small Size Low Dropout Voltage Regulator, Fixed Output 3.3V, SOT-23-5")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "IN")
+					(type "power_in")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "power_in")
+				)
+				(pin
+					(num "3")
+					(name "EN")
+					(type "input")
+				)
+				(pin
+					(num "4")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "5")
+					(name "OUT")
+					(type "power_out")
+				)
+			)
+		)
+		(libpart
+			(lib "SnapEDA")
+			(part "ESP32-C6-WROOM-1-N8")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "ESP32-C6-WROOM-1-N8")
+				(field
+					(name "Footprint") "Snapeda:XCVR_ESP32-C6-WROOM-1-N8")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+				(field
+					(name "PARTREV") "1.0")
+				(field
+					(name "STANDARD") "Manufacturer Recommendations")
+				(field
+					(name "MAXIMUM_PACKAGE_HEIGHT") "3.25mm")
+				(field
+					(name "MANUFACTURER") "Espressif Systems")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND")
+					(type "power_in")
+				)
+				(pin
+					(num "2")
+					(name "3V3")
+					(type "power_in")
+				)
+				(pin
+					(num "3")
+					(name "EN")
+					(type "input")
+				)
+				(pin
+					(num "4")
+					(name "IO4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "IO5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "IO6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "IO7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "IO0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "9")
+					(name "IO1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "10")
+					(name "IO8")
+					(type "bidirectional")
+				)
+				(pin
+					(num "11")
+					(name "IO10")
+					(type "bidirectional")
+				)
+				(pin
+					(num "12")
+					(name "IO11")
+					(type "bidirectional")
+				)
+				(pin
+					(num "13")
+					(name "IO12")
+					(type "bidirectional")
+				)
+				(pin
+					(num "14")
+					(name "IO13")
+					(type "bidirectional")
+				)
+				(pin
+					(num "15")
+					(name "IO9")
+					(type "bidirectional")
+				)
+				(pin
+					(num "16")
+					(name "IO18")
+					(type "bidirectional")
+				)
+				(pin
+					(num "17")
+					(name "IO19")
+					(type "bidirectional")
+				)
+				(pin
+					(num "18")
+					(name "IO20")
+					(type "bidirectional")
+				)
+				(pin
+					(num "19")
+					(name "IO21")
+					(type "bidirectional")
+				)
+				(pin
+					(num "20")
+					(name "IO22")
+					(type "bidirectional")
+				)
+				(pin
+					(num "21")
+					(name "IO23")
+					(type "bidirectional")
+				)
+				(pin
+					(num "22")
+					(name "NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "23")
+					(name "IO15")
+					(type "bidirectional")
+				)
+				(pin
+					(num "24")
+					(name "RXD0/GPIO17")
+					(type "bidirectional")
+				)
+				(pin
+					(num "25")
+					(name "TXD0/GPIO16")
+					(type "bidirectional")
+				)
+				(pin
+					(num "26")
+					(name "IO3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "27")
+					(name "IO2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "28")
+					(name "GND__1")
+					(type "power_in")
+				)
+				(pin
+					(num "29_1")
+					(name "GND__2")
+					(type "power_in")
+				)
+				(pin
+					(num "29_2")
+					(name "GND__3")
+					(type "power_in")
+				)
+				(pin
+					(num "29_3")
+					(name "GND__4")
+					(type "power_in")
+				)
+				(pin
+					(num "29_4")
+					(name "GND__5")
+					(type "power_in")
+				)
+				(pin
+					(num "29_5")
+					(name "GND__6")
+					(type "power_in")
+				)
+				(pin
+					(num "29_6")
+					(name "GND__7")
+					(type "power_in")
+				)
+				(pin
+					(num "29_7")
+					(name "GND__8")
+					(type "power_in")
+				)
+				(pin
+					(num "29_8")
+					(name "GND__9")
+					(type "power_in")
+				)
+				(pin
+					(num "29_9")
+					(name "GND__10")
+					(type "power_in")
+				)
+			)
+		)
+	)
+	(libraries
+		(library
+			(logical "Connector")
+			(uri "${KICAD10_SYMBOL_DIR}/Connector.kicad_sym")
+		)
+		(library
+			(logical "Connector_Generic")
+			(uri "${KICAD10_SYMBOL_DIR}/Connector_Generic.kicad_sym")
+		)
+		(library
+			(logical "Converter_ACDC")
+			(uri "${KICAD10_SYMBOL_DIR}/Converter_ACDC.kicad_sym")
+		)
+		(library
+			(logical "Custom")
+			(uri "C:\\Dev\\jrowe88\\ecoport-bridge\\hardware\\board\\library\\Custom.kicad_sym")
+		)
+		(library
+			(logical "Device")
+			(uri "${KICAD10_SYMBOL_DIR}/Device.kicad_sym")
+		)
+		(library
+			(logical "Diode")
+			(uri "${KICAD10_SYMBOL_DIR}/Diode.kicad_sym")
+		)
+		(library
+			(logical "EasyEDA")
+			(uri "${KICAD_3RD_PARTY}/EasyEDA.kicad_sym")
+		)
+		(library
+			(logical "LED")
+			(uri "${KICAD10_SYMBOL_DIR}/LED.kicad_sym")
+		)
+		(library
+			(logical "Power_Protection")
+			(uri "${KICAD10_SYMBOL_DIR}/Power_Protection.kicad_sym")
+		)
+		(library
+			(logical "Regulator_Linear")
+			(uri "${KICAD10_SYMBOL_DIR}/Regulator_Linear.kicad_sym")
+		)
+		(library
+			(logical "SnapEDA")
+			(uri "${KICAD_3RD_PARTY}/Snapeda.kicad_sym")
+		)
+	)
+	(nets
+		(net
+			(code "1")
+			(name "+3V3")
+			(class "Default")
+			(node
+				(ref "C11")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C12")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C4")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C5")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C7")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "J3")
+				(pin "2")
+				(pinfunction "VCC_2")
+				(pintype "power_in")
+			)
+			(node
+				(ref "R10")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R4")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R6")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R7")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R9")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP4")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "5")
+				(pinfunction "OUT_5")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U3")
+				(pin "8")
+				(pinfunction "VCC_8")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U4")
+				(pin "5")
+				(pinfunction "VBUS_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "2")
+				(pinfunction "3V3_2")
+				(pintype "power_in")
+			)
+		)
+		(net
+			(code "2")
+			(name "+5V")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C8")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "D2")
+				(pin "3")
+				(pinfunction "VCC_3")
+				(pintype "power_in")
+			)
+			(node
+				(ref "D2")
+				(pin "5")
+				(pinfunction "VDD_5")
+				(pintype "power_in")
+			)
+			(node
+				(ref "D3")
+				(pin "3")
+				(pinfunction "VCC_3")
+				(pintype "power_in")
+			)
+			(node
+				(ref "D3")
+				(pin "5")
+				(pinfunction "VDD_5")
+				(pintype "power_in")
+			)
+			(node
+				(ref "TP3")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "4")
+				(pinfunction "+Vo_4")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U2")
+				(pin "1")
+				(pinfunction "IN_1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U2")
+				(pin "3")
+				(pinfunction "EN_3")
+				(pintype "input")
+			)
+			(node
+				(ref "U5")
+				(pin "5")
+				(pinfunction "VCC_5")
+				(pintype "power_in")
+			)
+		)
+		(net
+			(code "3")
+			(name "/AC_L1")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "12")
+				(pinfunction "AC_Line_1_12")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pinfunction "AC/L_2")
+				(pintype "power_in")
+			)
+		)
+		(net
+			(code "4")
+			(name "/AC_L2")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "5")
+				(pinfunction "AC_Line2_5")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U1")
+				(pin "1")
+				(pinfunction "AC/N_1")
+				(pintype "power_in")
+			)
+		)
+		(net
+			(code "5")
+			(name "/BOOT")
+			(class "Default")
+			(node
+				(ref "SW2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP11")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "15")
+				(pinfunction "IO9_15")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "6")
+			(name "/DE1")
+			(class "Default")
+			(node
+				(ref "R5")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP9")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "2")
+				(pinfunction "~{RE}_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "3")
+				(pinfunction "DE_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "18")
+				(pinfunction "IO20_18")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "7")
+			(name "/Data+")
+			(class "Default")
+			(node
+				(ref "D1")
+				(pin "1")
+				(pinfunction "A1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "7")
+				(pinfunction "Data+_7")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "J2")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP5")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "6")
+				(pinfunction "A_6")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "8")
+			(name "/Data-")
+			(class "Default")
+			(node
+				(ref "D1")
+				(pin "2")
+				(pinfunction "A2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "1")
+				(pinfunction "Data-_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP6")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "7")
+				(pinfunction "B_7")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "9")
+			(name "/EN")
+			(class "Default")
+			(node
+				(ref "C10")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C9")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R9")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP10")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "3")
+				(pinfunction "EN_3")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "10")
+			(name "/GPIO23")
+			(class "Default")
+			(node
+				(ref "TP14")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "21")
+				(pinfunction "IO23_21")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "11")
+			(name "/LED")
+			(class "Default")
+			(node
+				(ref "R10")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U5")
+				(pin "2")
+				(pinfunction "A_2")
+				(pintype "input")
+			)
+			(node
+				(ref "U6")
+				(pin "10")
+				(pinfunction "IO8_10")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "12")
+			(name "/RXD0")
+			(class "Default")
+			(node
+				(ref "TP13")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "24")
+				(pinfunction "RXD0/GPIO17_24")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "13")
+			(name "/RXD1")
+			(class "Default")
+			(node
+				(ref "R4")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP8")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "1")
+				(pinfunction "RO_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "17")
+				(pinfunction "IO19_17")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "14")
+			(name "/SCL")
+			(class "Default")
+			(node
+				(ref "R7")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "20")
+				(pinfunction "IO22_20")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "15")
+			(name "/SDA")
+			(class "Default")
+			(node
+				(ref "R6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "19")
+				(pinfunction "IO21_19")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "16")
+			(name "/TXD0")
+			(class "Default")
+			(node
+				(ref "TP12")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "25")
+				(pinfunction "TXD0/GPIO16_25")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "17")
+			(name "/TXD1")
+			(class "Default")
+			(node
+				(ref "TP7")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "4")
+				(pinfunction "DI_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "16")
+				(pinfunction "IO18_16")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "18")
+			(name "/USB_D+")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "14")
+				(pinfunction "IO13_14")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "4")
+				(pinfunction "I/O2_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "19")
+			(name "/USB_D-")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "13")
+				(pinfunction "IO12_13")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "6")
+				(pinfunction "I/O1_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "20")
+			(name "/Vendor")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "3")
+				(pinfunction "Vendor_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "J5")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "21")
+			(name "Earth")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "10")
+				(pinfunction "Earth_Gnd_10")
+				(pintype "power_out")
+			)
+		)
+		(net
+			(code "22")
+			(name "GND")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C10")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C11")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C12")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C13")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C4")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C6")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C7")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C8")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C9")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "D1")
+				(pin "3")
+				(pinfunction "common_3")
+				(pintype "input")
+			)
+			(node
+				(ref "D2")
+				(pin "6")
+				(pinfunction "VSS_6")
+				(pintype "power_in")
+			)
+			(node
+				(ref "D3")
+				(pin "6")
+				(pinfunction "VSS_6")
+				(pintype "power_in")
+			)
+			(node
+				(ref "J1")
+				(pin "8")
+				(pinfunction "Gnd_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "J3")
+				(pin "1")
+				(pinfunction "GND_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J3")
+				(pin "5")
+				(pinfunction "GND_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "J3")
+				(pin "6")
+				(pinfunction "GND_6")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "A1")
+				(pinfunction "GND_A1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "A12")
+				(pinfunction "GND_A12")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "B1")
+				(pinfunction "GND_B1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "B12")
+				(pinfunction "GND_B12")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "S1")
+				(pinfunction "SHIELD_S1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J5")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R11")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R12")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW1")
+				(pin "3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW1")
+				(pin "4")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW2")
+				(pin "3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SW2")
+				(pin "4")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP2")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "3")
+				(pinfunction "-Vo_3")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U2")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U3")
+				(pin "5")
+				(pinfunction "GND_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "U4")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U5")
+				(pin "3")
+				(pinfunction "GND_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "U6")
+				(pin "1")
+				(pinfunction "GND_1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "28")
+				(pinfunction "GND__1_28")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_1")
+				(pinfunction "GND__2_29_1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_2")
+				(pinfunction "GND__3_29_2")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_3")
+				(pinfunction "GND__4_29_3")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_4")
+				(pinfunction "GND__5_29_4")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_5")
+				(pinfunction "GND__6_29_5")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_6")
+				(pinfunction "GND__7_29_6")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_7")
+				(pinfunction "GND__8_29_7")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_8")
+				(pinfunction "GND__9_29_8")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U6")
+				(pin "29_9")
+				(pinfunction "GND__10_29_9")
+				(pintype "power_in")
+			)
+			(node
+				(ref "U7")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "23")
+			(name "Net-(D2-DIN)")
+			(class "Default")
+			(node
+				(ref "D2")
+				(pin "2")
+				(pinfunction "DIN_2")
+				(pintype "input")
+			)
+			(node
+				(ref "D3")
+				(pin "1")
+				(pinfunction "DOUT_1")
+				(pintype "output")
+			)
+		)
+		(net
+			(code "24")
+			(name "Net-(D3-DIN)")
+			(class "Default")
+			(node
+				(ref "D3")
+				(pin "2")
+				(pinfunction "DIN_2")
+				(pintype "input")
+			)
+			(node
+				(ref "R8")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "25")
+			(name "Net-(J2-Pin_1)")
+			(class "Default")
+			(node
+				(ref "J2")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R1")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "26")
+			(name "Net-(J3-SCL)")
+			(class "Default")
+			(node
+				(ref "J3")
+				(pin "4")
+				(pinfunction "SCL_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "27")
+			(name "Net-(J3-SDA)")
+			(class "Default")
+			(node
+				(ref "J3")
+				(pin "3")
+				(pinfunction "SDA_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "28")
+			(name "Net-(J4-CC1)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "A5")
+				(pinfunction "CC1_A5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R12")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "29")
+			(name "Net-(J4-CC2)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "B5")
+				(pinfunction "CC2_B5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R11")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "30")
+			(name "Net-(J4-D+-PadA6)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "A6")
+				(pinfunction "D+_A6")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "J4")
+				(pin "B6")
+				(pinfunction "D+_B6")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "3")
+				(pinfunction "I/O2_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "31")
+			(name "Net-(J4-D--PadA7)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "A7")
+				(pinfunction "D-_A7")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "J4")
+				(pin "B7")
+				(pinfunction "D-_B7")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "1")
+				(pinfunction "I/O1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "32")
+			(name "Net-(U5-Y)")
+			(class "Default")
+			(node
+				(ref "R8")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U5")
+				(pin "4")
+				(pinfunction "Y_4")
+				(pintype "output")
+			)
+		)
+		(net
+			(code "33")
+			(name "VBUS")
+			(class "Default")
+			(node
+				(ref "C13")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "A4")
+				(pinfunction "VBUS_A4")
+				(pintype "power_out")
+			)
+			(node
+				(ref "J4")
+				(pin "A9")
+				(pinfunction "VBUS_A9")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "B4")
+				(pinfunction "VBUS_B4")
+				(pintype "passive")
+			)
+			(node
+				(ref "J4")
+				(pin "B9")
+				(pinfunction "VBUS_B9")
+				(pintype "passive")
+			)
+			(node
+				(ref "U7")
+				(pin "5")
+				(pinfunction "VBUS_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "34")
+			(name "unconnected-(D2-DOUT-Pad1)")
+			(class "Default")
+			(node
+				(ref "D2")
+				(pin "1")
+				(pinfunction "DOUT_1")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "35")
+			(name "unconnected-(D2-NC-Pad4)")
+			(class "Default")
+			(node
+				(ref "D2")
+				(pin "4")
+				(pinfunction "NC_4")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "36")
+			(name "unconnected-(D3-NC-Pad4)")
+			(class "Default")
+			(node
+				(ref "D3")
+				(pin "4")
+				(pinfunction "NC_4")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "37")
+			(name "unconnected-(J1-NC-Pad2)")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "2")
+				(pinfunction "NC_2")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "38")
+			(name "unconnected-(J1-NC-Pad4)")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "4")
+				(pinfunction "NC_4")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "39")
+			(name "unconnected-(J1-NC-Pad6)")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "6")
+				(pinfunction "NC_6")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "40")
+			(name "unconnected-(J1-NC-Pad9)")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "9")
+				(pinfunction "NC_9")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "41")
+			(name "unconnected-(J1-NC-Pad11)")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "11")
+				(pinfunction "NC_11")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "42")
+			(name "unconnected-(J4-SBU1-PadA8)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "A8")
+				(pinfunction "SBU1_A8")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "43")
+			(name "unconnected-(J4-SBU2-PadB8)")
+			(class "Default")
+			(node
+				(ref "J4")
+				(pin "B8")
+				(pinfunction "SBU2_B8")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "44")
+			(name "unconnected-(U2-NC-Pad4)")
+			(class "Default")
+			(node
+				(ref "U2")
+				(pin "4")
+				(pinfunction "NC_4")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "45")
+			(name "unconnected-(U5-NC-Pad1)")
+			(class "Default")
+			(node
+				(ref "U5")
+				(pin "1")
+				(pinfunction "NC_1")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "46")
+			(name "unconnected-(U6-IO0-Pad8)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "8")
+				(pinfunction "IO0_8")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "47")
+			(name "unconnected-(U6-IO1-Pad9)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "9")
+				(pinfunction "IO1_9")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "48")
+			(name "unconnected-(U6-IO2-Pad27)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "27")
+				(pinfunction "IO2_27")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "49")
+			(name "unconnected-(U6-IO3-Pad26)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "26")
+				(pinfunction "IO3_26")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "50")
+			(name "unconnected-(U6-IO4-Pad4)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "4")
+				(pinfunction "IO4_4")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "51")
+			(name "unconnected-(U6-IO5-Pad5)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "5")
+				(pinfunction "IO5_5")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "52")
+			(name "unconnected-(U6-IO6-Pad6)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "6")
+				(pinfunction "IO6_6")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "53")
+			(name "unconnected-(U6-IO7-Pad7)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "7")
+				(pinfunction "IO7_7")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "54")
+			(name "unconnected-(U6-IO10-Pad11)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "11")
+				(pinfunction "IO10_11")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "55")
+			(name "unconnected-(U6-IO11-Pad12)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "12")
+				(pinfunction "IO11_12")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "56")
+			(name "unconnected-(U6-IO15-Pad23)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "23")
+				(pinfunction "IO15_23")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "57")
+			(name "unconnected-(U6-NC-Pad22)")
+			(class "Default")
+			(node
+				(ref "U6")
+				(pin "22")
+				(pinfunction "NC_22")
+				(pintype "no_connect")
+			)
+		)
+	)
+)

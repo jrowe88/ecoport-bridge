@@ -22,3 +22,12 @@ captures/**/*.bin
 # Build output
 *.stl
 !hardware/enclosure/stl/.gitkeep
+
+# KiCad local/temporary files
+hardware/board/**/.history/
+hardware/board/**/_restore_backup_*/
+hardware/board/**/~*.lck
+hardware/board/**/*.kicad_prl
+hardware/board/**/fp-info-cache
+hardware/board/**/*-backups/
+hardware/board/**/*.bak
