@@ -38,6 +38,10 @@ J1 mounts on the **bottom** side and is soldered from the top.
 
 ## 2. SMD placement and reflow
 
+Open [`ibom.html`](ibom.html) in a browser while placing: click a BOM line to
+highlight its pads on the board. Regenerate it (Interactive HTML BOM plugin)
+whenever the PCB changes.
+
 Placement tips:
 
 - **Polarized / pin-1 parts:** D1 (SM712), D2/D3 (SK6812 notched corner),
@@ -46,10 +50,9 @@ Placement tips:
   go light on paste; inspect for bridges afterwards.
 - **U6 ground pad:** don't flood the module's center pads with paste; too
   much paste floats the module and opens the edge castellations.
-- **F1 (SF-2410SP fuse)** reflows like any SMD part. Confirm it is the rating
-  in the final BOM (0.5 A vs 1 A time-lag — see design review).
-- **J3 (Qwiic):** confirm the fitted part matches the footprint (BM04B
-  top-entry vs SM04B side-entry) — open item from design review.
+- **F1 (SF-2410SP100W-2, 1 A time-lag)** reflows like any SMD part. Check the
+  marking letter is **E** (1.00 A), not C (0.50 A).
+- **J3 (Qwiic)** is the top-entry BM04B-SRSS-TB, matching the footprint.
 
 Reflow profile (toaster oven):
 
@@ -105,15 +108,21 @@ PC's USB port.
 
 ## 5. Mains parts
 
-J1 is the EcoPort CTA-2045 connector (`420B2V12FL0`). **Pins 4, 6, 10 and
+J1 is the EcoPort CTA-2045 connector (`420B2V12FL0`). **Pins 4, 6, 9, 10 and
 11 are not used and must be pulled before soldering.** They sit next to the
-AC pins (5 and 12). The footprint has no pads for them. Leaving them in would
-put exposed metal next to mains and roughly halve the creepage distance.
+AC pins (5 and 12) or F1. The footprint has no pads for them. Leaving them in
+would put exposed metal next to mains and roughly halve the creepage distance.
 Pin 10 is the appliance's earth ground. The bridge has no use for earth (the
 IRM-05 is a Class II module and nothing else references it), and pulling it
-removes the only protective-earth metal near F1 and the AC traces.
+removes the only protective-earth metal near F1 and the AC traces. Pin 9 is a
+no-connect, but its floating pad sat 4.4 mm from F1 and 1.6 mm from pin 8
+(signal GND), shortening the mains-to-SELV creepage path.
 
-- [ ] Pull J1 pins **4, 6, 10, 11** (pliers, straight out from the housing).
+The connector has no pegs or hold-downs, so the seven remaining solder joints
+(1, 2, 3, 5, 7, 8, 12) carry all the mechanical load. The enclosure should
+take insertion and rocking forces off J1 (rib/shoulder around the housing).
+
+- [ ] Pull J1 pins **4, 6, 9, 10, 11** (pliers, straight out from the housing).
       Silkscreen on B.Cu reads "Pull Pins".
 - [ ] Fit J1 on the **bottom** side; solder from the top. Full fillets on
       pins 5 and 12; trim leads flush, no spikes.
@@ -126,7 +135,7 @@ removes the only protective-earth metal near F1 and the AC traces.
 
 With nothing connected to J1:
 
-- [ ] Continuity J1 pin 12 → F1 → U1 AC/N (fuse intact, ~0.2 Ω for 0.5 A).
+- [ ] Continuity J1 pin 12 → F1 → U1 AC/N (fuse intact, ~0.08 Ω for 1 A).
 - [ ] Continuity J1 pin 5 → U1 AC/L.
 - [ ] **Open circuit** from J1 pin 5 and pin 12 to each of: GND (TP1), +5V
       (TP3), +3V3 (TP4), J1 pins 1/7/8 (RS-485), USB-C shell.
@@ -170,11 +179,11 @@ Bench safety:
 
 ## Open items (from design review, 2026-10-17)
 
-- [ ] Fuse rating: 0.5 A → 1 A time-lag (SF-2410SP100W-2) for inrush margin.
+- [x] Fuse rating: 0.5 A → 1 A time-lag (SF-2410SP100W-2) for inrush margin.
 - [ ] F1 land pattern to Bourns recommended (3.00 × 2.80 mm pads, 8.60 mm).
-- [ ] Copper-to-edge ≥ 0.381 mm for OSH Park (zones, LED_5V, EN). J1 pad 10
-      was removed when pin 10 (earth) was pulled.
-- [ ] 3D model `420B2V12FL0-Pulled-Pins.step` still shows pin 10; regenerate
-      it with pins 4, 6, 10, 11 removed (cosmetic, affects 3D view only).
-- [ ] J3 MPN vs footprint (BM04B vs SM04B).
+- [ ] Copper-to-edge ≥ 0.381 mm for OSH Park (zones, LED_5V, EN). J1 pads 9
+      and 10 were removed when those pins were pulled.
+- [ ] 3D model `420B2V12FL0-Pulled-Pins.step` still shows pin 9; regenerate
+      it with pins 4, 6, 9, 10, 11 removed (cosmetic, affects 3D view only).
+- [x] J3 MPN vs footprint: top-entry BM04B-SRSS-TB(LF)(SN).
 - [ ] Reflow oven details and measured profile (section 2).

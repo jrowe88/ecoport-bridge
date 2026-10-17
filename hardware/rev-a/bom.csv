@@ -1,1 +1,32 @@
-Reference,Description,Manufacturer,MPN,Quantity,Notes
+Reference,Description,Manufacturer,MPN,Quantity,DigiKey,Notes
+"C1,C6,C11",Cap 22uF 16V X5R 1206,Murata Electronics,GRM319R61C226ME15J,3,490-GRM319R61C226ME15JCT-ND,
+"C2,C5,C7,C8,C9,C12-C15",Cap 0.1uF 50V X7R 0603,Murata Electronics,GCJ188R71H104KA12D,9,490-5798-1-ND,
+"C3,C4,C10,C16",Cap 1uF 25V X7R 0603,Murata Electronics,GRT188R71E105KE13D,4,490-GRT188R71E105KE13DCT-ND,
+D1,TVS RS-485 SM712 SOT-23,SMC Diode Solutions,SM712,1,1655-SM712CT-ND,
+"D2,D3",SK6812 addressable LED 5050 PLCC4 (LED strip),OPSCO Optoelectronics,SK6812,2,,Not stocked bare at DigiKey; use own stock or LCSC/Adafruit
+F1,Fuse 1A 250VAC time-lag 2410,Bourns,SF-2410SP100W-2,1,SF-2410SP100W-2CT-ND,Marking letter E
+H1,Jumper shunt 2.54mm,Sullins Connector Solutions,QPC02SXGN-RC,1,S9337-ND,Termination jumper on J2
+J1,CTA-2045 header 2x6 4.2mm vertical,On Shore Technology Inc.,420B2V12FL0,1,52-420B2V12FL0-ND,"Pull pins 4, 6, 9, 10, 11 before soldering"
+"J2,J5",Header 1x2 2.54mm,Sullins Connector Solutions,PREC002SAAN-RC,2,35-PREC002SAAN-RC-ND,
+J3,JST SH 4-pin top-entry (Qwiic),JST Sales America Inc.,BM04B-SRSS-TB(LF)(SN),1,455-BM04B-SRSS-TBCT-ND,
+J4,USB-C receptacle USB2.0,GCT,USB4085-GF-A,1,2073-USB4085-GF-ACT-ND,
+J7,JST PH 3-pin header (LED strip),JST Sales America Inc.,B3B-PH-K-S(LF)(SN),1,455-1705-ND,
+J7 mate housing,JST PH 3-pin housing (LED cable),JST Sales America Inc.,PHR-3,1,455-1126-ND,Not on schematic: mates with J7
+J7 mate crimps,JST PH crimp socket 24-30AWG,JST,SPH-002T-P0.5S,3,,Not on schematic: 3 per cable; order by MPN (several DigiKey packagings)
+R1,Res 120R 1% 1206,YAGEO,RC1206FR-07120RL,1,311-120FRCT-ND,RS-485 termination
+"R6,R7",Res 4.7k 1% 0603,YAGEO,RC0603FR-074K7L,2,311-4.70KHRCT-ND,
+R8,Res 470R 1% 0603,YAGEO,RC0603FR-07470RL,1,311-470HRCT-ND,
+"R4,R5,R9,R10",Res 10k 1% 0603,Vishay Dale,CRCW060310K0FKEA,4,541-10.0KHCT-ND,Sub for YAGEO RC0603FR-0710KL (0 stock at DigiKey)
+"R11,R12",Res 5.1k 1% 0603,Vishay Dale,CRCW06035K10FKEA,2,541-5.10KHCT-ND,Sub for YAGEO RC0603FR-075K1L (0 stock at DigiKey). USB-C CC pull-downs
+"SW1,SW2","Tactile switch SMD (RESET, BOOT)",Same Sky (Formerly CUI Devices),TS04-66-50-BK-260-SMT,2,2223-TS04-66-50-BK-260-SMT-ND,
+U1,AC-DC 5V 1A IRM-05-5,MEAN WELL USA Inc.,IRM-05-5,1,1866-3027-ND,
+U2,LDO 3.3V 1A SOT-23-5,Texas Instruments,TLV75733PDBVR,1,296-50414-1-ND,0 stock at DigiKey. TLV75733PDYDR (thin SOT-23-5) is in stock; verify pinout/footprint before substituting
+U3,RS-485 transceiver SP3485 TSSOP-8,UMW,SP3485EET,1,4518-SP3485EETCT-ND,
+"U4,U7",USB ESD USBLC6-2SC6,STMicroelectronics,USBLC6-2SC6,2,497-5235-1-ND,
+U5,Level shifter SN74LV1T34 SC-70-5,Texas Instruments,SN74LV1T34DCKR,1,296-37177-1-ND,
+U6,ESP32-C6-WROOM-1-N8 module,Espressif Systems,ESP32-C6-WROOM-1-N8,1,1965-ESP32-C6-WROOM-1-N8CT-ND,
+U8,Ideal diode LM66100 SC-70-6,Texas Instruments,LM66100DCKR,1,296-53541-1-ND,USB VBUS to +5V
+"TP1,TP2",Test point miniature black,Keystone Electronics,5001,2,36-5001-ND,GND
+"TP3,TP4,TP14",Test point miniature red,Keystone Electronics,5000,3,36-5000-ND,TP14 is marked not-in-BOM in the schematic; included here because it uses the Keystone footprint
+"R2,R3",Res 390R 1% 0603 (bus bias),YAGEO,RC0603FR-07390RL,0,,DNP unless this node biases the bus
+--,M2.5 screws for case (4 per board),,,4,,"Use nylon at the hole by J1/AC_L1 (64.05, 35.15); see mounting-hole note"

@@ -39,3 +39,6 @@ hardware/board/**/_autosave-*
 hardware/board/**/*-save.pro
 hardware/board/**/*-save.kicad_pcb
 hardware/board/**/\#auto_saved_files\#
+# Exports land next to the project by default; released copies go in hardware/rev-*/
+hardware/board/*/*.step
+hardware/board/*/bom/
