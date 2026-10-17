@@ -5274,6 +5274,209 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Samacsys:SF-2410SP050W-2"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "F"
+				(at 13.97 6.35 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "SF-2410SP050W-2"
+				(at 13.97 3.81 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "Samacsys:FUSC6125X236N"
+				(at 13.97 -96.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SF-2410SPxxxW.pdf"
+				(at 13.97 -196.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Description" "Surface Mount Fuses 0.5A Time Lag 2410 SinglFuse"
+				(at 0 0 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Height" "2.36"
+				(at 13.97 -396.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Manufacturer_Name" "Bourns"
+				(at 13.97 -496.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Manufacturer_Part_Number" "SF-2410SP050W-2"
+				(at 13.97 -596.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Mouser Part Number" "652-SF-2410SP050W-2"
+				(at 13.97 -696.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP050W-2?qs=55YtniHzbhAbLtmcAyIlLQ%3D%3D"
+				(at 13.97 -796.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Arrow Part Number" "SF-2410SP050W-2"
+				(at 13.97 -896.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp050w-2/bourns?region=nac"
+				(at 13.97 -996.19 0)
+				(show_name yes)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(symbol "SF-2410SP050W-2_1_1"
+				(rectangle
+					(start 5.08 1.27)
+					(end 12.7 -1.27)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 0) (xy 12.7 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 0 0 0)
+					(length 5.08)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 17.78 0 180)
+					(length 5.08)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "SnapEDA:B3B-PH-K-S"
 			(pin_names
 				(offset 1.016)
@@ -8090,7 +8293,7 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 53.34) (xy 54.61 69.85)
+			(xy 54.61 53.34) (xy 54.61 71.12)
 		)
 		(stroke
 			(width 0)
@@ -8277,6 +8480,16 @@
 			(type default)
 		)
 		(uuid "50ee101a-c73d-44ea-9dfb-f581638cf11b")
+	)
+	(wire
+		(pts
+			(xy 90.17 63.5) (xy 104.14 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "525723c4-32a7-45e7-9e53-92062a255c92")
 	)
 	(wire
 		(pts
@@ -8780,7 +8993,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 63.5) (xy 104.14 63.5)
+			(xy 57.15 69.85) (xy 67.31 69.85)
 		)
 		(stroke
 			(width 0)
@@ -8920,7 +9133,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 58.42) (xy 57.15 63.5)
+			(xy 57.15 58.42) (xy 57.15 69.85)
 		)
 		(stroke
 			(width 0)
@@ -9107,6 +9320,16 @@
 			(type default)
 		)
 		(uuid "9e923abb-a030-4b89-b59c-2ad490c127f3")
+	)
+	(wire
+		(pts
+			(xy 85.09 69.85) (xy 90.17 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f1599d6-3c79-4147-a4ae-e1d1c9142ea7")
 	)
 	(wire
 		(pts
@@ -9967,6 +10190,16 @@
 			(type default)
 		)
 		(uuid "efa14cbd-2630-4b39-aba0-6934817f5950")
+	)
+	(wire
+		(pts
+			(xy 90.17 69.85) (xy 90.17 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "efbc0479-f672-48f4-bd97-4d116e97e511")
 	)
 	(wire
 		(pts
@@ -11193,7 +11426,7 @@
 			"hBBCCLlc/B/njmEDLDiSjAAAAABJRU5ErkJggg=="
 		)
 	)
-	(label "AC_L2"
+	(label "AC_L2_F"
 		(at 95.25 63.5 0)
 		(fields_autoplaced yes)
 		(effects
@@ -11285,6 +11518,29 @@
 			(justify left bottom)
 		)
 		(uuid "1aad00c1-90a7-42b7-966a-2b2d1a06462b")
+	)
+	(label "AC_L2"
+		(at 59.69 69.85 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "22d0512d-9e4d-493f-b75b-522bcb8c23d0")
+		(property "Netclass" "Mains"
+			(at 59.69 71.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
 	)
 	(label "SDA"
 		(at 106.68 152.4 0)
@@ -20985,6 +21241,163 @@
 		)
 	)
 	(symbol
+		(lib_id "Samacsys:SF-2410SP050W-2")
+		(at 67.31 69.85 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e2c25e2e-5b5b-4363-b9b5-abc21f196b2d")
+		(property "Reference" "F1"
+			(at 76.2 63.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SF-2410SP050W-2"
+			(at 76.2 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Samacsys:FUSC6125X236N"
+			(at 76.2 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SF-2410SPxxxW.pdf"
+			(at 76.2 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Surface Mount Fuses 0.5A Time Lag 2410 SinglFuse"
+			(at 76.2 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Height" "2.36"
+			(at 76.2 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Name" "Bourns"
+			(at 76.2 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SF-2410SP050W-2"
+			(at 76.2 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" "652-SF-2410SP050W-2"
+			(at 76.2 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP050W-2?qs=55YtniHzbhAbLtmcAyIlLQ%3D%3D"
+			(at 76.2 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Arrow Part Number" "SF-2410SP050W-2"
+			(at 76.2 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp050w-2/bourns?region=nac"
+			(at 76.2 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "16f532a1-cc69-4a9b-94b1-579444df3589")
+		)
+		(pin "2"
+			(uuid "221d4363-de28-4eae-ba8c-182fc6d0e9fa")
+		)
+		(instances
+			(project "ecoport-bridge-v1"
+				(path "/2df6f809-6dc3-4e88-ae5c-1829baf48336"
+					(reference "F1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_name "TestPoint_1")
 		(lib_id "Connector:TestPoint")
 		(at 220.98 213.36 90)
@@ -21432,7 +21845,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 54.61 69.85 0)
+		(at 54.61 71.12 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -21443,7 +21856,7 @@
 		(fields_autoplaced yes)
 		(uuid "f319c99a-e0db-4373-b325-8da3ff24e974")
 		(property "Reference" "#PWR03"
-			(at 54.61 76.2 0)
+			(at 54.61 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21454,7 +21867,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 54.61 74.93 0)
+			(at 54.61 76.2 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -21464,7 +21877,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 54.61 69.85 0)
+			(at 54.61 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21475,7 +21888,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 54.61 69.85 0)
+			(at 54.61 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21486,7 +21899,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 54.61 69.85 0)
+			(at 54.61 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

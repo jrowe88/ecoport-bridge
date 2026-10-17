@@ -76,12 +76,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "creepage|65162390|40115623|65d15641-9099-4602-96b0-ad6aba96d0d5|1a86a20c-1805-4829-86e4-620611f0f9de",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -550,7 +545,7 @@
         "tuning_profile": ""
       },
       {
-        "clearance": 3.0,
+        "clearance": 2.5,
         "name": "Mains",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2,
@@ -579,6 +574,9 @@
         "Mains"
       ],
       "/AC_L2": [
+        "Mains"
+      ],
+      "/AC_L2_F": [
         "Mains"
       ]
     },
