@@ -1,0 +1,276 @@
+(footprint "FUSC6125X236N"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "sF-2410SP050W-2")
+	(tags "Fuse")
+	(property "Reference" "F1"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "553d134c-ff2f-4d28-b6cd-8db39788464a")
+		(effects
+			(font
+				(size 1.2 1.2)
+				(thickness 0.2)
+			)
+		)
+	)
+	(property "Value" "SF-2410SP050W-2"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "bcfd4988-dee0-4bbf-b633-c4b10e7e24a2")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SF-2410SPxxxW.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dfd3bb93-631d-4807-93f9-d6a8dd58e379")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" "Surface Mount Fuses 0.5A Time Lag 2410 SinglFuse"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d3375db9-207e-4d27-a8e8-00520b349c0d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Height" "2.36"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8e08385a-5756-46e6-a94c-39b114349a67")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer_Name" "Bourns"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ecf24845-e9a4-4a6e-a540-5f79226df9b9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer_Part_Number" "SF-2410SP050W-2"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c86a24a2-ab3e-47d3-9655-d97d8b5086b9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Mouser Part Number" "652-SF-2410SP050W-2"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d6d092dc-66a0-4572-8a56-6d090d155af0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP050W-2?qs=55YtniHzbhAbLtmcAyIlLQ%3D%3D"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "54faa2eb-1f74-4c81-a11e-a02c03cb4fa1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Arrow Part Number" "SF-2410SP050W-2"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9182c9fc-c367-4790-991a-4348d5654df5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp050w-2/bourns?region=nac"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "de41a8ca-2e80-492a-8aa4-2d8cb91f9635")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(sheetname "/")
+	(sheetfile "ecoport-bridge-v1.kicad_sch")
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.49 -1.4)
+		(end 1.51 1.4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "04c86976-7d73-487d-9743-88d2de290e31")
+	)
+	(fp_line
+		(start -4.43 -1.58)
+		(end 4.47 -1.58)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "773248cd-a03a-4274-bc79-1d52f619e52a")
+	)
+	(fp_line
+		(start -4.43 1.58)
+		(end -4.43 -1.58)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "94bacd0c-8409-49dc-bc6f-86bba48d06f6")
+	)
+	(fp_line
+		(start 4.47 -1.58)
+		(end 4.47 1.58)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "8fb53f92-9ec4-4fd5-b00e-79fd00763c26")
+	)
+	(fp_line
+		(start 4.47 1.58)
+		(end -4.43 1.58)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "1ad74ea5-8cb0-4298-8864-f662c6931efd")
+	)
+	(fp_line
+		(start -3.05 -1.245)
+		(end 3.05 -1.245)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c36405f8-326e-4cac-bc48-a8aa9c28419f")
+	)
+	(fp_line
+		(start -3.05 1.245)
+		(end -3.05 -1.245)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "65da3444-7a8b-4f8d-8eed-b0c2e0887d37")
+	)
+	(fp_line
+		(start 3.05 -1.245)
+		(end 3.05 1.245)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "34ee1375-01c5-4059-b20c-60c6e2991aaa")
+	)
+	(fp_line
+		(start 3.05 1.245)
+		(end -3.05 1.245)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "f0470e15-5195-450d-9eb5-8685b03b58d2")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "2442a049-ea4a-45f3-a0c3-06a6faedf0eb")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -2.89 0)
+		(size 2.8 2.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.08928571429)
+		(uuid "3799071b-e25b-4174-aaa7-d94184d5ee55")
+	)
+	(pad "2" smd roundrect
+		(at 2.91 0)
+		(size 2.8 2.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.08928571429)
+		(uuid "bd5c7f45-504d-445c-b5a1-6bff776c7fef")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/../library/Custom.3dshapes/SF-2410SP050W-2.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -231,7 +231,7 @@
 		(uuid "77be19fa-3441-47bb-8fc8-3e02ab45049e")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/../library/BM04B-SRSS-TB.STEP"
+	(model "${KIPRJMOD}/../library/Custom.3dshapes/BM04B-SRSS-TB.STEP"
 		(offset
 			(xyz 0 0 0)
 		)

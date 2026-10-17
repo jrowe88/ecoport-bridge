@@ -31,3 +31,11 @@ hardware/board/**/*.kicad_prl
 hardware/board/**/fp-info-cache
 hardware/board/**/*-backups/
 hardware/board/**/*.bak
+hardware/board/**/*.bck
+hardware/board/**/*-bak
+hardware/board/**/*.000
+hardware/board/**/*.tmp
+hardware/board/**/_autosave-*
+hardware/board/**/*-save.pro
+hardware/board/**/*-save.kicad_pcb
+hardware/board/**/\#auto_saved_files\#

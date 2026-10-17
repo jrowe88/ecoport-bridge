@@ -437,7 +437,7 @@
 		(uuid "edaf47a1-96cc-4d70-a668-7b12f745375b")
 	)
 	(embedded_fonts no)
-	(model "${KICAD_3RD_PARTY}/EasyEDA.3dshapes/USC-C-SMD_USB4085-GF-A.wrl"
+	(model "${KIPRJMOD}/../library/Custom.3dshapes/USC-C-SMD_USB4085-GF-A.wrl"
 		(offset
 			(xyz 0 0 0)
 		)

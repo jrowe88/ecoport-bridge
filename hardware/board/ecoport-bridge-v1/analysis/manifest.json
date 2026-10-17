@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "project": "ecoport-bridge-v1.kicad_pro",
+  "current": "2026-10-17_0823",
+  "runs": {
+    "2026-10-17_0823": {
+      "source_hashes": {
+        "ecoport-bridge-v1.kicad_sch": "sha256:b861ea0b63685fe56301e91fbbaa1b1f618973dfdafb18fc40a019d769e90941",
+        "ecoport-bridge-v1.kicad_pcb": "sha256:ffdef5617e6ee1dcc6824cbb6a4e903f2fbbdd8f84f3ad2fc89c2074eed945c0",
+        "schematic.json": "sha256:d513c824bef77810593290451e1fa5180532b5274d7ff116abae9572c2beccb1",
+        "pcb.json": "sha256:b97f1b895e2ef0c9854bd868ad9c86dd07c493448ff0d4def9d0fa0df97c97b7"
+      },
+      "outputs": {
+        "schematic": "schematic.json",
+        "pcb": "pcb.json",
+        "cross_analysis": "cross_analysis.json",
+        "emc": "emc.json",
+        "thermal": "thermal.json"
+      },
+      "scripts": {
+        "schematic": "analyze_schematic.py ecoport-bridge-v1.kicad_sch"
+      },
+      "generated": "2026-10-17T08:24:06-06:00",
+      "pinned": false
+    }
+  }
+}

@@ -4,16 +4,13 @@
 	(condition "A.hasNetclass('Mains')")
 )
 (rule "Mains to SELV"
-  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetClass != 'Earth'")
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.Pad_Type != 'NPTH, mechanical'")
   (constraint clearance (min 4mm))
   (constraint creepage (min 6mm)))
 (rule "Mains to SELV at J1"
-  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetClass != 'Earth' && B.memberOfFootprint('J1')")
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.memberOfFootprint('J1')")
   (constraint clearance (min 4mm))
   (constraint creepage (min 5.5mm)))
-(rule "Mains to Earth"
-  (condition "A.NetClass == 'Mains' && B.NetClass == 'Earth'")
-  (constraint clearance (min 3mm)))
 (rule "Line to line"
 	(constraint clearance (min 2.5mm))
 	(condition "A.hasNetclass('Mains') && B.hasNetclass('Mains') && A.Net != B.Net")

@@ -760,15 +760,6 @@
 		(remove_unused_layers no)
 		(uuid "c461084b-d3ca-49a5-83cf-0a580719df27")
 	)
-	(pad "10" thru_hole circle
-		(at 12.6 4.2)
-		(size 2.5 2.5)
-		(drill 1.7)
-		(layers "*.Cu" "*.Mask")
-		(remove_unused_layers no)
-		(thermal_bridge_angle 90)
-		(uuid "dc2dd56b-0d3b-408a-abf9-3dd5dc859ee5")
-	)
 	(pad "12" thru_hole circle
 		(at 21 4.2)
 		(size 2.5 2.5)
@@ -779,7 +770,7 @@
 		(uuid "415496e7-745d-4d10-b804-58b45b84eabd")
 	)
 	(embedded_fonts no)
-	(model "C:/Dev/jrowe88/ecoport-bridge/hardware/board/library/420B2V12FL0-Pulled-Pins.step"
+	(model "${KIPRJMOD}/../library/Custom.3dshapes/420B2V12FL0-Pulled-Pins.step"
 		(offset
 			(xyz -2.5 2.78 0)
 		)
