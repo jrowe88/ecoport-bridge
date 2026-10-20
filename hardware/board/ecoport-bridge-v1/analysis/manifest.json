@@ -1,7 +1,7 @@
 {
   "version": 1,
   "project": "ecoport-bridge-v1.kicad_pro",
-  "current": "2026-10-17_0823",
+  "current": "2026-10-20_1202-3",
   "runs": {
     "2026-10-17_0823": {
       "source_hashes": {
@@ -21,6 +21,58 @@
         "schematic": "analyze_schematic.py ecoport-bridge-v1.kicad_sch"
       },
       "generated": "2026-10-17T08:24:06-06:00",
+      "pinned": false
+    },
+    "2026-10-20_1202": {
+      "source_hashes": {
+        "ecoport-bridge-v1.kicad_sch": "sha256:ef77ca5f1bc72d7e1df8fef8e7d73113d208d8186e1d9db8964a038945bce950"
+      },
+      "outputs": {
+        "schematic": "schematic.json",
+        "pcb": "pcb.json",
+        "cross_analysis": "cross_analysis.json",
+        "emc": "emc.json",
+        "thermal": "thermal.json"
+      },
+      "scripts": {
+        "schematic": "analyze_schematic.py ecoport-bridge-v1.kicad_sch"
+      },
+      "generated": "2026-10-20T12:02:00-06:00",
+      "pinned": false
+    },
+    "2026-10-20_1202-2": {
+      "source_hashes": {
+        "ecoport-bridge-v1.kicad_pcb": "sha256:75b7e459abf8de83f6ed2b2505d203ab580e3aea77e957e7ae9be82ff38e0697"
+      },
+      "outputs": {
+        "schematic": "schematic.json",
+        "pcb": "pcb.json",
+        "cross_analysis": "cross_analysis.json",
+        "emc": "emc.json",
+        "thermal": "thermal.json"
+      },
+      "scripts": {
+        "pcb": "analyze_pcb.py ecoport-bridge-v1.kicad_pcb"
+      },
+      "generated": "2026-10-20T12:02:27-06:00",
+      "pinned": false
+    },
+    "2026-10-20_1202-3": {
+      "source_hashes": {
+        "schematic.json": "sha256:efff406e77818f2612af5c2b16c9b5152627ace165723da4622a8eac675373c6",
+        "pcb.json": "sha256:6558f496a6ad655a4bba20c11b16e7816d5648b18113cb1578ef9d97a416543b"
+      },
+      "outputs": {
+        "schematic": "schematic.json",
+        "pcb": "pcb.json",
+        "cross_analysis": "cross_analysis.json",
+        "emc": "emc.json",
+        "thermal": "thermal.json"
+      },
+      "scripts": {
+        "emc": "analyze_emc.py"
+      },
+      "generated": "2026-10-20T12:02:28-06:00",
       "pinned": false
     }
   }
