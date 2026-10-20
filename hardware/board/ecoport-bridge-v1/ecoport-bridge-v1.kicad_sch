@@ -2609,7 +2609,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Custom:SF-2410SP050W-2"
+		(symbol "Custom:SF-2410SP100W-2"
 			(pin_names
 				(hide yes)
 			)
@@ -2629,7 +2629,7 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "SF-2410SP050W-2"
+			(property "Value" "SF-2410SP100W-2"
 				(at 13.97 3.81 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2662,7 +2662,7 @@
 					(justify left top)
 				)
 			)
-			(property "Description" "Surface Mount Fuses 0.5A Time Lag 2410 SinglFuse"
+			(property "Description" "Surface Mount Fuses 1A Time Lag 2410 SinglFuse"
 				(at 0 0 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2694,7 +2694,7 @@
 					(justify left top)
 				)
 			)
-			(property "Manufacturer_Part_Number" "SF-2410SP050W-2"
+			(property "Manufacturer_Part_Number" "SF-2410SP100W-2"
 				(at 13.97 -596.19 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2705,7 +2705,7 @@
 					(justify left top)
 				)
 			)
-			(property "Mouser Part Number" "652-SF-2410SP050W-2"
+			(property "Mouser Part Number" "652-SF-2410SP100W-2"
 				(at 13.97 -696.19 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2716,7 +2716,7 @@
 					(justify left top)
 				)
 			)
-			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP050W-2?qs=55YtniHzbhAbLtmcAyIlLQ%3D%3D"
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP100W-2"
 				(at 13.97 -796.19 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2727,7 +2727,7 @@
 					(justify left top)
 				)
 			)
-			(property "Arrow Part Number" "SF-2410SP050W-2"
+			(property "Arrow Part Number" "SF-2410SP100W-2"
 				(at 13.97 -896.19 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2738,7 +2738,7 @@
 					(justify left top)
 				)
 			)
-			(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp050w-2/bourns?region=nac"
+			(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp100w-2/bourns?region=nac"
 				(at 13.97 -996.19 0)
 				(show_name yes)
 				(do_not_autoplace no)
@@ -2749,7 +2749,7 @@
 					(justify left top)
 				)
 			)
-			(symbol "SF-2410SP050W-2_1_1"
+			(symbol "SF-2410SP100W-2_1_1"
 				(rectangle
 					(start 5.08 1.27)
 					(end 12.7 -1.27)
@@ -21973,7 +21973,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Custom:SF-2410SP050W-2")
+		(lib_id "Custom:SF-2410SP100W-2")
 		(at 67.31 69.85 0)
 		(unit 1)
 		(body_style 1)

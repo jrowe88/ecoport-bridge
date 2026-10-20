@@ -3,7 +3,7 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "sF-2410SP050W-2")
+	(descr "SF-2410SP100W-2")
 	(tags "Fuse")
 	(property "Reference" "F1"
 		(at 0 0 0)
@@ -16,7 +16,7 @@
 			)
 		)
 	)
-	(property "Value" "SF-2410SP050W-2"
+	(property "Value" "SF-2410SP100W-2"
 		(at 0 0 0)
 		(layer "F.SilkS")
 		(hide yes)
@@ -39,7 +39,7 @@
 			)
 		)
 	)
-	(property "Description" "Surface Mount Fuses 0.5A Time Lag 2410 SinglFuse"
+	(property "Description" "Surface Mount Fuses 1A Time Lag 2410 SinglFuse"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -76,7 +76,7 @@
 			)
 		)
 	)
-	(property "Manufacturer_Part_Number" "SF-2410SP050W-2"
+	(property "Manufacturer_Part_Number" "SF-2410SP100W-2"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
@@ -89,7 +89,7 @@
 			)
 		)
 	)
-	(property "Mouser Part Number" "652-SF-2410SP050W-2"
+	(property "Mouser Part Number" "652-SF-2410SP100W-2"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
@@ -102,7 +102,7 @@
 			)
 		)
 	)
-	(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP050W-2?qs=55YtniHzbhAbLtmcAyIlLQ%3D%3D"
+	(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Bourns/SF-2410SP100W-2"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
@@ -115,7 +115,7 @@
 			)
 		)
 	)
-	(property "Arrow Part Number" "SF-2410SP050W-2"
+	(property "Arrow Part Number" "SF-2410SP100W-2"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
@@ -128,7 +128,7 @@
 			)
 		)
 	)
-	(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp050w-2/bourns?region=nac"
+	(property "Arrow Price/Stock" "https://www.arrow.com/en/products/sf-2410sp100w-2/bourns?region=nac"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
