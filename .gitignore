@@ -42,3 +42,6 @@ hardware/board/**/\#auto_saved_files\#
 # Exports land next to the project by default; released copies go in hardware/rev-*/
 hardware/board/*/*.step
 hardware/board/*/bom/
+
+# Copyrighted reference documents (CTA-2045 standard, EPRI reports): local only
+docs/*.pdf

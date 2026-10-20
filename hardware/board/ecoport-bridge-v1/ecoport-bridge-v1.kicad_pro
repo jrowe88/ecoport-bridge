@@ -600,7 +600,7 @@
       "netlist": "",
       "plot": "",
       "specctra_dsn": "",
-      "step": "ecoport-bridge-v1.step",
+      "step": "ecoport-bridge-led-v1.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
