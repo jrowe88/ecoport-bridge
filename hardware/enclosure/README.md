@@ -33,7 +33,9 @@ To check fit, load the STEPs together with the board model in
 - 4 × M2.5 × 6 mm pan-head screws hold the board. Use **nylon** at the hole
   by J1 / AC_L1 (board coordinates 64.05, 35.15), which is close to mains;
   see `hardware/rev-a/bom.csv`.
-- 2 × #8-32 × 2" socket-head cap screws, as modelled in the Onshape assembly.
+- 2 × #8-32 × 2" socket-head cap screws mount the module to the water heater.
+  They pass through the lid and the bottom plate, so they also hold the lid
+  to the base.
 
 ## License
 
