@@ -1,0 +1,152 @@
+(footprint "MouseBite-Part_0.10in_outset_3h"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Break slot 2mm part, small: L=2mm, holes outset (sand flat with edge)")
+	(tags "mousebite stamp slot break tab 2mm edge outset")
+	(property "Reference" "REF**"
+		(at 0 -1 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c52d16ab-1eef-44ff-a032-02b1fe8b626c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "MouseBite-Part_0.10in_outset_3h"
+		(at 0 -1 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bb2a947f-d942-4481-b4e1-a1485776b2f6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "18953203-c45d-431c-babc-d438aec80c7e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "70f8ce8f-17e9-4bad-b7de-a1aee5840657")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr board_only exclude_from_pos_files exclude_from_bom dnp)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start 0 -0.254)
+		(end -1.016 -0.254)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "32d51464-21be-43fc-8153-bb930d445d5e")
+	)
+	(fp_line
+		(start 0 -0.254)
+		(end 1.016 -0.254)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "88388e65-d1e2-4a1c-b7fc-0ca4209e74cf")
+	)
+	(fp_rect
+		(start -2 -0.6)
+		(end 2 0.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "B.CrtYd")
+		(uuid "87d8215c-e1fb-4af3-9938-9d395d44932d")
+	)
+	(fp_rect
+		(start -2 -0.6)
+		(end 2 0.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "6e97a3ab-baeb-4a6c-8b0d-ac89e882a7cd")
+	)
+	(fp_line
+		(start -1.27 -0.26)
+		(end -1.27 0.26)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ab08ec61-9513-488c-a29b-68bb93c491e3")
+	)
+	(fp_line
+		(start -1.27 0)
+		(end 1.27 0)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "073679d7-9de9-42e9-951c-7679ef3b7e80")
+	)
+	(fp_line
+		(start 1.27 -0.26)
+		(end 1.27 0.26)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0554fd5d-fec8-4ae4-b773-fdd16897262c")
+	)
+	(pad "" np_thru_hole circle
+		(at -1.016 -0.254 180)
+		(size 0.508 0.508)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(uuid "d94ab0ad-b0f6-412d-85ce-d8e6dc80c856")
+	)
+	(pad "" np_thru_hole circle
+		(at 0 -0.25 180)
+		(size 0.508 0.508)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(uuid "69ef389b-0ece-446f-9058-df6fbb15c122")
+	)
+	(pad "" np_thru_hole circle
+		(at 1.016 -0.254 180)
+		(size 0.5 0.5)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(uuid "f2eb69f3-3b0c-4939-9b99-1c20e88ded26")
+	)
+	(embedded_fonts no)
+)

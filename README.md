@@ -79,7 +79,7 @@ for recorded traffic.
 ecoport-bridge/
 │
 ├── README.md
-├── LICENSE
+├── LICENSE             # AGPL-3.0 (software); hardware/LICENSE is CERN-OHL-S-2.0
 ├── CONTRIBUTING.md
 │
 ├── docs/                 # architecture, hardware, protocol, HOWTOs
@@ -99,7 +99,7 @@ Early planning / hardware on order. See `docs/reverse-engineering.md` and
 
 ## Documentation
 
-- [`docs/architecture.md`](docs/architecture.md) — software layering
+- [`docs/architecture.md`](docs/architecture.md) — software layering and the device ↔ Azure cloud architecture (telemetry, commands, storage, dashboard, security)
 - [`docs/hardware.md`](docs/hardware.md) — connector, pinout, safety, bring-up hardware
 - [`docs/protocol.md`](docs/protocol.md) — CTA-2045 protocol facts, capability matrix
 - [`docs/capabilities.md`](docs/capabilities.md) — what we can see, infer, log and control on the Rinnai REHP65
@@ -109,4 +109,16 @@ Early planning / hardware on order. See `docs/reverse-engineering.md` and
 
 ## License
 
-GNU Affero General Public License (AGPL) — see [LICENSE](LICENSE).
+Both licenses are copyleft: you can use, modify and share this project, and
+anything you distribute that's based on it has to stay under the same terms.
+
+- **Software** (`firmware/`, `python/`, `tools/`, `scripts/`, `test/`) —
+  GNU Affero General Public License v3.0 (`AGPL-3.0-only`), see
+  [LICENSE](LICENSE).
+- **Hardware** (`hardware/`: KiCad board, footprints, fab outputs, enclosure
+  CAD) — CERN Open Hardware Licence v2, Strongly Reciprocal
+  (`CERN-OHL-S-2.0`), see [hardware/LICENSE](hardware/LICENSE).
+- **Docs and captures** — AGPL-3.0, same as the software.
+
+Source location for the hardware (CERN-OHL-S §1.9):
+<https://github.com/jrowe88/ecoport-bridge>. It is also printed on the board.

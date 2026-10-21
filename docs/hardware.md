@@ -46,6 +46,9 @@ Ground). All other pins are left unconnected — **critically, pins 5 and 12
 carry actual AC line voltage** and must never be connected to our isolated
 RS-485 adapter. Pin 10 (Earth Ground) is distinct from pin 8 (Signal
 Ground); do not bond them together without understanding the implications.
+The rev-A bridge board doesn't use earth at all: J1 pin 10 is pulled from the
+connector along with the unused pins 4, 6, 9 and 11 (see
+`hardware/rev-a/assembly.md`).
 
 ```text
 420B2V12FL0

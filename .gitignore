@@ -22,3 +22,26 @@ captures/**/*.bin
 # Build output
 *.stl
 !hardware/enclosure/stl/.gitkeep
+
+# KiCad local/temporary files
+hardware/board/**/.history/
+hardware/board/**/_restore_backup_*/
+hardware/board/**/~*.lck
+hardware/board/**/*.kicad_prl
+hardware/board/**/fp-info-cache
+hardware/board/**/*-backups/
+hardware/board/**/*.bak
+hardware/board/**/*.bck
+hardware/board/**/*-bak
+hardware/board/**/*.000
+hardware/board/**/*.tmp
+hardware/board/**/_autosave-*
+hardware/board/**/*-save.pro
+hardware/board/**/*-save.kicad_pcb
+hardware/board/**/\#auto_saved_files\#
+# Exports land next to the project by default; released copies go in hardware/rev-*/
+hardware/board/*/*.step
+hardware/board/*/bom/
+
+# Copyrighted reference documents (CTA-2045 standard, EPRI reports): local only
+docs/*.pdf
