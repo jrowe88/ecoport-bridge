@@ -12,6 +12,13 @@ to home automation systems (MQTT, Matter, Home Assistant) via a small
 ESP32-class bridge device, built on top of a Python implementation of the
 CTA-2045 protocol.
 
+![Exploded view of the rev-A bridge: bottom plate with the PCB, and the lid](hardware/rev-a/images/exploded-rev-A.png)
+
+*Rev A: ESP32-C6 board with an on-board mains supply, plugged straight into
+the heater's CTA-2045 connector. See [`hardware/rev-a`](hardware/rev-a) for
+the board and [`hardware/enclosure`](hardware/enclosure) for the 3D-printed
+case.*
+
 ## Design principles
 
 - **Generic CTA-2045 core, separate from appliance-specific logic.** The

@@ -3,6 +3,13 @@
 Two-part 3D-printed case (lid + bottom plate) for the rev-A bridge board
 (`hardware/board/ecoport-bridge-v1`, outputs in `hardware/rev-a`).
 
+| Front | Back | Side |
+|:-----:|:----:|:----:|
+| ![Front of the case](../rev-a/images/front-rev-A.png) | ![Back of the case, with the CTA-2045 connector](../rev-a/images/back-rev-A.png) | ![Side of the case, with the USB-C port](../rev-a/images/side-rev-A.png) |
+
+More renders, including an exploded view, are in
+[`hardware/rev-a/images`](../rev-a/images).
+
 ## Source
 
 The enclosure is modelled in Onshape. The editable source is the public
