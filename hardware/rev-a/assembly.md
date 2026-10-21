@@ -105,6 +105,9 @@ PC's USB port.
 7. [ ] Reverse-block check: with USB still connected, apply 5.2 V from the
        bench into TP3. The bench should supply the board's current, and
        VBUS (meter at C16) should stay at the PC's level, not 5.2 V.
+       Blocking relies on U8's CE (pin 3) being tied to VOUT (+5V); with CE
+       grounded the LM66100 is just an always-on switch and VBUS follows the
+       bench. If VBUS rises toward 5.2 V, check U8 pin 3.
 
 ## 5. Mains parts
 

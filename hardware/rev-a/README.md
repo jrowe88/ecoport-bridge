@@ -12,7 +12,7 @@ board changes rather than editing it by hand.
 | `ibom.html` | Interactive HTML BOM for hand placement |
 | `3d/` | Board STEP model (for the enclosure in `hardware/enclosure/`) |
 | `images/` | Renders, photos and other visual assets |
-| `gerbers/` | Fab outputs (gerbers + drill) |
+| `gerbers/` | Fab outputs (gerbers + drill, also zipped). OSH Park was ordered from the `.kicad_pcb` directly; these are the record/fallback |
 | `pcb/`, `schematic/` | PDF plots of the board and schematic |
 
 The STEP is exported with

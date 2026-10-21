@@ -36,3 +36,16 @@ Never use absolute paths or `${KICAD_3RD_PARTY}` in board files or footprints.
 
 Copy `sym-lib-table` and `fp-lib-table` from an existing board folder into the
 new one. They only contain relative paths.
+
+## Board marking
+
+Silkscreen-only footprints (no pads, excluded from BOM and position files):
+
+- `JRowe_Logo_Trace`: maker's mark, "JR" drawn as traces ending in vias, ~8 mm.
+- `EcoPort_Bridge_Marking`: the logo plus product, revision, license and
+  source-URL text and a blank S/N box, ~37 × 12 mm. The source URL is the
+  CERN-OHL-S "Source Location" notice. Update the `REV` line in the footprint
+  for a new revision.
+
+Both are drawn on `F.SilkS`; placing one on the back side flips it to
+`B.SilkS` automatically.
