@@ -1,0 +1,69 @@
+@page "/"
+@inject IEcoPortApi Api
+@inject TimeProvider Time
+
+<PageTitle>Devices · EcoBridge</PageTitle>
+
+<MudText Typo="Typo.h5" Class="mb-4">Devices</MudText>
+
+@if (_error is not null)
+{
+    <MudAlert Severity="Severity.Error" Class="mb-4" data-testid="load-error">
+        Couldn't load devices: @_error
+    </MudAlert>
+}
+
+<MudTable Items="_devices" Loading="_loading" Hover="true" Elevation="1" Dense="true"
+          Breakpoint="Breakpoint.Xs" LoadingProgressColor="Color.Primary">
+    <HeaderContent>
+        <MudTh>Device</MudTh>
+        <MudTh>Connectivity</MudTh>
+        <MudTh>Last seen</MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Device">
+            <MudLink Href="@($"devices/{Uri.EscapeDataString(context.DeviceId)}")" Typo="Typo.body1">
+                @context.DeviceId
+            </MudLink>
+        </MudTd>
+        <MudTd DataLabel="Connectivity"><ConnectivityChip Connectivity="@context.Connectivity" /></MudTd>
+        <MudTd DataLabel="Last seen">
+            <span title="@Display.LocalTime(context.LastSeen)">@Display.Ago(context.LastSeen, Time.GetUtcNow())</span>
+        </MudTd>
+        <MudTd>
+            @if (context.Simulated)
+            {
+                <SimulatedChip />
+            }
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        @if (_error is null)
+        {
+            <MudText Class="mud-text-secondary">No devices registered yet.</MudText>
+        }
+    </NoRecordsContent>
+</MudTable>
+
+@code {
+    private IReadOnlyList<DeviceSummaryDto> _devices = [];
+    private bool _loading = true;
+    private string? _error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _devices = await Api.GetDevicesAsync();
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _error = Display.LoadError(ex);
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+}

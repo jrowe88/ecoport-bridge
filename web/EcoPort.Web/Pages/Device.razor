@@ -1,0 +1,246 @@
+@page "/devices/{DeviceId}"
+@using MudBlazor.Charts
+@implements IDisposable
+@inject IEcoPortApi Api
+@inject TimeProvider Time
+
+<PageTitle>@DeviceId · EcoBridge</PageTitle>
+
+<MudStack Row="true" AlignItems="AlignItems.Center" Wrap="Wrap.Wrap" Spacing="2" Class="mb-4">
+    <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" Href="" aria-label="All devices" title="All devices" />
+    <MudText Typo="Typo.h5">@DeviceId</MudText>
+    @if (_state is not null)
+    {
+        <ConnectivityChip Connectivity="@_state.Connectivity" />
+        @if (_state.Simulated)
+        {
+            <SimulatedChip />
+        }
+    }
+</MudStack>
+
+@if (_loading)
+{
+    <MudProgressLinear Indeterminate="true" Color="Color.Primary" Class="mb-4" />
+}
+
+@if (_error is not null)
+{
+    <MudAlert Severity="@(_state is null ? Severity.Error : Severity.Warning)" Class="mb-4" data-testid="load-error">
+        @(_state is null ? "Couldn't load this device" : "Refresh failed; showing the last data received"): @_error
+    </MudAlert>
+}
+
+@if (_notFound)
+{
+    <MudAlert Severity="Severity.Info">Device @DeviceId was not found.</MudAlert>
+}
+else if (_state is { } s)
+{
+    <MudGrid Spacing="3" Class="mb-4">
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="1" Class="pa-4" Style="height: 100%">
+                <MudText Typo="Typo.overline">Power</MudText>
+                <MudText Typo="Typo.h4" data-testid="power">@Display.Watts(s.ElectricityRateW)</MudText>
+                <MudText Typo="Typo.caption" Class="mud-text-secondary">electricity rate</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="1" Class="pa-4" Style="height: 100%">
+                <MudText Typo="Typo.overline">Stored energy</MudText>
+                <MudText Typo="Typo.h4" data-testid="stored-energy">@Display.Percent(s.StoredEnergyPercent)</MudText>
+                <MudText Typo="Typo.caption" Class="mud-text-secondary">
+                    @(s.StoredEnergyPercent is null ? "vacation or no data" : "of tank capacity")
+                </MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="1" Class="pa-4" Style="height: 100%">
+                <MudText Typo="Typo.overline">Operating state</MudText>
+                <MudText Typo="Typo.h4" data-testid="opstate">@Display.OpState(s.OpState)</MudText>
+                <MudText Typo="Typo.caption" Class="mud-text-secondary">sample @Display.LocalTime(s.SampleTime)</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="1" Class="pa-4" Style="height: 100%">
+                <MudText Typo="Typo.overline">Last seen</MudText>
+                <MudText Typo="Typo.h4" data-testid="last-seen">@Display.Ago(s.LastSeen, Time.GetUtcNow())</MudText>
+                <MudText Typo="Typo.caption" Class="mud-text-secondary">@Display.LocalTime(s.LastSeen) · @s.Connectivity</MudText>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+
+    <MudPaper Elevation="1" Class="pa-4">
+        <MudText Typo="Typo.h6">Last 24 hours</MudText>
+        @if (_powerSeries.Count == 0)
+        {
+            <MudText Class="mud-text-secondary my-4" data-testid="no-telemetry">No telemetry in the last 24 hours.</MudText>
+        }
+        else
+        {
+            <MudText Typo="Typo.subtitle2" Class="mt-4">Power (W)</MudText>
+            <div data-testid="power-chart">
+                <MudChart T="double" ChartType="ChartType.Timeseries" ChartSeries="_powerSeries"
+                          ChartOptions="_powerOptions" Width="100%" Height="260px" />
+            </div>
+            <MudText Typo="Typo.subtitle2" Class="mt-4">Stored energy (%)</MudText>
+            <div data-testid="energy-chart">
+                <MudChart T="double" ChartType="ChartType.Timeseries" ChartSeries="_energySeries"
+                          ChartOptions="_energyOptions" Width="100%" Height="260px" />
+            </div>
+        }
+    </MudPaper>
+}
+
+@code {
+    /// <summary>How often the page re-reads state and telemetry.</summary>
+    public static readonly TimeSpan RefreshInterval = TimeSpan.FromSeconds(30);
+
+    [Parameter] public string DeviceId { get; set; } = "";
+
+    private readonly CancellationTokenSource _cts = new();
+    private PeriodicTimer? _timer;
+    private DeviceStateDto? _state;
+    private bool _notFound;
+    private bool _loading = true;
+    private string? _error;
+    private string? _loadedDeviceId;
+
+    private List<ChartSeries<double>> _powerSeries = [];
+    private List<ChartSeries<double>> _energySeries = [];
+
+    private readonly TimeSeriesChartOptions _powerOptions = MakeChartOptions("N0");
+    private readonly TimeSeriesChartOptions _energyOptions = MakeChartOptions("0");
+
+    private static TimeSeriesChartOptions MakeChartOptions(string yFormat) => new()
+    {
+        TimeLabelSpacing = TimeSpan.FromHours(3),
+        TimeLabelFormat = "HH:mm",
+        TooltipTimeLabelFormat = "ddd HH:mm",
+        YAxisFormat = yFormat,
+        YAxisRequireZeroPoint = true,
+        ShowDataMarkers = false,
+        ShowLegend = false,
+        LineStrokeWidth = 2,
+        XAxisLines = false,
+    };
+
+    protected override void OnInitialized()
+    {
+        _timer = new PeriodicTimer(RefreshInterval, Time);
+        _ = RefreshLoopAsync(_timer, _cts.Token);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (_loadedDeviceId != DeviceId)
+        {
+            _loadedDeviceId = DeviceId;
+            _state = null;
+            _notFound = false;
+            _error = null;
+            _powerSeries = [];
+            _energySeries = [];
+            _loading = true;
+            await LoadAsync();
+        }
+    }
+
+    private async Task RefreshLoopAsync(PeriodicTimer timer, CancellationToken ct)
+    {
+        try
+        {
+            while (await timer.WaitForNextTickAsync(ct))
+            {
+                await InvokeAsync(async () =>
+                {
+                    await LoadAsync();
+                    StateHasChanged();
+                });
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // Component disposed.
+        }
+    }
+
+    private async Task LoadAsync()
+    {
+        var deviceId = DeviceId;
+        var ct = _cts.Token;
+        try
+        {
+            var state = await Api.GetStateAsync(deviceId, ct);
+            if (state is null)
+            {
+                _notFound = true;
+                _state = null;
+                _error = null;
+                return;
+            }
+
+            // Whole seconds, so the range is exactly 24 h after the client formats it.
+            var now = Time.GetUtcNow();
+            var to = now.AddTicks(-(now.Ticks % TimeSpan.TicksPerSecond));
+            var points = await Api.GetTelemetryAsync(deviceId, to.AddHours(-24), to, ct);
+
+            if (deviceId != DeviceId)
+            {
+                return; // navigated to another device meanwhile
+            }
+
+            _state = state;
+            _notFound = false;
+            _error = null;
+            BuildSeries(points);
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _error = Display.LoadError(ex);
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private void BuildSeries(IReadOnlyList<TelemetryPointDto> points)
+    {
+        if (points.Count == 0)
+        {
+            _powerSeries = [];
+            _energySeries = [];
+            return;
+        }
+
+        _powerSeries =
+        [
+            new ChartSeries<double>
+            {
+                Name = "Power (W)",
+                Data = points.Select(p => new TimeValue<double>(p.T.LocalDateTime, p.ElectricityRateW)).ToArray(),
+            },
+        ];
+
+        // Points without a stored-energy value (vacation, no capacity) are left out rather than drawn as 0.
+        _energySeries =
+        [
+            new ChartSeries<double>
+            {
+                Name = "Stored energy (%)",
+                Data = points
+                    .Where(p => p.StoredEnergyPercent is not null)
+                    .Select(p => new TimeValue<double>(p.T.LocalDateTime, p.StoredEnergyPercent!.Value))
+                    .ToArray(),
+            },
+        ];
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+        _timer?.Dispose();
+    }
+}

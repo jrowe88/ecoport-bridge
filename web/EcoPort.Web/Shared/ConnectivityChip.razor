@@ -1,0 +1,11 @@
+@* Connectivity status (online / delayed / offline) as a colored chip. *@
+<MudChip T="string"
+         Color="@Display.ConnectivityColor(Connectivity)"
+         Variant="Variant.Outlined"
+         Size="Size.Small"
+         Icon="@Icons.Material.Filled.Circle"
+         data-testid="connectivity-chip">@Connectivity</MudChip>
+
+@code {
+    [Parameter, EditorRequired] public string Connectivity { get; set; } = "";
+}

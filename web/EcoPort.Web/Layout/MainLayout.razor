@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider @ref="_themeProvider" @bind-IsDarkMode="_isDarkMode" ObserveSystemDarkModeChange="true" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="true">
+        <MudIcon Icon="@Icons.Material.Filled.WaterDrop" Class="mr-2" />
+        <MudLink Href="" Color="Color.Inherit" Underline="Underline.None" Typo="Typo.h6">EcoBridge</MudLink>
+        <MudText Typo="Typo.caption" Class="ml-2" Style="opacity: .75">bench</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Href="/.auth/logout"
+                       aria-label="Sign out" title="Sign out" />
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="py-6">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudThemeProvider? _themeProvider;
+    private bool _isDarkMode;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && _themeProvider is not null)
+        {
+            _isDarkMode = await _themeProvider.GetSystemDarkModeAsync();
+            StateHasChanged();
+        }
+    }
+}
