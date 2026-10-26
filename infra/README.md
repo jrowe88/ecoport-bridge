@@ -99,7 +99,7 @@ Prerequisites: Azure CLI (logged in to the personal subscription), PowerShell
    apply; if this step gets 403, wait and retry.
 
 4. **Dashboard + User API**: `./infra/deploy-web.ps1 -Env dev`.
-   `-ApiVersion` (default `8.0`) must match `platform.apiRuntime` in
+   `-ApiVersion` (default `10.0`; SWA lists `dotnet-isolated:10.0`, see cloud/README.md) must match `platform.apiRuntime` in
    `web/EcoPort.Web/wwwroot/staticwebapp.config.json`.
 
 5. **Invite yourself to role `bench`** (every route except the login page

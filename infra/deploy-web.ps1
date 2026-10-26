@@ -23,7 +23,7 @@ param(
     [string] $SubscriptionId = '54c73415-2ebc-4270-8390-46985acfa7a7',
 
     # Managed-functions runtime version for dotnet-isolated.
-    [string] $ApiVersion = '8.0'
+    [string] $ApiVersion = '10.0'
 )
 
 $ErrorActionPreference = 'Stop'
