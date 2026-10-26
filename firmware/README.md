@@ -9,7 +9,7 @@ community `esp-idf-svc` crates). This is not bare-metal Rust: crates and example
 | Crate | Builds for | Purpose |
 |---|---|---|
 | [`cta2045/`](cta2045/) | PC and ESP32 | CTA-2045 link layer: framing, checksum, stream parser. No hardware dependencies. Ported from `python/src/ecoport/cta2045/` |
-| [`bridge-core/`](bridge-core/) | PC and ESP32 | Device logic with no hardware dependencies: record types, the upload JSON and request signing from [`contracts/device-v1/`](../contracts/device-v1/), timestamps |
+| [`bridge-core/`](bridge-core/) | PC and ESP32 | Device logic with no hardware dependencies: records and sequence numbers, the RAM upload buffer and schedule, the upload JSON and request signing from [`contracts/device-v1/`](../contracts/device-v1/), and a heater source that replays `captures/rinnai/*/timeline.csv` |
 | [`ucm/`](ucm/) | ESP32-C6 only | The device app: Wi-Fi, status LED, RS-485 link, and later the record buffer, uploader and command executor |
 
 Appliance-specific code (Rinnai) will get its own host-testable crate next to `cta2045`.
