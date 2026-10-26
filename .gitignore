@@ -11,6 +11,13 @@ firmware/*/target/
 firmware/ucm/.embuild/
 firmware/ucm/src/config.rs
 
+# .NET (cloud/, web/)
+bin/
+obj/
+local.settings.json
+*.user
+TestResults/
+
 # OS / editor
 .DS_Store
 Thumbs.db

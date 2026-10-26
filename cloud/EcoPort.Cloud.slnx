@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EcoPort.Cloud.Contracts/EcoPort.Cloud.Contracts.csproj" />
+    <Project Path="src/EcoPort.Cloud.Core/EcoPort.Cloud.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EcoPort.Cloud.Tests/EcoPort.Cloud.Tests.csproj" />
+  </Folder>
+</Solution>

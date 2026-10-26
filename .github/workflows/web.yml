@@ -1,0 +1,42 @@
+name: Web
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "web/**"
+      - "cloud/src/EcoPort.Cloud.Api/**"
+      - "cloud/src/EcoPort.Cloud.Contracts/**"
+      - "cloud/src/EcoPort.Cloud.Core/**"
+      - ".github/workflows/web.yml"
+  pull_request:
+    paths:
+      - "web/**"
+      - "cloud/src/EcoPort.Cloud.Api/**"
+      - "cloud/src/EcoPort.Cloud.Contracts/**"
+      - "cloud/src/EcoPort.Cloud.Core/**"
+      - ".github/workflows/web.yml"
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  dotnet:
+    name: Dashboard build and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - run: dotnet build web/EcoPort.Web.slnx -c Release
+      - run: dotnet test web/EcoPort.Web.slnx -c Release --no-build
+      - run: dotnet publish web/EcoPort.Web/EcoPort.Web.csproj -c Release -o web-publish
+      - name: Check PWA assets were published
+        run: |
+          for f in index.html manifest.webmanifest service-worker.js service-worker-assets.js staticwebapp.config.json login.html; do
+            test -f "web-publish/wwwroot/$f" || { echo "missing $f"; exit 1; }
+          done
