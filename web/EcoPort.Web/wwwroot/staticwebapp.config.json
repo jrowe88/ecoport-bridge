@@ -10,6 +10,18 @@
       "allowedRoles": ["anonymous"]
     },
     {
+      "route": "/manifest.webmanifest",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/icon-192.png",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/icon-512.png",
+      "allowedRoles": ["anonymous"]
+    },
+    {
       "route": "/api/*",
       "allowedRoles": ["bench"]
     },
