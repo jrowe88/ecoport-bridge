@@ -1,0 +1,48 @@
+name: Infra
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "infra/**"
+      - ".github/workflows/infra.yml"
+  pull_request:
+    paths:
+      - "infra/**"
+      - ".github/workflows/infra.yml"
+  workflow_dispatch:
+
+jobs:
+  bicep:
+    name: Bicep build + lint (offline)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Bicep
+        run: az bicep install
+      - name: Build
+        run: |
+          az bicep build --file infra/bicep/main.bicep --stdout > /dev/null
+          az bicep build-params --file infra/bicep/dev.bicepparam --stdout > /dev/null
+      - name: Lint (fail on any warning)
+        run: |
+          out=$(az bicep lint --file infra/bicep/main.bicep 2>&1)
+          echo "$out"
+          if echo "$out" | grep -qiE 'warning|error'; then exit 1; fi
+
+  scripts:
+    name: PowerShell syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse deploy scripts
+        shell: pwsh
+        run: |
+          $failed = $false
+          foreach ($f in Get-ChildItem infra -Filter *.ps1) {
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($f.FullName, [ref]$null, [ref]$errors) | Out-Null
+            if ($errors) { $failed = $true; $errors | ForEach-Object { Write-Host "$($f.Name): $_" } }
+          }
+          if ($failed) { exit 1 }
