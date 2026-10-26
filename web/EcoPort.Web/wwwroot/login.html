@@ -59,16 +59,61 @@
         }
         a.provider:hover, a.provider:focus-visible { background: var(--accent); color: var(--on-accent); }
         small { display: block; margin-top: 16px; color: var(--muted); }
+        .status {
+            margin: 0 0 20px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: .95rem;
+        }
+        .status p { margin: 0 0 10px; color: var(--text); }
+        .status p.hint { color: var(--muted); font-size: .85rem; }
+        .status a.provider { margin-bottom: 0; }
+        [hidden] { display: none !important; }
     </style>
 </head>
 <body>
     <main>
         <h1>EcoBridge</h1>
         <p>Sign in to see the bench dashboard.</p>
-        <a class="provider" href="/.auth/login/aad?post_login_redirect_uri=/">Sign in with Microsoft</a>
-        <a class="provider" href="/.auth/login/github?post_login_redirect_uri=/">Sign in with GitHub</a>
-        <small>Access needs an invitation to the <code>bench</code> role. If you are signed in and still land here,
-            ask for an invitation or <a href="/.auth/logout">sign out</a> and try another account.</small>
+
+        <!-- Filled in from /.auth/me when someone is already signed in. -->
+        <div id="allowed" class="status" hidden>
+            <p>Signed in as <strong data-user></strong> via <span data-provider></span>.</p>
+            <a class="provider" href="/">Continue to dashboard</a>
+        </div>
+        <div id="denied" class="status" role="alert" hidden>
+            <p>Signed in as <strong data-user></strong> via <span data-provider></span>,
+                but that account doesn't have access to this dashboard.</p>
+            <a class="provider" href="/.auth/logout?post_logout_redirect_uri=/login.html">Sign out</a>
+            <p class="hint" id="aad-hint" hidden>Microsoft signs you in with the account your browser is already
+                using. To pick a different one, use a private window or a browser profile signed in to that account.</p>
+        </div>
+
+        <div id="providers">
+            <a class="provider" href="/.auth/login/aad?post_login_redirect_uri=/">Sign in with Microsoft</a>
+            <a class="provider" href="/.auth/login/github?post_login_redirect_uri=/">Sign in with GitHub</a>
+        </div>
+        <small>Access needs an invitation to the <code>bench</code> role.</small>
     </main>
+    <script>
+        // /.auth/me is open to everyone and returns { clientPrincipal: null } when signed out.
+        const providerNames = { aad: "Microsoft", github: "GitHub" };
+        fetch("/.auth/me", { cache: "no-store" })
+            .then(r => r.ok ? r.json() : null)
+            .then(me => {
+                const p = me && me.clientPrincipal;
+                if (!p) return;
+                const box = document.getElementById((p.userRoles || []).includes("bench") ? "allowed" : "denied");
+                box.querySelectorAll("[data-user]").forEach(e => e.textContent = p.userDetails || "an unknown user");
+                box.querySelectorAll("[data-provider]").forEach(e => e.textContent = providerNames[p.identityProvider] || p.identityProvider);
+                document.getElementById("aad-hint").hidden = p.identityProvider !== "aad";
+                document.getElementById("providers").hidden = true;
+                box.hidden = false;
+            })
+            .catch(() => { /* Leave the sign-in buttons showing. */ });
+    </script>
 </body>
 </html>
