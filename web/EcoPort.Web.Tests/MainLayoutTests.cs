@@ -45,14 +45,18 @@ public sealed class MainLayoutTests : BunitContext
     }
 
     [Fact]
-    public void SignOut_ReturnsToLoginPage()
+    public void SignOut_DoesAFullPageLoadOfLogout()
     {
         _auth.HasBenchRole = true;
 
         var cut = RenderLayout();
+        cut.WaitForAssertion(() => cut.Find("[aria-label='Sign out']").Click());
 
-        cut.WaitForAssertion(() =>
-            Assert.NotNull(cut.Find("a[href='/.auth/logout?post_logout_redirect_uri=/login.html']")));
+        // A full load, so the request reaches the server instead of the Blazor router.
+        var nav = (BunitNavigationManager)Services.GetRequiredService<NavigationManager>();
+        var last = Assert.Single(nav.History);
+        Assert.Equal("/.auth/logout?post_logout_redirect_uri=/login.html", last.Uri);
+        Assert.True(last.Options.ForceLoad);
     }
 
     private sealed class FakeAuthStatus : IAuthStatus

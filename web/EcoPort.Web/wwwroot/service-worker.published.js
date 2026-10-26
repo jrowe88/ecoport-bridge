@@ -26,6 +26,10 @@ async function onInstall(event) {
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
         .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
+
+    // Take over as soon as a new version is cached, instead of waiting for every tab to close.
+    // Otherwise a deploy keeps serving the old app until the browser's cache is cleared.
+    self.skipWaiting();
 }
 
 async function onActivate(event) {
@@ -36,6 +40,9 @@ async function onActivate(event) {
     await Promise.all(cacheKeys
         .filter(key => key.startsWith(cacheNamePrefix) && key !== cacheName)
         .map(key => caches.delete(key)));
+
+    // Serve already-open tabs from the new cache too.
+    await self.clients.claim();
 }
 
 async function onFetch(event) {

@@ -75,4 +75,45 @@ public sealed class EcoPortApiClientTests
             handler.Requests.Single().PathAndQuery);
         Assert.Equal(242, Assert.Single(points).ElectricityRateW);
     }
+
+    /// <summary>
+    /// Signed out (or session expired): SWA answers /api/* with a redirect to /login.html, so the
+    /// client ends up with an HTML page instead of JSON.
+    /// </summary>
+    [Fact]
+    public async Task HtmlResponse_ThrowsSignedOut_AndGoesToLoginPage()
+    {
+        var handler = new HtmlHandler();
+        var navigation = new RecordingNavigationManager();
+        var client = new EcoPortApiClient(new HttpClient(handler) { BaseAddress = new Uri("https://dash.example/") }, navigation);
+
+        await Assert.ThrowsAsync<SignedOutException>(() => client.GetDevicesAsync(Xunit.TestContext.Current.CancellationToken));
+        await Assert.ThrowsAsync<SignedOutException>(() => client.GetStateAsync("WH001", Xunit.TestContext.Current.CancellationToken));
+
+        Assert.Equal("/login.html", navigation.LastUri);
+        Assert.True(navigation.LastForceLoad);
+    }
+
+    private sealed class HtmlHandler : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct) =>
+            Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("<!DOCTYPE html><title>Sign in</title>", Encoding.UTF8, "text/html"),
+            });
+    }
+
+    private sealed class RecordingNavigationManager : Microsoft.AspNetCore.Components.NavigationManager
+    {
+        public RecordingNavigationManager() => Initialize("https://dash.example/", "https://dash.example/");
+
+        public string? LastUri { get; private set; }
+        public bool LastForceLoad { get; private set; }
+
+        protected override void NavigateToCore(string uri, Microsoft.AspNetCore.Components.NavigationOptions options)
+        {
+            LastUri = uri;
+            LastForceLoad = options.ForceLoad;
+        }
+    }
 }
