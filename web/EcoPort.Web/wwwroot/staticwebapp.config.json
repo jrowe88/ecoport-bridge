@@ -52,6 +52,9 @@
       "*.{js,json,webmanifest,css,png,ico,svg,wasm,dll,pdb,dat,blat,gz,br}"
     ]
   },
+  "mimeTypes": {
+    ".webmanifest": "application/manifest+json"
+  },
   "platform": {
     "apiRuntime": "dotnet-isolated:10.0"
   }
