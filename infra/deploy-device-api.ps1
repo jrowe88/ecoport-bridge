@@ -83,6 +83,9 @@ finally {
     if (Test-Path $work) { Remove-Item -Recurse -Force $work }
 }
 
-$hostName = (az functionapp show --resource-group $ResourceGroup --name $functionAppName --query defaultHostName -o tsv)
-Assert-LastExit 'az functionapp show'
-Write-Host "Device API deployed: https://$($hostName.Trim())/device/v1/records"
+# `az functionapp show` leaves defaultHostName empty for Flex Consumption apps, so use the
+# deployment output instead.
+$hostName = (az deployment group show --resource-group $ResourceGroup --name "ecoport-$Env" `
+        --query properties.outputs.functionAppHostName.value -o tsv)
+Assert-LastExit 'Reading deployment outputs'
+Write-Host "Device API deployed: https://$("$hostName".Trim())/device/v1/records"
