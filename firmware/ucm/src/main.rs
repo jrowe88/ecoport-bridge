@@ -1,0 +1,95 @@
+//! EcoPort Bridge UCM firmware: Rust `std` on ESP-IDF, for the ESP32-C6.
+//!
+//! Bring-up stage. The firmware currently:
+//!
+//! - Joins Wi-Fi and shows the connection status on the board's RGB LED
+//!   (pulsing blue: connecting, breathing green: connected, fast red: failed).
+//! - Listens on the RS-485 port and logs every CTA-2045 packet the heater sends.
+//!   It does not transmit anything to the heater yet.
+//!
+//! See `docs/architecture.md` §3 for what the finished firmware does.
+
+mod rs485;
+mod status_led;
+mod wifi;
+mod wifi_credentials;
+mod ws2812;
+
+use std::thread;
+use std::time::Duration;
+
+use esp_idf_svc::eventloop::EspSystemEventLoop;
+use esp_idf_svc::hal::peripherals::Peripherals;
+use esp_idf_svc::nvs::EspDefaultNvsPartition;
+
+use status_led::{LedStatus, StatusLed};
+use wifi_credentials::{WIFI_PASSWORD, WIFI_SSID};
+
+/// How often to check that Wi-Fi is still connected and has an IP address.
+const CONNECTION_CHECK_INTERVAL: Duration = Duration::from_secs(5);
+/// How long to wait after a failed attempt before trying again.
+const RETRY_DELAY: Duration = Duration::from_secs(10);
+/// Testing aid: show the rainbow instead of the green breathe once connected.
+const RAINBOW_WHEN_CONNECTED: bool = false;
+
+fn main() -> anyhow::Result<()> {
+    // Applies runtime patches from esp-idf-sys. Must be called once, before anything else.
+    esp_idf_svc::sys::link_patches();
+
+    // Routes the `log` crate's macros to the ESP-IDF serial console.
+    esp_idf_svc::log::EspLogger::initialize_default();
+    wifi::quiet_driver_logs();
+
+    let peripherals = Peripherals::take()?;
+    let pins = peripherals.pins;
+
+    // Start the LED first so it animates while Wi-Fi setup blocks below.
+    // Rev-A board: WS2812 on GPIO8 (through a level shifter), as on Espressif's dev kits.
+    let led = StatusLed::start(pins.gpio8)?;
+
+    // Rev-A board: SP3485 RS-485 transceiver on UART1, TX GPIO18, RX GPIO19, DE GPIO20.
+    let uart = rs485::open(peripherals.uart1, pins.gpio18, pins.gpio19, pins.gpio20)?;
+    rs485::spawn_monitor(uart)?;
+
+    let mut wifi = wifi::start(
+        peripherals.modem,
+        EspSystemEventLoop::take()?,
+        EspDefaultNvsPartition::take()?,
+        WIFI_SSID,
+        WIFI_PASSWORD,
+    )?;
+
+    // Supervisor loop. It never returns, which also keeps `wifi` alive: returning from main
+    // would drop it and shut Wi-Fi down.
+    loop {
+        // "Up" means joined to the network *and* holding an IP address.
+        let is_up = wifi.is_up().unwrap_or_else(|e| {
+            log::warn!("Couldn't read Wi-Fi status: {e}");
+            false
+        });
+
+        if !is_up {
+            led.set_status(LedStatus::Connecting);
+            log::info!("Connecting to Wi-Fi network '{WIFI_SSID}'...");
+
+            match wifi::connect(&mut wifi) {
+                Ok(ip) => {
+                    log::info!("Wi-Fi connected, IP address {ip}");
+                    led.set_status(if RAINBOW_WHEN_CONNECTED {
+                        LedStatus::Rainbow
+                    } else {
+                        LedStatus::Connected
+                    });
+                }
+                Err(e) => {
+                    log::warn!("Wi-Fi connection failed: {e:?}. Retrying in {RETRY_DELAY:?}");
+                    led.set_status(LedStatus::Failed);
+                    thread::sleep(RETRY_DELAY);
+                    continue;
+                }
+            }
+        }
+
+        thread::sleep(CONNECTION_CHECK_INTERVAL);
+    }
+}

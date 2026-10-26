@@ -25,7 +25,7 @@ case.*
   `cta2045` layer implements the protocol (framing, messages, CRC, link,
   Basic DR / Intermediate messages). Appliance-specific behavior (e.g. Rinnai
   REHP65 quirks and capability mappings) lives under `appliances/rinnai` (or
-  `appliance/rinnai` in firmware) so other CTA-2045/EcoPort appliances can be
+  a Rinnai crate in firmware) so other CTA-2045/EcoPort appliances can be
   supported later without untangling Rinnai assumptions from the protocol
   implementation.
 - **Protocol reverse engineering is kept separate from electrical reverse
@@ -91,7 +91,7 @@ ecoport-bridge/
 │
 ├── docs/                 # architecture, hardware, protocol, HOWTOs
 ├── hardware/             # PCB revisions + 3D-printed enclosure
-├── firmware/             # ESP32 bridge firmware (PlatformIO)
+├── firmware/             # ESP32-C6 bridge firmware (Rust on ESP-IDF)
 ├── python/               # ecoport Python package (protocol + tooling)
 ├── tools/                # CLI tools: sniff, decode, query, interactive
 ├── captures/             # recorded protocol traffic + notes (EPRI + Rinnai)

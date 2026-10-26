@@ -1,0 +1,10 @@
+[package]
+name = "cta2045"
+version = "0.1.0"
+authors = ["Jim Rowe"]
+edition = "2021"
+description = "CTA-2045 link layer: framing, checksum and stream parsing. No hardware dependencies"
+license = "AGPL-3.0-only"
+publish = false
+
+[dependencies]

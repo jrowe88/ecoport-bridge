@@ -3,7 +3,8 @@
 ## Prerequisites
 
 - Python 3.11+
-- [PlatformIO](https://platformio.org/) (for firmware work)
+- Rust via [rustup](https://rustup.rs/), plus `ldproxy` and `espflash`
+  (for firmware work; see [`firmware/README.md`](../firmware/README.md))
 - An isolated USB/RS-485 adapter (for talking to real hardware)
 - EPRI's UCM simulator app/software (optional but recommended — lets you
   develop and test the protocol implementation without appliance hardware)
@@ -21,9 +22,11 @@ pytest
 ## Firmware environment
 
 ```bash
-cd firmware
-pio run
+cd firmware/cta2045 && cargo test        # protocol crate, runs on your PC
+cd ../ucm && cargo run --release         # build, flash and monitor the ESP32-C6
 ```
+
+See [`firmware/README.md`](../firmware/README.md) for first-time setup.
 
 ## Tools
 

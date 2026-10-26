@@ -12,10 +12,9 @@ intentionally lightweight.
   guesses from observed traffic). Don't let a guess silently become "the
   spec".
 - **Generic vs. appliance-specific.** Keep the CTA-2045 protocol
-  implementation (`python/src/ecoport/cta2045`,
-  `firmware/src/cta2045`) free of Rinnai-specific assumptions. Appliance
-  quirks belong under `appliances/rinnai` (Python) or `appliance/rinnai`
-  (firmware).
+  implementation (`python/src/ecoport/cta2045`, `firmware/cta2045`) free of
+  Rinnai-specific assumptions. Appliance quirks belong under
+  `appliances/rinnai` (Python) or a separate Rinnai crate (firmware).
 - **Captures are data.** If you record new protocol traffic, add it under
   `captures/<appliance>/<date>-<scenario>/` with a `notes.md` describing what
   was happening on the appliance at the time.

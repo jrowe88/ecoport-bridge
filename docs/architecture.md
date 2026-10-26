@@ -43,18 +43,24 @@ electrical interface up to integrations:
 ```
 
 1. **Transport.** Physical RS-485 UART, isolated transceiver, and byte-level
-   framing. See `python/src/ecoport/transport/` and `firmware/src/transport/`.
+   framing. See `python/src/ecoport/transport/` and `firmware/ucm/src/rs485.rs`.
 2. **CTA-2045 core (protocol).** Generic CTA-2045 link layer, Basic DR and
    Intermediate message types, CRC and enums. It has no appliance-specific
-   knowledge. See `python/src/ecoport/cta2045/` and `firmware/src/cta2045/`.
+   knowledge. See `python/src/ecoport/cta2045/` and the `firmware/cta2045/`
+   crate.
 3. **Appliance layer.** Appliance-specific capability mappings and quirks
-   (e.g. Rinnai REHP65). See `python/src/ecoport/appliances/rinnai/` and
-   `firmware/src/appliance/rinnai/`.
+   (e.g. Rinnai REHP65). See `python/src/ecoport/appliances/rinnai/` and a
+   future `firmware/rinnai/` crate.
 4. **Bridge / network.** Wi-Fi, time sync, HTTPS client, the local record
-   buffer and device identity. See `firmware/src/network/`.
+   buffer and device identity. See `firmware/ucm/src/`.
 5. **Integrations.** Outward-facing publishers. The **cloud integration**
    (section 2 onwards) comes first. Local MQTT / Home Assistant / Matter is an
-   optional later add-on. See `firmware/src/integrations/`.
+   optional later add-on, also in `firmware/ucm/src/`.
+
+The firmware is **Rust on ESP-IDF** (`std`, using the `esp-idf-svc` crates),
+not bare-metal Rust and not C++. The protocol and appliance crates have no
+ESP-IDF dependency, so they build and run their tests on a PC
+(see [`firmware/README.md`](../firmware/README.md)).
 
 Keeping the CTA-2045 protocol free of Rinnai assumptions means a second
 EcoPort appliance (e.g. another manufacturer's CTA-2045 water heater) can be
@@ -72,9 +78,9 @@ flowchart LR
         WH["Rinnai REHP65<br/>(SGD)"]
         subgraph UCM["ESP32-C6 UCM (bridge firmware)"]
             LINK["CTA-2045 link<br/>+ 15 s poll"]
-            BUF[("Flash ring buffer<br/>records + seq")]
+            BUF[("RAM buffer<br/>flash spill on outage")]
             UP["Uploader"]
-            POLL["Command poller<br/>+ executor"]
+            POLL["Command fetch<br/>+ executor"]
         end
         WH <-->|"RS-485<br/>CTA-2045"| LINK
         LINK --> BUF --> UP
@@ -97,7 +103,7 @@ flowchart LR
         KV[("Key Vault<br/>device secrets")]
         PROF["Appliance profiles<br/>(versioned JSON)"]
         subgraph SWA["Static Web App (Free)"]
-            WEB["Dashboard"]
+            WEB["Dashboard<br/>Blazor WASM PWA + MudBlazor"]
             UAPI["User API<br/>/api/* (managed functions)"]
         end
         AI["Application Insights"]
@@ -107,7 +113,7 @@ flowchart LR
     GH(["Google Home<br/>(later phase)"])
 
     UP -->|"HTTPS POST records"| DAPI
-    POLL -->|"HTTPS GET commands<br/>POST results"| DAPI
+    POLL -->|"HTTPS GET commands (when pending)<br/>POST results"| DAPI
     DAPI --> RAW
     DAPI --> Q
     DAPI <--> CMD
@@ -144,7 +150,8 @@ The UCM opens every connection. Nothing in Azure connects to the device.
    calibration changes, derived tables can be regenerated from the raw records.
 5. **A command is only a request** until the heater confirms it (App ACK plus
    the expected opstate).
-6. **Survive outages.** Records are buffered in flash. Commands expire. The
+6. **Survive outages without wearing out flash.** Records are held in RAM and
+   written to flash only when uploads keep failing. Commands expire. The
    heater falls back to normal operation on its own, and the panel always works.
 7. **Stay cheap and simple** for a few devices across a few households, with a
    clear path to scale (section 12).
@@ -153,17 +160,21 @@ The UCM opens every connection. Nothing in Azure connects to the device.
 
 | Topic | Decision |
 |---|---|
-| Device ↔ cloud transport | HTTPS POST (records, results) and short-poll GET (commands). No MQTT, IoT Hub or long polling in v1 |
+| Device ↔ cloud transport | HTTPS POST (records, results). Commands are fetched only when an upload response says `commandsPending`; there is no separate command polling. No MQTT, IoT Hub or long polling in v1 |
+| Firmware | Rust `std` on ESP-IDF (`esp-idf-svc`). Protocol code in host-testable crates |
 | Where derivation happens | Cloud, on intake (asynchronous processor). UCM sends raw values |
 | Telemetry cadence | Sample every 15 s, upload a batch every ~60 s, upload immediately on significant events |
+| Device buffering | RAM first. Spill to a flash partition only after uploads have failed for ~15 min (section 3.2) |
 | Storage | Azure Table Storage (plus a Storage Queue) |
 | Backend | Azure Functions, C# (.NET isolated worker) |
-| Dashboard | Azure Static Web Apps with built-in auth |
+| Dashboard | Blazor WebAssembly + MudBlazor, installable as a PWA, on Azure Static Web Apps with built-in auth |
+| Phone app | None in v1. The dashboard PWA covers phones. Wi-Fi setup uses Espressif's ESP BLE Provisioning app |
 | Tenancy | Multi-user: many users and devices, with access granted per device |
 | Automation (TOU / solar / DR schedules) | Deferred. Manual commands only in v1, but the design leaves room (section 13) |
 | Local MQTT / Home Assistant | Optional later integration. The cloud is primary |
 | Google Home | Later phase, designed for but not built first |
-| Infrastructure as code | Terraform |
+| Infrastructure as code | Bicep |
+| Cost target | Free grants wherever possible. Personally funded, so every paid resource needs a reason |
 
 ### 2.3 End-to-end flows
 
@@ -186,7 +197,7 @@ sequenceDiagram
         WH-->>U: opstate
         U->>WH: Commodity Read (08 02 06 00)
         WH-->>U: rate W, capacity Wh, take Wh
-        U->>U: append sample (seq++) to flash buffer
+        U->>U: append sample (seq++) to RAM buffer
     end
     Note over U: event (opstate change, override, NAK)<br/>is appended too and triggers an immediate upload
 
@@ -224,7 +235,7 @@ sequenceDiagram
     W->>C: insert command (pending, expiresAt = +5 min)
     W-->>User: 202 { commandId }
 
-    Note over U,D: next 20 s poll, or immediately if the<br/>last upload returned commandsPending
+    Note over U,D: next upload (≤ 60 s) returns commandsPending: true
     U->>D: GET /device/v1/commands
     D->>C: oldest pending, not expired → delivered
     D-->>U: 200 { commandId, action: shed, durationMinutes: 30 }
@@ -253,8 +264,9 @@ without running the command again.
 
 ## 3. UCM (bridge firmware) responsibilities
 
-Target hardware is an **ESP32-C6**. `firmware/platformio.ini` still targets
-`esp32dev` and needs updating when firmware work starts.
+Target hardware is the **ESP32-C6-WROOM-1-N8** on the rev-A bridge board. The
+firmware is Rust on ESP-IDF; see [`firmware/README.md`](../firmware/README.md)
+for the crate layout, pin map and build setup.
 
 The firmware only does these things:
 
@@ -263,9 +275,9 @@ The firmware only does these things:
 | CTA-2045 link | Handshake, max-payload negotiation, App ACK/NAK, echo filtering. Ported from `tools/ucm.py` |
 | Poll the heater | Every 15 s: Basic DR opstate (`12 00`) and Commodity Read (`08 02 06 00`). GetInformation (`01 01`) at boot and when the link (re)connects |
 | Notice heater-initiated messages | e.g. Customer Override (`11 xx`), unsolicited NAKs. Record them as events |
-| Buffer records | Flash-backed ring buffer (section 3.2) |
+| Buffer records | In RAM, spilling to flash only during a long outage (section 3.2) |
 | Upload | Batched HTTPS POST, oldest first, deleted only after the server acknowledges them |
-| Poll and execute commands | Validate, send Basic DR, confirm through opstate, report the result |
+| Fetch and execute commands | When an upload response says `commandsPending`: fetch, validate, send Basic DR, confirm through opstate, report the result |
 | Report outside comm status | Send CTA-2045 *Outside Communication Connection Status* to the heater so it knows whether the UCM has cloud connectivity |
 | Health | Wi-Fi RSSI, uptime, free heap, reset reason, buffer depth, link error counters |
 
@@ -280,9 +292,10 @@ flowchart TB
         POLLH["Heater poller<br/>every 15 s: opstate + Commodity Read"]
         RX["Heater RX handler<br/>override, NAK, unsolicited"]
         REC["Record writer<br/>assign seq, bootId, uptimeMs"]
-        RING[("Flash ring buffer")]
+        RING[("RAM buffer<br/>~15 min")]
+        SPILL[("Flash spill partition<br/>outages only")]
         UPL["Uploader<br/>~60 s or on event · backoff"]
-        CP["Command poller<br/>20 s or on commandsPending"]
+        CP["Command fetch<br/>on commandsPending"]
         EXE["Executor<br/>validate → Basic DR → confirm"]
         CACHE[("Processed-ID cache (NVS)")]
         OCS["Outside Comm Status<br/>to heater"]
@@ -290,7 +303,10 @@ flowchart TB
     POLLH --> REC
     RX --> REC
     REC --> RING --> UPL
+    RING -->|"uploads failing ≥ 15 min"| SPILL
+    SPILL -->|"drain oldest first"| UPL
     UPL -->|"ackSeq → trim"| RING
+    UPL -->|"commandsPending"| CP
     CP --> EXE
     EXE <--> CACHE
     EXE -->|"result event"| REC
@@ -301,8 +317,10 @@ flowchart TB
 
 The UCM produces a single stream of **records**. Every record gets the next
 value of a **persistent sequence number**: a 32-bit counter that keeps
-increasing across reboots. A high-water mark is stored in NVS, and the counter
-jumps forward on boot to stay safe.
+increasing across reboots. The counter itself lives in RAM. NVS only stores a
+reserved high-water mark, written once per block of 1,024 sequence numbers
+(about every 4 hours), and on boot the counter starts at that mark. A reboot
+can therefore leave a gap in the sequence, which the cloud accepts.
 
 | Kind | When | Raw content |
 |---|---|---|
@@ -312,18 +330,32 @@ jumps forward on boot to stay safe.
 
 ### 3.2 Local buffer
 
-- Use a flash ring buffer in its own partition. Records are compact binary,
-  about 32 B for a sample. At 5,760 samples/day, a 1 MB partition holds about
-  five days.
-- Flash writes are batched (e.g. once a minute, or right away for events) to
-  limit wear.
+Normally the device never writes telemetry to flash. Uploads succeed every
+~60 s, so only a handful of records are ever waiting.
+
+- **RAM first.** Records wait in a RAM queue until the server acknowledges
+  them. Records are compact binary, about 32 B for a sample, so 15 minutes
+  (60 samples plus events) is only a few KB.
+- **Spill to flash only during an outage.** When the oldest unacknowledged
+  record is more than **15 minutes** old (uploads have kept failing), the RAM
+  queue is written to a ring buffer in its own flash partition in one batch,
+  and again every 15 minutes while the outage lasts. At 5,760 samples/day, a
+  1 MB partition holds about five days. The 15-minute threshold is a
+  configuration value.
+- **Drain order.** When uploads work again, the flash spill is drained first
+  (oldest first), then the RAM queue, so the server still sees records in
+  sequence order. The spill partition is erased once it is fully acknowledged.
+- **Tradeoff.** A power cut or crash loses whatever was only in RAM: normally
+  under a minute of data, and at most ~15 minutes during an outage. That is
+  acceptable for telemetry. The command processed-ID cache is still kept in
+  NVS (section 5.3), because losing it could re-run a command.
 - Each record stores `bootId` and `uptimeMs`. The device converts these to
   UTC when it uploads, using the SNTP offset for that boot. Uploading needs a
   network connection, and SNTP syncs as soon as there is one. Records from a
   boot that never synced time are uploaded with `timeQuality: "unsynced"`. The
   cloud keeps them but leaves them out of time-based analysis.
-- When the buffer is full, the oldest `sample` and `health` records are
-  dropped before any `event` records.
+- When the spill partition is full, the oldest `sample` and `health` records
+  are dropped before any `event` records.
 - Records are removed only up to the `ackSeq` that the server returns.
 
 ### 3.3 Upload cadence
@@ -336,6 +368,10 @@ jumps forward on boot to stay safe.
   records. Leave a short gap between chunks.
 - On failure, back off exponentially with jitter (cap ~5 min). Keep sampling
   the whole time.
+- The upload response is also the command channel: `commandsPending: true`
+  makes the device fetch commands right away. Command latency is therefore up
+  to ~60 s, which is fine for a water heater and removes ~75% of device API
+  calls compared with a separate 20 s poll.
 
 ---
 
@@ -406,8 +442,8 @@ Response:
 - `ackSeq` is the highest sequence number for which **this record and every
   earlier record in the request** has been stored. The device can then delete
   those records.
-- `commandsPending` lets the device poll for commands right away instead of
-  waiting for its next poll.
+- `commandsPending` tells the device to fetch commands now. It is the only
+  trigger for fetching commands.
 - `serverTime` lets the device spot clock drift.
 
 Server steps: authenticate, validate the schema, upsert the raw rows
@@ -415,14 +451,15 @@ Server steps: authenticate, validate the schema, upsert the raw rows
 `LastSeen`, then respond. **No derivation happens inside the request.** That
 keeps device calls quick and reliable.
 
-### 4.2 Poll for commands
+### 4.2 Fetch commands
 
 ```http
 GET /device/v1/commands
 ```
 
-The UCM polls every **20 s** while online, and immediately after an upload
-response with `commandsPending: true`. It backs off on errors.
+The UCM calls this only after an upload response with
+`commandsPending: true`. It does not poll on a timer. If a fetch fails, the
+next upload response repeats `commandsPending`, so nothing is lost.
 
 - `204 No Content`: nothing is pending.
 - `200`: returns the oldest command that is still `pending` and not expired.
@@ -512,7 +549,7 @@ them.
 ```mermaid
 stateDiagram-v2
     [*] --> pending: user / API creates
-    pending --> delivered: UCM polls
+    pending --> delivered: UCM fetches
     pending --> canceled: user cancels
     pending --> expired: expiresAt passes
     delivered --> delivered: redelivered (no result within timeout)
@@ -660,11 +697,16 @@ Notes:
 - **Azure Static Web Apps (Free plan)** hosts the dashboard and the **User
   API** as managed Functions (C# isolated, HTTP only). Its built-in auth
   (GitHub and Microsoft accounts) fills in `x-ms-client-principal`.
+- The dashboard is a **Blazor WebAssembly** app using **MudBlazor**
+  components. It is a static site, so it fits SWA Free, and it is built as an
+  installable **PWA** so it works as the phone app too. A first visit
+  downloads the .NET runtime (a few MB, then cached).
 - A **separate Function App** (Flex Consumption) hosts the Device API, the
   queue processor and timers. Device traffic never goes through SWA auth, and
   the two can be scaled, secured and deployed separately.
-- Both use a shared C# library (`EcoPort.Cloud.Core`) for models, table access
-  and derivation.
+- All C# projects share libraries: `EcoPort.Cloud.Contracts` (API request and
+  response types, used by the Blazor app as well as the Functions) and
+  `EcoPort.Cloud.Core` (table access and derivation).
 
 > Alternative: SWA **Standard** with a linked backend would put everything in
 > one Function App. It costs about $9/month per app. This is worth switching to
@@ -732,8 +774,9 @@ POST   /api/devices/{id}/access                    # owner shares (viewer/owner)
    one-time **claim code**. Write the secret to Key Vault. Write the `Devices`
    row with the claim code hashed. Flash the ID and secret to NVS. Print the
    claim code on a label or show it on the serial console.
-2. **Wi-Fi onboarding:** ESP-IDF provisioning over BLE or SoftAP, done on the
-   device.
+2. **Wi-Fi onboarding:** ESP-IDF Wi-Fi provisioning over BLE, using
+   Espressif's free **ESP BLE Provisioning** app (iOS and Android). No custom
+   phone app is needed.
 3. **Claim:** the user signs in and enters the claim code. The server writes
    the `DeviceAccess` rows (owner) and marks the code as used.
 4. **Unclaim / transfer:** the owner releases the device, or an admin resets
@@ -764,7 +807,7 @@ POST   /api/devices/{id}/access                    # owner shares (viewer/owner)
 |---|---|
 | Duplicate uploads | Deterministic raw row keys and upsert. Device deletes only up to `ackSeq` |
 | Lost upload response | Device retries. Server writes the same rows again |
-| Outage (Wi-Fi or cloud) | Flash ring buffer. Events are kept before samples. Drained oldest first |
+| Outage (Wi-Fi or cloud) | RAM buffer, spilled to flash after ~15 min of failed uploads. Events are kept before samples. Drained oldest first |
 | Reboot without a time source | `bootId` + `uptimeMs`, converted to UTC once synced, otherwise flagged `unsynced` |
 | Duplicate command delivery | Persistent processed-ID cache on the UCM. The result is re-reported, not re-executed |
 | Lost command result | Result is also recorded as an event. Redelivery timeout. Commands expire |
@@ -776,8 +819,10 @@ POST   /api/devices/{id}/access                    # owner shares (viewer/owner)
 
 ## 11. Azure resources and deployment
 
-Terraform (`infra/terraform/`) creates one environment per workspace
-(`dev`, `prod`):
+Bicep (`infra/bicep/`) defines the resources: `main.bicep` plus one parameter
+file per environment (`dev.bicepparam`, `prod.bicepparam`), deployed with
+`az deployment group create`. Bicep is free and keeps no state file, so there
+is no state storage to pay for or secure. Each environment creates:
 
 - Resource group
 - Storage account: the tables and queue listed in section 7
@@ -797,28 +842,39 @@ Timers on the Function App:
 - Daily rollups and fixing up late data
 - Heartbeat sweep (marks devices offline, used for future alerts)
 
-CI/CD (GitHub Actions): build and test the .NET projects, run `terraform plan`
-on PRs, deploy the Function App and SWA when `main` changes.
+CI/CD (GitHub Actions): build and test the .NET projects, run
+`az deployment group what-if` on PRs, deploy the infrastructure, Function App
+and SWA when `main` changes. Each workflow runs only when its folder changes.
 
-**Cost:** for a handful of devices, about 6k Device API calls per device per
-day (uploads plus 20 s polls), around 175k a month. That should sit within or
-near the free grants for Functions and Storage. Application Insights ingestion
-is the cost most likely to grow, so it has sampling and a daily cap. Check
-with the Azure pricing calculator before going to production.
+**Cost.** This is paid personally, so the target is to stay inside free
+grants:
 
-### Proposed repository layout additions
+| Item | Expected use (per device) | Notes |
+|---|---|---|
+| Device API calls | ~1,440/day (one upload a minute), ~43k/month | Command fetches only happen when commands are pending. Flex Consumption has a monthly free grant of executions and GB-s |
+| Table Storage + queue | A few hundred MB/year, ~2 transactions per upload | Pennies a month |
+| Static Web Apps | Free plan | Includes the managed User API functions and built-in auth |
+| Key Vault | Secret reads, cached in memory | Billed per 10k operations; no fixed fee |
+| Application Insights / Log Analytics | The cost most likely to grow | Sampling on, daily cap set, short retention |
+
+Check the current free grants in the Azure pricing calculator before going to
+production, and set a **budget alert** on the subscription.
+
+### Repository layout
 
 ```text
+hardware/                      # board and enclosure (CERN-OHL)
+firmware/                      # Rust: cta2045/ (host-testable), ucm/ (ESP-IDF app)
 cloud/
   src/
-    EcoPort.Cloud.Core/        # models, table access, auth, derivation, profiles
+    EcoPort.Cloud.Contracts/   # API types shared with the Blazor app
+    EcoPort.Cloud.Core/        # table access, auth, derivation, profiles
     EcoPort.Cloud.Device/      # Function App: Device API, processor, timers
     EcoPort.Cloud.Api/         # SWA managed functions: User API
   profiles/                    # versioned appliance profiles (JSON)
   tests/                       # unit + golden tests (replay captures/)
-web/                           # static dashboard
-infra/terraform/               # Azure infrastructure
-firmware/src/integrations/cloud/   # record buffer, uploader, command poller
+web/                           # Blazor WASM + MudBlazor dashboard (PWA)
+infra/bicep/                   # Azure infrastructure
 ```
 
 ---
@@ -829,14 +885,14 @@ Reconsider the transport and platform when any of these happen:
 
 | Trigger | Option |
 |---|---|
-| Command latency of 20 s is too slow, or polling cost grows with the fleet | **Azure Event Grid MQTT broker** (per-device X.509 identity, publish and subscribe) or IoT Hub |
+| Command latency of up to 60 s is too slow, or request cost grows with the fleet | **Azure Event Grid MQTT broker** (per-device X.509 identity, publish and subscribe) or IoT Hub |
 | Many devices, managed provisioning, device twins, fleet OTA | **Azure IoT Hub** + DPS |
 | Heavy analytics or long-range queries over raw data | Export raw data to Data Explorer / Fabric, or Parquet in Blob |
 | Need for sign-in without GitHub/Microsoft, or Google account linking | Entra External ID with SWA Standard |
 
 The device protocol is versioned (`/device/v1/`) and the firmware keeps the
-transport inside `integrations/cloud/`, so changing the transport does not
-touch the CTA-2045 or appliance layers.
+cloud transport in its own module of the `ucm` app, so changing the transport
+does not touch the CTA-2045 or appliance crates.
 
 ---
 
@@ -853,8 +909,8 @@ touch the CTA-2045 or appliance layers.
   `CurrentState`, and commands insert into `Commands` (Shed / Load Up exposed
   as modes). Water-heater temperature control is **not** possible because
   setpoint is read-only.
-- **Local MQTT / Home Assistant.** A second publisher in
-  `firmware/src/integrations/`. It publishes the same raw records to a local
+- **Local MQTT / Home Assistant.** A second publisher in the `ucm` app. It
+  publishes the same raw records to a local
   broker, and an optional Home Assistant add-on runs the derivation
   locally.
 - **Firmware OTA.** The device reports its firmware version (already in
@@ -868,15 +924,17 @@ touch the CTA-2045 or appliance layers.
 
 ## 14. Implementation sequence
 
-1. Port the CTA-2045 link and the 15 s poll loop to the ESP32-C6 (no network
-   yet). Check it against `tools/ucm.py` captures.
-2. Flash record buffer and persistent sequence number.
-3. Terraform for the base resources, plus `EcoPort.Cloud.Core` table models.
+1. Port the CTA-2045 link and the 15 s poll loop to Rust (`firmware/cta2045`,
+   tested on a PC against the captures), then run it on the ESP32-C6 (no
+   network yet). Framing and checksum are done.
+2. RAM record buffer, flash spill, and persistent sequence number.
+3. Bicep for the base resources, plus `EcoPort.Cloud.Core` table models.
 4. `POST /device/v1/records` with HMAC auth, raw tables and the queue.
 5. Processor with heat source, vacation, SoC and setpoint (calibration
    pending), plus golden tests from the captures.
-6. Dashboard: sign-in, claim, current state, one-day chart.
-7. Commands: table, User API, device poll and result endpoints, UCM execution
+6. Dashboard (Blazor + MudBlazor): sign-in, claim, current state, one-day
+   chart.
+7. Commands: table, User API, device fetch and result endpoints, UCM execution
    with confirmation. **Run the control test from `capabilities.md` §4 first.**
 8. Draws, heating cycles, rollups and daily reports.
 9. Hardening: secret rotation, offline detection, App Insights dashboards,

@@ -6,9 +6,10 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# PlatformIO
-firmware/.pio/
-firmware/.vscode/
+# Rust firmware
+firmware/*/target/
+firmware/ucm/.embuild/
+firmware/ucm/src/wifi_credentials.rs
 
 # OS / editor
 .DS_Store
