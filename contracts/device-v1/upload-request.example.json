@@ -1,0 +1,48 @@
+{
+  "deviceId": "WH001",
+  "bootId": "c4e633a2",
+  "firmware": "0.2.0",
+  "simulated": true,
+  "records": [
+    {
+      "seq": 12783,
+      "kind": "event",
+      "uptimeMs": 1200,
+      "t": "2026-10-09T20:29:58.320Z",
+      "type": "boot",
+      "data": { "resetReason": "PowerOn" }
+    },
+    {
+      "seq": 12784,
+      "kind": "sample",
+      "uptimeMs": 3000,
+      "t": "2026-10-09T20:30:00.120Z",
+      "opState": 1,
+      "commodity": {
+        "electricityRateW": 242,
+        "electricityCumulativeWh": 0,
+        "totalStorageCapacityWh": 12011,
+        "presentEnergyTakeWh": 4202
+      },
+      "link": { "ok": true, "retries": 0, "naks": 0 }
+    },
+    {
+      "seq": 12785,
+      "kind": "event",
+      "uptimeMs": 17880,
+      "t": "2026-10-09T20:30:15.000Z",
+      "type": "opStateChanged",
+      "data": { "from": 1, "to": 0 }
+    },
+    {
+      "seq": 12786,
+      "kind": "health",
+      "uptimeMs": 18000,
+      "t": "2026-10-09T20:30:15.120Z",
+      "rssiDbm": -58,
+      "freeHeapBytes": 182344,
+      "bufferDepth": 4,
+      "resetReason": "PowerOn"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "secretBase64": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+  "vectors": [
+    {
+      "method": "POST",
+      "path": "/device/v1/records",
+      "timestamp": "2026-10-09T20:31:02Z",
+      "bodyBase64": "ewogICJkZXZpY2VJZCI6ICJXSDAwMSIsCiAgImJvb3RJZCI6ICJjNGU2MzNhMiIsCiAgImZpcm13YXJlIjogIjAuMi4wIiwKICAic2ltdWxhdGVkIjogdHJ1ZSwKICAicmVjb3JkcyI6IFsKICAgIHsKICAgICAgInNlcSI6IDEyNzgzLAogICAgICAia2luZCI6ICJldmVudCIsCiAgICAgICJ1cHRpbWVNcyI6IDEyMDAsCiAgICAgICJ0IjogIjIwMjYtMTAtMDlUMjA6Mjk6NTguMzIwWiIsCiAgICAgICJ0eXBlIjogImJvb3QiLAogICAgICAiZGF0YSI6IHsgInJlc2V0UmVhc29uIjogIlBvd2VyT24iIH0KICAgIH0sCiAgICB7CiAgICAgICJzZXEiOiAxMjc4NCwKICAgICAgImtpbmQiOiAic2FtcGxlIiwKICAgICAgInVwdGltZU1zIjogMzAwMCwKICAgICAgInQiOiAiMjAyNi0xMC0wOVQyMDozMDowMC4xMjBaIiwKICAgICAgIm9wU3RhdGUiOiAxLAogICAgICAiY29tbW9kaXR5IjogewogICAgICAgICJlbGVjdHJpY2l0eVJhdGVXIjogMjQyLAogICAgICAgICJlbGVjdHJpY2l0eUN1bXVsYXRpdmVXaCI6IDAsCiAgICAgICAgInRvdGFsU3RvcmFnZUNhcGFjaXR5V2giOiAxMjAxMSwKICAgICAgICAicHJlc2VudEVuZXJneVRha2VXaCI6IDQyMDIKICAgICAgfSwKICAgICAgImxpbmsiOiB7ICJvayI6IHRydWUsICJyZXRyaWVzIjogMCwgIm5ha3MiOiAwIH0KICAgIH0sCiAgICB7CiAgICAgICJzZXEiOiAxMjc4NSwKICAgICAgImtpbmQiOiAiZXZlbnQiLAogICAgICAidXB0aW1lTXMiOiAxNzg4MCwKICAgICAgInQiOiAiMjAyNi0xMC0wOVQyMDozMDoxNS4wMDBaIiwKICAgICAgInR5cGUiOiAib3BTdGF0ZUNoYW5nZWQiLAogICAgICAiZGF0YSI6IHsgImZyb20iOiAxLCAidG8iOiAwIH0KICAgIH0sCiAgICB7CiAgICAgICJzZXEiOiAxMjc4NiwKICAgICAgImtpbmQiOiAiaGVhbHRoIiwKICAgICAgInVwdGltZU1zIjogMTgwMDAsCiAgICAgICJ0IjogIjIwMjYtMTAtMDlUMjA6MzA6MTUuMTIwWiIsCiAgICAgICJyc3NpRGJtIjogLTU4LAogICAgICAiZnJlZUhlYXBCeXRlcyI6IDE4MjM0NCwKICAgICAgImJ1ZmZlckRlcHRoIjogNCwKICAgICAgInJlc2V0UmVhc29uIjogIlBvd2VyT24iCiAgICB9CiAgXQp9Cg==",
+      "signature": "qBvw4dYogQ4rhmZl9a3UT7TriIsI+nIaGCSJVPM2nEA="
+    },
+    {
+      "method": "POST",
+      "path": "/device/v1/records",
+      "timestamp": "2026-10-09T20:31:02Z",
+      "bodyBase64": "",
+      "signature": "6usPNa2Xqj8GH9WVR/hmOVkfa+2na+IXG674+JYJpzA="
+    },
+    {
+      "method": "GET",
+      "path": "/device/v1/commands",
+      "timestamp": "2026-01-01T00:00:00Z",
+      "bodyBase64": "",
+      "signature": "PIr+0QcqsN/AMf/ien+LiMoeCWl2brCuYV45mGmbYS8="
+    }
+  ]
+}
