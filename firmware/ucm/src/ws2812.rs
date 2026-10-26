@@ -1,7 +1,8 @@
-//! Minimal driver for a single WS2812 ("NeoPixel") addressable RGB LED.
+//! Minimal driver for a short chain of WS2812 ("NeoPixel") addressable RGB LEDs.
 //!
 //! The WS2812 is driven over one data wire with a precisely timed pulse train: every color
 //! bit is a high pulse followed by a low pulse, and the pulse widths encode `0` or `1`.
+//! Each LED keeps the first 24 bits it receives and passes the rest down the chain.
 //! The ESP32's RMT (Remote Control Transceiver) peripheral generates these pulses in
 //! hardware, so the timing is unaffected by Wi-Fi interrupts or task scheduling.
 
@@ -68,11 +69,13 @@ impl Rgb {
     }
 }
 
-/// A single WS2812 LED attached to one GPIO pin.
+/// A chain of WS2812 LEDs attached to one GPIO pin.
 pub struct Ws2812<'d> {
     channel: TxChannelDriver<'d>,
     encoder: BytesEncoder,
     tx_config: TransmitConfig,
+    /// Reused transmit buffer, 3 bytes per LED.
+    grb: Vec<u8>,
 }
 
 impl<'d> Ws2812<'d> {
@@ -98,17 +101,20 @@ impl<'d> Ws2812<'d> {
             channel,
             encoder,
             tx_config: TransmitConfig::default(),
+            grb: Vec::new(),
         })
     }
 
-    /// Sends `color` to the LED and blocks until the transmission completes (~30 us).
+    /// Sends one color per LED, nearest LED first, and blocks until the transmission
+    /// completes (~30 us per LED).
     ///
-    /// The LED latches the new color once the data line has been idle for >50 us,
+    /// The LEDs latch the new colors once the data line has been idle for >50 us,
     /// so callers should not call this back-to-back without a short pause.
-    pub fn set_color(&mut self, color: Rgb) -> Result<(), EspError> {
+    pub fn set_colors(&mut self, colors: &[Rgb]) -> Result<(), EspError> {
         // WS2812 expects green, red, blue byte order.
-        let grb = [color.g, color.r, color.b];
+        self.grb.clear();
+        self.grb.extend(colors.iter().flat_map(|c| [c.g, c.r, c.b]));
         self.channel
-            .send_and_wait(&mut self.encoder, &grb, &self.tx_config)
+            .send_and_wait(&mut self.encoder, &self.grb, &self.tx_config)
     }
 }

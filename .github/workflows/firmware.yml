@@ -7,11 +7,13 @@ on:
     paths:
       - "firmware/**"
       - "captures/**"
+      - "contracts/**"
       - ".github/workflows/firmware.yml"
   pull_request:
     paths:
       - "firmware/**"
       - "captures/**"
+      - "contracts/**"
       - ".github/workflows/firmware.yml"
   workflow_dispatch:
 
@@ -34,9 +36,32 @@ jobs:
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test
 
-  ucm:
-    name: ucm (ESP32-C6 build)
+  bridge-core:
+    name: bridge-core (host tests)
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: firmware/bridge-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: firmware/bridge-core
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test
+
+  ucm:
+    name: ucm (ESP32-C6 build, ${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: devkit + replay
+            features: ""
+          - name: rev-A + RS-485
+            features: "--no-default-features --features board-rev-a,heater-rs485"
     defaults:
       run:
         working-directory: firmware/ucm
@@ -57,8 +82,8 @@ jobs:
           key: espressif-${{ runner.os }}-${{ hashFiles('firmware/ucm/.cargo/config.toml') }}
       - name: Install ldproxy
         run: cargo install ldproxy --locked
-      - name: Use placeholder Wi-Fi credentials
-        run: cp src/wifi_credentials.example.rs src/wifi_credentials.rs
+      - name: Use placeholder configuration
+        run: cp src/config.example.rs src/config.rs
       - run: cargo fmt --check
-      - run: cargo clippy --release -- -D warnings
-      - run: cargo build --release
+      - run: cargo clippy --release ${{ matrix.features }} -- -D warnings
+      - run: cargo build --release ${{ matrix.features }}
