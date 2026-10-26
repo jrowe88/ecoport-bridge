@@ -93,9 +93,19 @@ Needs Node.js (for Azurite) and Azure Functions Core Tools v4
    # 401
    ```
 
-   Without `--once` it uploads every `--interval` seconds (default 60). For the devkit, point
-   `API_BASE_URL` in `firmware/ucm/src/config.rs` at `http://<pc-lan-ip>:7071` and allow port 7071
-   through Windows Firewall.
+   Without `--once` it uploads every `--interval` seconds (default 60).
+
+   **For the devkit:** `func start` binds to `127.0.0.1` by default, so start it with
+   `func start --address 0.0.0.0`, point `API_BASE_URL` in `firmware/ucm/src/config.rs` at
+   `http://<pc-lan-ip>:7071`, and allow the port through Windows Firewall from an Administrator
+   PowerShell:
+
+   ```powershell
+   New-NetFirewallRule -DisplayName "EcoPort local Device API (7071)" -Direction Inbound -Protocol TCP -LocalPort 7071 -Action Allow -Profile Private -RemoteAddress LocalSubnet
+   ```
+
+   Symptom when either is missing: the device logs `esp-tls: select() timeout` /
+   `ESP_ERR_HTTP_CONNECT` and its status LED pulses amber.
 
 ## Run the User API locally
 
