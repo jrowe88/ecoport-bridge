@@ -11,8 +11,10 @@ EcoPort Bridge has two parts:
 This document covers both: the software layering (section 1) and the
 device ↔ cloud system design (sections 2 onwards).
 
-> **Status:** plan. The protocol research in `tools/` and `captures/` is
-> working. The firmware and cloud service are not built yet. The data model
+> **Status:** milestone 1 (bench reporting) is running in Azure: an ESP32-C6
+> devkit replays recorded Rinnai data and uploads it to the Device API, and
+> the Blazor dashboard shows it. CTA-2045 polling, derivation and commands are
+> not built yet (section 14). The data model
 > uses the fields the Rinnai REHP65 actually exposes today (see
 > [`capabilities.md`](capabilities.md)). New fields may be added later without
 > changing this architecture.
@@ -926,6 +928,16 @@ does not touch the CTA-2045 or appliance crates.
 ---
 
 ## 14. Implementation sequence
+
+**Done (M1, 2026-10-25):** bench reporting and collection, per
+[`docs/superpowers/plans/2026-10-25-m1-bench-reporting.md`](superpowers/plans/2026-10-25-m1-bench-reporting.md).
+The devkit samples a replayed heater every 15 s and uploads signed batches to
+`POST /device/v1/records` (raw tables, `CurrentState`; no queue/processor
+yet). The dashboard (Blazor + MudBlazor on SWA Free, role `bench`) shows
+current state and a 1-day chart, read through a read-only table SAS. Bicep
+deploys everything to `rg-ecoport-dev`. Steps below are still open except
+where M1 covered part of them (3, 4 without the queue, 6 without claim
+codes).
 
 1. Port the CTA-2045 link and the 15 s poll loop to Rust (`firmware/cta2045`,
    tested on a PC against the captures), then run it on the ESP32-C6 (no
