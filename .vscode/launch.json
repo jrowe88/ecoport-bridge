@@ -1,0 +1,27 @@
+{
+  // Start the stack with the "Start local stack" task first, then attach. In the process picker,
+  // choose the dotnet worker whose command line mentions EcoPort.Cloud.Device (or .Api).
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach: Device API",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    },
+    {
+      "name": "Attach: User API",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    },
+    {
+      // Launches its own dev server on port 5000: stop the "Dashboard (5000)" task first.
+      "name": "Debug: Dashboard (Blazor WASM)",
+      "type": "blazorwasm",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/web/EcoPort.Web",
+      "url": "http://localhost:5000"
+    }
+  ]
+}

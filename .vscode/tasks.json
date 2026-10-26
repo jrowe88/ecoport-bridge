@@ -1,0 +1,131 @@
+{
+  // Local stack and checks. Run "Start local stack" (Terminal > Run Task), then open
+  // http://localhost:4280 and sign in with role `bench`. See cloud/README.md for first-time
+  // setup (local.settings.json, registering a device in Azurite, the firewall rule).
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Azurite",
+      "type": "shell",
+      "command": "npx --yes azurite --silent --skipApiVersionCheck --location \"${env:TEMP}/azurite\"",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": { "regexp": "^__never__$" },
+        "background": {
+          "activesBegins": true,
+          "beginsPattern": ".",
+          "endsPattern": "Table service is successfully listening"
+        }
+      }
+    },
+    {
+      "label": "Device API (0.0.0.0:7071)",
+      "type": "shell",
+      "command": "func start --address 0.0.0.0",
+      "options": { "cwd": "${workspaceFolder}/cloud/src/EcoPort.Cloud.Device" },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": { "regexp": "^__never__$" },
+        "background": {
+          "activesBegins": true,
+          "beginsPattern": ".",
+          "endsPattern": "Host lock lease acquired|Worker process started and initialized|Job host started"
+        }
+      }
+    },
+    {
+      "label": "User API (7072)",
+      "type": "shell",
+      "command": "func start --port 7072",
+      "options": { "cwd": "${workspaceFolder}/cloud/src/EcoPort.Cloud.Api" },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": { "regexp": "^__never__$" },
+        "background": {
+          "activesBegins": true,
+          "beginsPattern": ".",
+          "endsPattern": "Host lock lease acquired|Worker process started and initialized|Job host started"
+        }
+      }
+    },
+    {
+      "label": "Dashboard (5000)",
+      "type": "shell",
+      "command": "dotnet run --launch-profile http",
+      "options": { "cwd": "${workspaceFolder}/web/EcoPort.Web" },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": { "regexp": "^__never__$" },
+        "background": {
+          "activesBegins": true,
+          "beginsPattern": ".",
+          "endsPattern": "Now listening on"
+        }
+      }
+    },
+    {
+      "label": "SWA emulator (4280)",
+      "type": "shell",
+      "command": "npx --yes @azure/static-web-apps-cli start http://localhost:5000 --api-devserver-url http://localhost:7072 --swa-config-location wwwroot --port 4280",
+      "options": { "cwd": "${workspaceFolder}/web/EcoPort.Web" },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": { "regexp": "^__never__$" },
+        "background": {
+          "activesBegins": true,
+          "beginsPattern": ".",
+          "endsPattern": "emulator started"
+        }
+      }
+    },
+    {
+      "label": "Start local stack",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Azurite",
+        "Device API (0.0.0.0:7071)",
+        "User API (7072)",
+        "Dashboard (5000)",
+        "SWA emulator (4280)"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: .NET (cloud + web)",
+      "type": "shell",
+      "command": "dotnet test EcoPort.slnx",
+      "problemMatcher": "$msCompile",
+      "group": "test"
+    },
+    {
+      "label": "Test: Rust (cta2045 + bridge-core)",
+      "type": "shell",
+      "command": "cargo test --manifest-path firmware/cta2045/Cargo.toml; if ($LASTEXITCODE -eq 0) { cargo test --manifest-path firmware/bridge-core/Cargo.toml }",
+      "options": { "shell": { "executable": "pwsh", "args": ["-NoProfile", "-Command"] } },
+      "problemMatcher": "$rustc",
+      "group": "test"
+    },
+    {
+      "label": "Test all",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Test: Rust (cta2045 + bridge-core)", "Test: .NET (cloud + web)"],
+      "problemMatcher": [],
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "Firmware: build (devkit)",
+      "type": "shell",
+      "command": "cargo build --release",
+      "options": { "cwd": "${workspaceFolder}/firmware/ucm" },
+      "problemMatcher": "$rustc",
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "Firmware: flash + monitor (devkit)",
+      "type": "shell",
+      "command": "cargo run --release",
+      "options": { "cwd": "${workspaceFolder}/firmware/ucm" },
+      "problemMatcher": "$rustc"
+    }
+  ]
+}

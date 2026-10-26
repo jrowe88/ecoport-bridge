@@ -28,6 +28,26 @@ cd ../ucm && cargo run --release         # build, flash and monitor the ESP32-C6
 
 See [`firmware/README.md`](../firmware/README.md) for first-time setup.
 
+## Developing in VS Code
+
+Open the repository root. VS Code offers the recommended extensions from
+`.vscode/extensions.json` (rust-analyzer, C# Dev Kit, Azure Functions, Azurite,
+Static Web Apps, Bicep, PowerShell). `EcoPort.slnx` at the root holds every .NET
+project, so C# Dev Kit's Test Explorer shows the cloud and web tests together.
+
+Tasks (**Terminal > Run Task**):
+
+| Task | What it does |
+|---|---|
+| Start local stack | Azurite, Device API on `0.0.0.0:7071`, User API on 7072, Blazor on 5000, then the SWA emulator on 4280. Open http://localhost:4280 and sign in with role `bench` |
+| Test all | Rust host tests (`cta2045`, `bridge-core`), then `dotnet test EcoPort.slnx` |
+| Firmware: build (devkit) / flash + monitor | `cargo build` / `cargo run --release` in `firmware/ucm` |
+
+First-time setup for the local stack (settings files, registering a device in
+Azurite, the firewall rule for the devkit) is in
+[`cloud/README.md`](../cloud/README.md). To debug, run the stack, then use
+**Attach: Device API** or **Attach: User API** in Run and Debug.
+
 ## Tools
 
 Command-line helpers live in `tools/`:

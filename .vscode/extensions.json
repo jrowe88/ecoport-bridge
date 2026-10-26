@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "rust-lang.rust-analyzer",
+    "tamasfe.even-better-toml",
+    "ms-dotnettools.csdevkit",
+    "ms-azuretools.vscode-azurefunctions",
+    "azurite.azurite",
+    "ms-azuretools.vscode-azurestaticwebapps",
+    "ms-azuretools.vscode-bicep",
+    "ms-vscode.powershell"
+  ]
+}

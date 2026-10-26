@@ -1,0 +1,15 @@
+{
+  // The firmware crates are separate Cargo packages, not one workspace (see firmware/README.md).
+  // ucm builds ESP-IDF on its first check, which takes several minutes.
+  "rust-analyzer.linkedProjects": [
+    "firmware/cta2045/Cargo.toml",
+    "firmware/bridge-core/Cargo.toml",
+    "firmware/ucm/Cargo.toml"
+  ],
+  "dotnet.defaultSolution": "EcoPort.slnx",
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/target": true
+  }
+}
