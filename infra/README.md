@@ -20,7 +20,7 @@ One resource group (default `rg-ecoport-dev`) containing:
 
 | Resource | SKU / plan | Cost-relevant settings |
 |---|---|---|
-| Storage account `stecoportdev<suffix>` | Standard_LRS, StorageV2, Hot | TLS 1.2, no public blob access, shared-key on (only for the SWA User API connection string). Tables `Devices`, `Telemetry`, `DeviceEvents`, `CurrentState`; blob container `deployments` |
+| Storage account `stecoportdev<suffix>` | Standard_LRS, StorageV2, Hot | TLS 1.2, no public blob access, shared-key on (needed to sign the User API's read-only table SAS; the account key itself is never handed out). Tables `Devices`, `Telemetry`, `DeviceEvents`, `CurrentState`; blob container `deployments` |
 | Log Analytics `log-ecoport-dev` | PerGB2018 | Daily cap 0.1 GB, retention 30 days |
 | Application Insights `appi-ecoport-dev` | Workspace-based | Retention 30 days; sampling stays on in the worker SDK; capped by the workspace cap |
 | Key Vault `kv-ecoport-dev-<suffix>` | Standard | RBAC mode, soft delete 7 days, purge protection off |

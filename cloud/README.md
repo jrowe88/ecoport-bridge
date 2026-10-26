@@ -40,7 +40,7 @@ App settings (environment variables use `__` for the `:` in configuration keys):
 
 | Setting | Used by | Meaning |
 |---|---|---|
-| `Storage__ConnectionString` | Device (local), Api | Table storage connection string. Wins when set. `UseDevelopmentStorage=true` for Azurite |
+| `Storage__ConnectionString` | Device (local), Api | Table storage connection string. Wins when set. `UseDevelopmentStorage=true` for Azurite. In Azure the Api gets `TableEndpoint=…;SharedAccessSignature=…` with a read + list SAS, so it never creates tables |
 | `Storage__TableEndpoint` | Device (Azure) | `https://<account>.table.core.windows.net`, used with the managed identity when no connection string is set |
 | `KeyVault__Uri` | Device (Azure) | When set, device secrets come from Key Vault secret `device-{deviceId}` (Base64 of the 32 bytes), cached 10 min |
 | `DeviceSecrets__{deviceId}` | Device (local) | Base64 device secret, used when `KeyVault__Uri` is empty |

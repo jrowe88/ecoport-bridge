@@ -832,9 +832,12 @@ is no state storage to pay for or secure. Each environment creates:
 - Key Vault (RBAC mode) for device secrets
 - Application Insights and a Log Analytics workspace (with a daily cap)
 - Role assignments: Function App → Storage Table/Queue Data Contributor and
-  Key Vault Secrets Officer. SWA managed functions use an app setting
-  connection (managed functions cannot use a managed identity; review this
-  when deciding between SWA Free and Standard)
+  Key Vault Secrets Officer. SWA managed functions cannot use a managed
+  identity, so the User API gets a connection string carrying an account SAS
+  limited to the **Table service, read + list, HTTPS, 1-year expiry**,
+  reissued on every infrastructure deployment. It cannot write or reach blobs
+  and queues. When the User API needs to write (commands, M2), add a separate
+  SAS scoped to the `Commands` table only.
 
 Timers on the Function App:
 
@@ -948,7 +951,7 @@ does not touch the CTA-2045 or appliance crates.
 - **Setpoint calibration table**: waiting on the setpoint sweep.
 - Whether to use **encrypted NVS / flash encryption** on the C6 for the device
   secret (affects provisioning workflow).
-- **SWA Free** (managed functions use connection strings) or **Standard**
+- **SWA Free** (managed functions use a scoped SAS) or **Standard**
   (linked backend with managed identity, custom auth), once the security and
   cost tradeoff is clearer.
 - **Raw retention policy** (indefinite in v1).

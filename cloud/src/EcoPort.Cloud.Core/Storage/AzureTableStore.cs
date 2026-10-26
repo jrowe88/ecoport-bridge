@@ -7,10 +7,12 @@ using Microsoft.Extensions.Configuration;
 namespace EcoPort.Cloud.Core.Storage;
 
 /// <summary>
-/// <see cref="ITableStore"/> on Azure Table Storage (or Azurite). The four tables are created on
-/// first use if missing.
+/// <see cref="ITableStore"/> on Azure Table Storage (or Azurite). When <paramref name="createTables"/>
+/// is true (the Device API), the four tables are created on first use if missing. The User API
+/// passes false: it only holds a read-only credential, and the tables already exist (Bicep creates
+/// them in Azure; the Device API creates them in Azurite).
 /// </summary>
-public sealed class AzureTableStore(TableServiceClient service) : ITableStore
+public sealed class AzureTableStore(TableServiceClient service, bool createTables = true) : ITableStore
 {
     private readonly SemaphoreSlim _initLock = new(1, 1);
     private volatile bool _initialized;
@@ -134,7 +136,7 @@ public sealed class AzureTableStore(TableServiceClient service) : ITableStore
 
     private async ValueTask<TableClient> TableAsync(string table, CancellationToken ct)
     {
-        if (!_initialized)
+        if (createTables && !_initialized)
         {
             await _initLock.WaitAsync(ct).ConfigureAwait(false);
             try
