@@ -11,19 +11,42 @@
         <MudLink Href="" Color="Color.Inherit" Underline="Underline.None" Typo="Typo.h6">EcoBridge</MudLink>
         <MudText Typo="Typo.caption" Class="ml-2" Style="opacity: .75">bench</MudText>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Href="/.auth/logout"
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit"
+                       Href="/.auth/logout?post_logout_redirect_uri=/login.html"
                        aria-label="Sign out" title="Sign out" />
     </MudAppBar>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Large" Class="py-6">
-            @Body
+            @if (_authorized)
+            {
+                @Body
+            }
+            else
+            {
+                <MudProgressLinear Indeterminate="true" Color="Color.Primary" />
+            }
         </MudContainer>
     </MudMainContent>
 </MudLayout>
 
 @code {
+    [Inject] private IAuthStatus Auth { get; set; } = default!;
+    [Inject] private NavigationManager Navigation { get; set; } = default!;
+
     private MudThemeProvider? _themeProvider;
     private bool _isDarkMode;
+    private bool _authorized;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authorized = await Auth.HasBenchRoleAsync();
+        if (!_authorized)
+        {
+            // A full page load, so the login page comes from the server (or its own cache entry),
+            // not from the Blazor router.
+            Navigation.NavigateTo("/login.html", forceLoad: true);
+        }
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

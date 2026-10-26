@@ -11,6 +11,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 // The User API is served from the same origin under /api (SWA managed functions, or the SWA CLI locally).
 builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IEcoPortApi, EcoPortApiClient>();
+builder.Services.AddScoped<IAuthStatus, SwaAuthStatus>();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddMudServices();
 
