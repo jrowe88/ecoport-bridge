@@ -4,10 +4,27 @@ Bicep for the Azure side of the M1 bench milestone, plus PowerShell 7 scripts
 to deploy it. Everything is paid from a personal subscription, so the settings
 below are chosen for the lowest cost that still works.
 
+## Signing in (separate CLI profile)
+
+The scripts use their own Azure CLI profile folder, `~/.azure-ecoport`, unless
+`AZURE_CONFIG_DIR` is already set. That keeps the personal subscription's
+token cache apart from the work tenant's logins on this machine. With the
+shared default profile, `az login` for the personal Microsoft account kept
+failing with "User ... does not exist in MSAL token cache".
+
+Sign in once (or when the token expires) from PowerShell:
+
+```powershell
+$env:AZURE_CONFIG_DIR = "$HOME\.azure-ecoport"
+az login --use-device-code --tenant 97529d9f-70c0-4f1c-81ff-3bedb166389f
+```
+
+Run ad-hoc `az` commands for EcoPort with the same `AZURE_CONFIG_DIR`.
+
 ## Subscription guard
 
 Every script takes `-SubscriptionId` (default
-`54c73415-2ebc-4270-8390-46985acfa7a7`, "Azure subscription 1") and starts by
+`54c73415-2ebc-4270-8390-46985acfa7a7`, "jrowe88-iot") and starts by
 comparing it with `az account show --query id -o tsv`. On a mismatch it prints
 both ids and exits with code 1. The scripts never run `az account set`. If the
 guard trips, switch yourself (`az account set --subscription <id>`) after

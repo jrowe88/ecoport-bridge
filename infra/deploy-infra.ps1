@@ -39,6 +39,11 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# EcoPort uses its own Azure CLI profile (~/.azure-ecoport) so the personal subscription never
+# shares a token cache with other logins on this machine; see infra/README.md. Set
+# AZURE_CONFIG_DIR yourself to override.
+if (-not $env:AZURE_CONFIG_DIR) { $env:AZURE_CONFIG_DIR = Join-Path $HOME '.azure-ecoport' }
+
 # --- Subscription guard -------------------------------------------------------
 $currentSubscription = (az account show --query id -o tsv 2>$null)
 if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($currentSubscription)) {
