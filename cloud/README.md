@@ -9,11 +9,30 @@ The device contract is [`contracts/device-v1/`](../contracts/device-v1/).
 | `src/EcoPort.Cloud.Contracts` | JSON DTOs shared by the Functions and the Blazor dashboard (`JsonDefaults.Options`: camelCase, strict) |
 | `src/EcoPort.Cloud.Core` | Request signing, secret stores, table storage, ingest, read-side helpers |
 | `src/EcoPort.Cloud.Device` | Device API Function App (Flex Consumption): `POST /device/v1/records` |
+| `src/EcoPort.Cloud.Api` | User API, deployed as Static Web Apps managed functions: `GET /api/devices…` |
 | `tests/EcoPort.Cloud.Tests` | xUnit tests, including the shared contract files and signing vectors |
 
 ```bash
 dotnet test cloud/EcoPort.Cloud.slnx
 ```
+
+## Runtime: .NET 10 everywhere
+
+Every project targets `net10.0`. Static Web Apps managed functions support .NET 10 isolated:
+the [supported languages and runtimes](https://learn.microsoft.com/en-us/azure/static-web-apps/languages-runtimes)
+page (`ms.date` 2026-10-05, checked 2026-10-25) lists `apiRuntime` value `dotnet-isolated:10.0`
+(Windows, Functions 4.x, no end-of-support date), next to `dotnet-isolated:8.0` and `:9.0`, which
+end support on 2026-11-10. So the dashboard's `staticwebapp.config.json` uses:
+
+```json
+"platform": { "apiRuntime": "dotnet-isolated:10.0" }
+```
+
+The Device Function App (Flex Consumption) uses `dotnet-isolated` `10.0` too.
+
+`Microsoft.ApplicationInsights.WorkerService` is held at 2.x (2.23.0): the current
+`Microsoft.Azure.Functions.Worker.ApplicationInsights` (2.51.0) fails at startup against
+ApplicationInsights 3.x (`TypeLoadException: ITelemetryInitializer`).
 
 ## Configuration
 
@@ -77,6 +96,32 @@ Needs Node.js (for Azurite) and Azure Functions Core Tools v4
    Without `--once` it uploads every `--interval` seconds (default 60). For the devkit, point
    `API_BASE_URL` in `firmware/ucm/src/config.rs` at `http://<pc-lan-ip>:7071` and allow port 7071
    through Windows Firewall.
+
+## Run the User API locally
+
+With Azurite running and some data sent by the fake device:
+
+```bash
+cp cloud/src/EcoPort.Cloud.Api/local.settings.example.json cloud/src/EcoPort.Cloud.Api/local.settings.json
+cd cloud/src/EcoPort.Cloud.Api && func start --port 7072
+curl http://localhost:7072/api/devices
+curl http://localhost:7072/api/devices/WH001/state
+curl "http://localhost:7072/api/devices/WH001/telemetry?from=2026-10-25T00:00:00Z&to=2026-10-25T12:00:00Z"
+```
+
+Called directly like this there is no sign-in. Behind Static Web Apps (or the SWA CLI emulator,
+`swa start … --api-location http://localhost:7072`) the route rules in `staticwebapp.config.json`
+require role `bench` for `/api/*`.
+
+| Endpoint | Result |
+|---|---|
+| `GET /api/devices` | `DeviceSummaryDto[]`, ordered by device ID |
+| `GET /api/devices/{deviceId}/state` | `DeviceStateDto`; `404` if the device is not in `Devices` |
+| `GET /api/devices/{deviceId}/telemetry?from=&to=` | `TelemetryPointDto[]` (ISO 8601 times; default last 24 h; at most 500 points, equal-time buckets). Range > 24 h, unparsable or `from` ≥ `to` → `400 {"error"}`; unknown device → `404` |
+
+Read-time values: `connectivity` is `online` (last seen ≤ 3 min ago), `delayed` (≤ 15 min) or
+`offline`; `storedEnergyPercent` = `(1 − take / capacity) × 100` clamped to 0–100, and `null`
+when capacity is 0 (vacation mode) or unknown.
 
 ## Device API behaviour
 

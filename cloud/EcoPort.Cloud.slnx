@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/EcoPort.Cloud.Api/EcoPort.Cloud.Api.csproj" />
     <Project Path="src/EcoPort.Cloud.Contracts/EcoPort.Cloud.Contracts.csproj" />
     <Project Path="src/EcoPort.Cloud.Core/EcoPort.Cloud.Core.csproj" />
     <Project Path="src/EcoPort.Cloud.Device/EcoPort.Cloud.Device.csproj" />
