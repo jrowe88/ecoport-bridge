@@ -7,11 +7,13 @@ on:
     paths:
       - "firmware/**"
       - "captures/**"
+      - "contracts/**"
       - ".github/workflows/firmware.yml"
   pull_request:
     paths:
       - "firmware/**"
       - "captures/**"
+      - "contracts/**"
       - ".github/workflows/firmware.yml"
   workflow_dispatch:
 
@@ -30,6 +32,21 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: firmware/cta2045
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets -- -D warnings
+      - run: cargo test
+
+  bridge-core:
+    name: bridge-core (host tests)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: firmware/bridge-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: firmware/bridge-core
       - run: cargo fmt --check
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test

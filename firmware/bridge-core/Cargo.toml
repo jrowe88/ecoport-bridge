@@ -1,0 +1,17 @@
+[package]
+name = "bridge-core"
+version = "0.1.0"
+authors = ["Jim Rowe"]
+edition = "2021"
+description = "UCM device logic with no hardware dependencies: records, buffering, upload format, request signing"
+license = "AGPL-3.0-only"
+publish = false
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+hmac = "0.12"
+log = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
