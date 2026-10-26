@@ -9,7 +9,7 @@ __pycache__/
 # Rust firmware
 firmware/*/target/
 firmware/ucm/.embuild/
-firmware/ucm/src/wifi_credentials.rs
+firmware/ucm/src/config.rs
 
 # OS / editor
 .DS_Store

@@ -1,6 +1,7 @@
 //! Wi-Fi station (client) setup.
 
 use std::net::Ipv4Addr;
+use std::sync::atomic::{AtomicBool, Ordering};
 
 use anyhow::anyhow;
 use esp_idf_svc::eventloop::EspSystemEventLoop;
@@ -9,6 +10,32 @@ use esp_idf_svc::nvs::EspDefaultNvsPartition;
 use esp_idf_svc::wifi::{AuthMethod, BlockingWifi, ClientConfiguration, Configuration, EspWifi};
 
 pub type Wifi = BlockingWifi<EspWifi<'static>>;
+
+/// Whether the connection is up, as last seen by the supervisor loop in `main`. Lets other
+/// threads check without sharing (and locking) the driver, which `connect` blocks for
+/// seconds at a time.
+static LINK_UP: AtomicBool = AtomicBool::new(false);
+
+/// Records whether the connection is up (joined and holding an IP address).
+pub fn set_link_up(up: bool) {
+    LINK_UP.store(up, Ordering::Relaxed);
+}
+
+/// Whether the connection was up at the supervisor's last check (at most a few seconds ago).
+pub fn link_up() -> bool {
+    LINK_UP.load(Ordering::Relaxed)
+}
+
+/// Signal strength of the current connection, or `None` when not connected.
+pub fn rssi_dbm() -> Option<i8> {
+    if !link_up() {
+        return None;
+    }
+    let mut rssi: core::ffi::c_int = 0;
+    // SAFETY: `rssi` is a valid out-pointer for the duration of the call.
+    esp_idf_svc::sys::esp!(unsafe { esp_idf_svc::sys::esp_wifi_sta_get_rssi(&mut rssi) }).ok()?;
+    Some(rssi.clamp(i8::MIN.into(), i8::MAX.into()) as i8)
+}
 
 /// Creates the Wi-Fi driver in station mode and starts the radio, without connecting yet.
 ///

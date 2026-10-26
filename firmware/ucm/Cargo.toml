@@ -20,9 +20,26 @@ opt-level = "s"
 debug = true # Symbols are nice, and they don't increase the size on flash
 opt-level = "z"
 
+# Exactly one board and one heater source must be enabled; `board.rs` and `heater.rs`
+# refuse to compile otherwise. Breadboard with fake data:
+# `--no-default-features --features board-rev-a,heater-replay`.
+[features]
+default = ["board-devkit", "heater-replay"]
+# ESP32-C6 dev kit: one onboard WS2812 LED.
+board-devkit = []
+# Rev-A board: two WS2812 LEDs (network/upload status, heater status).
+board-rev-a = []
+# Replays the Rinnai recordings in captures/, uploaded with "simulated": true.
+heater-replay = []
+# Real heater on the RS-485 port (polling not implemented yet; receive-only monitor runs).
+heater-rs485 = ["dep:cta2045"]
+
 [dependencies]
 anyhow = "1"
-cta2045 = { path = "../cta2045" }
+base64 = "0.22"
+bridge-core = { path = "../bridge-core" }
+# Only the RS-485 heater source parses CTA-2045.
+cta2045 = { path = "../cta2045", optional = true }
 esp-idf-svc = { version = "0.53", features = ["critical-section"] }
 log = "0.4"
 
