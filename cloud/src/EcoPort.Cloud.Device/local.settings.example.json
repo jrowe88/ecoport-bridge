@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "Storage__ConnectionString": "UseDevelopmentStorage=true",
+    "KeyVault__Uri": "",
+    "DeviceSecrets__WH001": "<Base64 of the device's 32-byte secret, same value as DEVICE_SECRET_B64 in firmware config.rs>"
+  },
+  "Host": {
+    "LocalHttpPort": 7071
+  }
+}
